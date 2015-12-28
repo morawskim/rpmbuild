@@ -1,0 +1,104 @@
+Index: ext/standard/config.m4
+===================================================================
+--- ext/standard/config.m4.orig
++++ ext/standard/config.m4
+@@ -60,7 +60,14 @@ if test "$ac_cv_func_crypt" = "no"; then
+     AC_DEFINE(HAVE_CRYPT, 1, [ ])
+   ])
+ fi
+-  
++ 
++if test "$ac_cv_func_crypt" = "no"; then
++  AC_CHECK_LIB(crypt, crypt_r, [
++    LIBS="-lcrypt $LIBS -lcrypt"
++    AC_DEFINE(HAVE_CRYPT_R, 1, [ ])
++  ])
++fi
++ 
+ AC_CACHE_CHECK(for standard DES crypt, ac_cv_crypt_des,[
+   AC_TRY_RUN([
+ #if HAVE_UNISTD_H
+@@ -172,7 +179,7 @@ main() {
+   ac_cv_crypt_blowfish=no
+ ])])
+ 
+-AC_CACHE_CHECK(for SHA512 crypt, ac_cv_crypt_SHA512,[
++AC_CACHE_CHECK(for SHA512 crypt, ac_cv_crypt_sha512,[
+ AC_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+@@ -184,24 +191,22 @@ AC_TRY_RUN([
+ 
+ main() {
+ #if HAVE_CRYPT
+-    char salt[30], answer[80];
++    char salt[120];
+     
+-    salt[0]='$'; salt[1]='6'; salt[2]='$'; salt[3]='$'; salt[4]='b'; salt[5]='a'; salt[6]='r'; salt[7]='\0';
+-    strcpy(answer, salt);
+-    strcpy(&answer[29],"$6$$QMXjqd7rHQZPQ1yHsXkQqC1FBzDiVfTHXL.LaeDAeVV.IzMaV9VU4MQ8kPuZa2SOP1A0RPm772EaFYjpEJtdu.");
+-    exit (strcmp((char *)crypt("foo",salt),answer));
++    strcpy(salt, "\$6\$rounds=5000\$usesomesillystri\$D4IrlXatmP7rx3P3InaxBeoomnAihCKRVQP22JZ6EY47Wc6BkroIuUUBOov1i.S5KPgErtP/EN5mcO.ChWQW21");
++    exit (strcmp((char *)crypt("rasmuslerdorf",salt),salt));
+ #else
+ 	exit(0);
+ #endif
+ }],[
+-  ac_cv_crypt_SHA512=yes
++  ac_cv_crypt_sha512=yes
+ ],[
+-  ac_cv_crypt_SHA512=no
++  ac_cv_crypt_sha512=no
+ ],[
+-  ac_cv_crypt_SHA512=no
++  ac_cv_crypt_sha512=no
+ ])])
+ 
+-AC_CACHE_CHECK(for SHA256 crypt, ac_cv_crypt_SHA256,[
++AC_CACHE_CHECK(for SHA256 crypt, ac_cv_crypt_sha256,[
+ AC_TRY_RUN([
+ #if HAVE_UNISTD_H
+ #include <unistd.h>
+@@ -213,28 +218,31 @@ AC_TRY_RUN([
+ 
+ main() {
+ #if HAVE_CRYPT
+-    char salt[30], answer[80];
+-    salt[0]='$'; salt[1]='5'; salt[2]='$'; salt[3]='$'; salt[4]='s'; salt[5]='a'; salt[6]='l'; salt[7]='t';  salt[8]='s'; salt[9]='t'; salt[10]='r'; salt[11]='i'; salt[12]='n'; salt[13]='g'; salt[14]='\0';    
+-    strcat(salt,"");
+-    strcpy(answer, salt);
+-    strcpy(&answer[29], "$5$saltstring$5B8vYYiY.CVt1RlTTf8KbXBH3hsxY/GNooZaBBGWEc5");
+-    exit (strcmp((char *)crypt("foo",salt),answer));
++    char salt[80];
++    strcpy(salt, "\$5\$rounds=5000\$usesomesillystri\$KqJWpanXZHKq2BOB43TSaYhEWsQ1Lr5QNyPCDH/Tp.6");
++    exit (strcmp((char *)crypt("rasmuslerdorf",salt),salt));
+ #else
+ 	exit(0);
+ #endif
+ }],[
+-  ac_cv_crypt_SHA256=yes
++  ac_cv_crypt_sha256=yes
+ ],[
+-  ac_cv_crypt_SHA256=no
++  ac_cv_crypt_sha256=no
+ ],[
+-  ac_cv_crypt_SHA256=no
++  ac_cv_crypt_sha256=no
+ ])])
+ 
+ 
+ dnl
+-dnl If one of them is missing, use our own implementation, portable code is then possible
++dnl If one of them or crypt_r() is missing, use our own implementation, portable code is then possible
+ dnl
+-if test "$ac_cv_crypt_blowfish" = "no" || test "$ac_cv_crypt_des" = "no" || test "$ac_cv_crypt_ext_des" = "no" || test "x$php_crypt_r" = "x0"; then
++if test "$ac_cv_crypt_des" = "no" ||  
++  /* test "$ac_cv_crypt_ext_des" = "no" ||*/
++   test "$ac_cv_crypt_md5" = "no" ||
++   test "$ac_cv_crypt_blowfish" = "no" || 
++   test "$ac_cv_crypt_sha512" = "no" ||
++   test "$ac_cv_crypt_sha256" = "no" ||
++   test "$ac_cv_lib_crypt_crypt_r" = "no"; then
+ 
+   dnl
+   dnl Check for __alignof__ support in the compiler

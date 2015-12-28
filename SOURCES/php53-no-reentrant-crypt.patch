@@ -1,0 +1,13 @@
+Index: ext/standard/crypt.c
+===================================================================
+--- ext/standard/crypt.c
++++ ext/standard/crypt.c
+@@ -302,6 +302,8 @@ PHP_FUNCTION(crypt)
+ 			RETURN_STRING(crypt_res, 1);
+ 		}
+ 	}
++# else
++	RETURN_STRING(crypt(str, salt), 1);
+ # endif
+ #endif
+ }

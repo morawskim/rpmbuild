@@ -1,0 +1,17 @@
+---
+ scripts/php-config.in |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+Index: scripts/php-config.in
+===================================================================
+--- scripts/php-config.in.orig	2007-08-24 13:44:10.000000000 +0200
++++ scripts/php-config.in	2010-08-03 06:31:18.786529000 +0200
+@@ -5,7 +5,7 @@ prefix="@prefix@"
+ exec_prefix="@exec_prefix@"
+ version="@PHP_VERSION@"
+ vernum="@PHP_VERSION_ID@"
+-include_dir="@includedir@/php"
++include_dir="@includedir@/php5"
+ includes="-I$include_dir -I$include_dir/main -I$include_dir/TSRM -I$include_dir/Zend -I$include_dir/ext -I$include_dir/ext/date/lib"
+ ldflags="@PHP_LDFLAGS@"
+ libs="@EXTRA_LIBS@"

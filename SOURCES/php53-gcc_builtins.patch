@@ -1,0 +1,35 @@
+--- Zend/zend_alloc.c.orig
++++ Zend/zend_alloc.c
+@@ -36,7 +36,7 @@
+ # include <wincrypt.h>
+ # include <process.h>
+ #endif
+-
++#include <x86intrin.h>
+ #ifndef ZEND_MM_HEAP_PROTECTION
+ # define ZEND_MM_HEAP_PROTECTION ZEND_DEBUG
+ #endif
+@@ -665,10 +665,7 @@ static inline unsigned int zend_mm_high_
+ 	__asm__("bsrl %1,%0\n\t" : "=r" (n) : "rm"  (_size));
+ 	return n;
+ #elif defined(__GNUC__) && defined(__x86_64__)
+-	unsigned long n;
+-
+-        __asm__("bsrq %1,%0\n\t" : "=r" (n) : "rm"  (_size));
+-        return (unsigned int)n;
++    return __bsrq(_size);
+ #elif defined(_MSC_VER) && defined(_M_IX86)
+ 	__asm {
+ 		bsr eax, _size
+@@ -691,10 +688,7 @@ static inline unsigned int zend_mm_low_b
+ 	__asm__("bsfl %1,%0\n\t" : "=r" (n) : "rm"  (_size));
+ 	return n;
+ #elif defined(__GNUC__) && defined(__x86_64__)
+-        unsigned long n;
+-
+-        __asm__("bsfq %1,%0\n\t" : "=r" (n) : "rm"  (_size));
+-        return (unsigned int)n;
++    return __bsfq(_size);
+ #elif defined(_MSC_VER) && defined(_M_IX86)
+ 	__asm {
+ 		bsf eax, _size

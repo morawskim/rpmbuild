@@ -1,0 +1,13 @@
+Index: ext/exif/exif.c
+===================================================================
+--- ext/exif/exif.c.orig	2010-01-03 10:23:27.000000000 +0100
++++ ext/exif/exif.c	2010-08-03 06:31:20.024482000 +0200
+@@ -66,7 +66,7 @@
+ #include "ext/standard/php_image.h"
+ #include "ext/standard/info.h" 
+ 
+-#if defined(PHP_WIN32) || (HAVE_MBSTRING && !defined(COMPILE_DL_MBSTRING))
++#if defined(PHP_WIN32) || (HAVE_MBSTRING)
+ #define EXIF_USE_MBSTRING 1
+ #else
+ #define EXIF_USE_MBSTRING 0

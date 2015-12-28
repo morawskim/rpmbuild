@@ -1,0 +1,52 @@
+Index: ext/standard/exec.c
+===================================================================
+--- ext/standard/exec.c.orig	2010-03-12 11:28:59.000000000 +0100
++++ ext/standard/exec.c	2010-08-03 06:31:21.692327000 +0200
+@@ -107,8 +107,12 @@ PHPAPI int php_exec(int type, char *cmd,
+ #ifdef PHP_WIN32
+ 	fp = VCWD_POPEN(cmd_p, "rb");
+ #else
++#if defined(__linux__) &&  __GLIBC_PREREQ(2, 9)
++	fp = VCWD_POPEN(cmd_p, "re");
++#else
+ 	fp = VCWD_POPEN(cmd_p, "r");
+ #endif
++#endif
+ 	if (!fp) {
+ 		php_error_docref(NULL TSRMLS_CC, E_WARNING, "Unable to fork [%s]", cmd);
+ 		goto err;
+Index: ext/standard/file.c
+===================================================================
+--- ext/standard/file.c.orig	2010-05-02 22:11:22.000000000 +0200
++++ ext/standard/file.c	2010-08-03 06:31:21.701320000 +0200
+@@ -957,6 +957,13 @@ PHP_FUNCTION(popen)
+ 		}
+ 	}
+ #endif
++#if defined(__linux__) &&  __GLIBC_PREREQ(2, 9)
++	char *e = memchr(posix_mode, 'e', mode_len);
++	 if (e) {
++		memmove(e, e + 1, mode_len - (e - posix_mode));
++	}
++#endif
++
+ 	if (PG(safe_mode)){
+ 		b = strchr(command, ' ');
+ 		if (!b) {
+Index: ext/standard/mail.c
+===================================================================
+--- ext/standard/mail.c.orig	2010-07-19 15:38:53.000000000 +0200
++++ ext/standard/mail.c	2010-08-03 06:31:21.709286000 +0200
+@@ -294,8 +294,12 @@ PHPAPI int php_mail(char *to, char *subj
+ 	 * (e.g. the shell can't be executed) we explicitely set it to 0 to be
+ 	 * sure we don't catch any older errno value. */
+ 	errno = 0;
++#if defined(__linux__) &&  __GLIBC_PREREQ(2, 9)
++	sendmail = popen(sendmail_cmd, "we");
++#else 
+ 	sendmail = popen(sendmail_cmd, "w");
+ #endif
++#endif
+ 	if (extra_cmd != NULL) {
+ 		efree (sendmail_cmd);
+ 	}
