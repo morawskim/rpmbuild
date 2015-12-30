@@ -1,0 +1,48 @@
+diff -ur ../php-5.4.16.orig/ext/standard/exec.c ./ext/standard/exec.c
+--- ../php-5.4.16.orig/ext/standard/exec.c	2013-06-05 07:03:57.000000000 +0200
++++ ./ext/standard/exec.c	2015-12-21 06:34:23.816574297 +0100
+@@ -76,7 +76,11 @@
+ #ifdef PHP_WIN32
+ 	fp = VCWD_POPEN(cmd, "rb");
+ #else
++  #if defined(__linux__) &&  __GLIBC_PREREQ(2, 9)
++        fp = VCWD_POPEN(cmd, "re");
++  #else
+ 	fp = VCWD_POPEN(cmd, "r");
++  #endif
+ #endif
+ 	if (!fp) {
+ 		php_error_docref(NULL TSRMLS_CC, E_WARNING, "Unable to fork [%s]", cmd);
+diff -ur ../php-5.4.16.orig/ext/standard/file.c ./ext/standard/file.c
+--- ../php-5.4.16.orig/ext/standard/file.c	2013-06-05 07:03:57.000000000 +0200
++++ ./ext/standard/file.c	2015-12-21 06:37:13.986434973 +0100
+@@ -926,6 +926,12 @@
+ 		}
+ 	}
+ #endif
++#if defined(__linux__) &&  __GLIBC_PREREQ(2, 9)
++        char *e = memchr(posix_mode, 'e', mode_len);
++         if (e) {
++                memmove(e, e + 1, mode_len - (e - posix_mode));
++        }
++#endif
+ 
+ 	fp = VCWD_POPEN(command, posix_mode);
+ 	if (!fp) {
+diff -ur ../php-5.4.16.orig/ext/standard/mail.c ./ext/standard/mail.c
+--- ../php-5.4.16.orig/ext/standard/mail.c	2013-06-05 07:03:57.000000000 +0200
++++ ./ext/standard/mail.c	2015-12-21 06:37:28.186256457 +0100
+@@ -321,8 +321,12 @@
+ 	 * (e.g. the shell can't be executed) we explicitely set it to 0 to be
+ 	 * sure we don't catch any older errno value. */
+ 	errno = 0;
++#if defined(__linux__) &&  __GLIBC_PREREQ(2, 9)
++	sendmail = popen(sendmail_cmd, "we");
++#else 
+ 	sendmail = popen(sendmail_cmd, "w");
+ #endif
++#endif
+ 	if (extra_cmd != NULL) {
+ 		efree (sendmail_cmd);
+ 	}
+Only in ./ext/standard: mail.c.orig

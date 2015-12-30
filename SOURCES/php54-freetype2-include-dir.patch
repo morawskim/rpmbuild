@@ -1,0 +1,11 @@
+--- ext/gd/config.m4.orig	2015-12-20 07:53:51.618830003 +0100
++++ ext/gd/config.m4	2015-12-20 07:55:00.757960807 +0100
+@@ -193,7 +193,7 @@
+   if test "$PHP_FREETYPE_DIR" != "no"; then
+ 
+     for i in $PHP_FREETYPE_DIR /usr/local /usr; do
+-      if test -f "$i/include/freetype2/freetype/freetype.h"; then
++      if test -f "$i/include/freetype2/freetype/freetype.h" || test -f "$i/include/freetype2/freetype.h"; then
+         FREETYPE2_DIR=$i
+         FREETYPE2_INC_DIR=$i/include/freetype2
+         break

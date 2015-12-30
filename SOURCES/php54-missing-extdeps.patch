@@ -1,0 +1,103 @@
+Index: ext/soap/soap.c
+===================================================================
+--- ext/soap/soap.c.orig
++++ ext/soap/soap.c
+@@ -442,10 +442,18 @@ static const zend_function_entry soap_he
+ 	PHP_FE_END
+ };
+ 
+-zend_module_entry soap_module_entry = {
+-#ifdef STANDARD_MODULE_HEADER
+-  STANDARD_MODULE_HEADER,
++/* {{{ soap dependencies */
++static const zend_module_dep soap_module_deps[] = {
++    ZEND_MOD_REQUIRED("standard")
++#if HAVE_PHP_SESSION && !defined(COMPILE_DL_SESSION)
++	ZEND_MOD_REQUIRED("session")
+ #endif
++	{NULL, NULL, NULL}
++};
++
++zend_module_entry soap_module_entry = {
++  STANDARD_MODULE_HEADER_EX, NULL,
++  soap_module_deps,
+   "soap",
+   soap_functions,
+   PHP_MINIT(soap),
+Index: ext/wddx/wddx.c
+===================================================================
+--- ext/wddx/wddx.c.orig
++++ ext/wddx/wddx.c
+@@ -154,10 +154,21 @@ ZEND_GET_MODULE(wddx)
+ #endif /* COMPILE_DL_WDDX */
+ /* }}} */
+ 
++/* {{{ wddx dependencies */
++static const zend_module_dep wddx_module_deps[] = {
++	ZEND_MOD_REQUIRED("standard")
++	ZEND_MOD_REQUIRED("xml")
++	ZEND_MOD_REQUIRED("date")
++#if HAVE_PHP_SESSION && !defined(COMPILE_DL_SESSION)
++	ZEND_MOD_REQUIRED("session")
++#endif
++	{NULL, NULL, NULL}
++};
+ /* {{{ wddx_module_entry
+  */
+ zend_module_entry wddx_module_entry = {
+-	STANDARD_MODULE_HEADER,
++	STANDARD_MODULE_HEADER_EX, NULL,
++	wddx_module_deps,
+ 	"wddx",
+ 	wddx_functions,
+ 	PHP_MINIT(wddx),
+Index: ext/filter/filter.c
+===================================================================
+--- ext/filter/filter.c.orig
++++ ext/filter/filter.c
+@@ -132,12 +132,17 @@ static const zend_function_entry filter_
+ };
+ /* }}} */
+ 
++/* {{{ filter dependencies */
++static const zend_module_dep filter_module_deps[] = {
++	ZEND_MOD_REQUIRED("standard")
++	ZEND_MOD_REQUIRED("pcre")
++	{NULL, NULL, NULL}
++};
+ /* {{{ filter_module_entry
+  */
+ zend_module_entry filter_module_entry = {
+-#if ZEND_MODULE_API_NO >= 20010901
+-	STANDARD_MODULE_HEADER,
+-#endif
++	STANDARD_MODULE_HEADER_EX, NULL,
++	filter_module_deps,
+ 	"filter",
+ 	filter_functions,
+ 	PHP_MINIT(filter),
+Index: ext/mbstring/mbstring.c
+===================================================================
+--- ext/mbstring/mbstring.c.orig
++++ ext/mbstring/mbstring.c
+@@ -570,9 +570,19 @@ const zend_function_entry mbstring_funct
+ };
+ /* }}} */
+ 
++/* {{{ mbstring dependencies */
++static const zend_module_dep mbstring_module_deps[] = {
++       ZEND_MOD_REQUIRED("standard")
++#if (HAVE_PCRE || HAVE_BUNDLED_PCRE) && !HAVE_ONIG
++       ZEND_MOD_REQUIRED("pcre")
++#endif
++       {NULL, NULL, NULL}
++};
++
+ /* {{{ zend_module_entry mbstring_module_entry */
+ zend_module_entry mbstring_module_entry = {
+-	STANDARD_MODULE_HEADER,
++        STANDARD_MODULE_HEADER_EX, NULL,
++        mbstring_module_deps,
+ 	"mbstring",
+ 	mbstring_functions,
+ 	PHP_MINIT(mbstring),

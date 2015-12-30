@@ -1,0 +1,56 @@
+Index: php-5.4.16/main/rfc1867.c
+===================================================================
+--- php-5.4.16.orig/main/rfc1867.c
++++ php-5.4.16/main/rfc1867.c
+@@ -676,7 +676,7 @@ SAPI_API SAPI_POST_HANDLER_FUNC(rfc1867_
+ {
+ 	char *boundary, *s = NULL, *boundary_end = NULL, *start_arr = NULL, *array_index = NULL;
+ 	char *temp_filename = NULL, *lbuf = NULL, *abuf = NULL;
+-	int boundary_len = 0, total_bytes = 0, cancel_upload = 0, is_arr_upload = 0, array_len = 0;
++	long total_bytes = 0; int boundary_len = 0, cancel_upload = 0, is_arr_upload = 0, array_len = 0;
+ 	int max_file_size = 0, skip_upload = 0, anonindex = 0, is_anonymous;
+ 	zval *http_post_files = NULL;
+ 	HashTable *uploaded_files = NULL;
+Index: php-5.4.13/main/SAPI.h
+===================================================================
+--- php-5.4.13.orig/main/SAPI.h
++++ php-5.4.13/main/SAPI.h
+@@ -82,7 +82,7 @@ typedef struct {
+ 	char *post_data, *raw_post_data;
+ 	char *cookie_data;
+ 	long content_length;
+-	uint post_data_length, raw_post_data_length;
++	uint IGNORE_post_data_length, IGNORE_raw_post_data_length;
+ 
+ 	char *path_translated;
+ 	char *request_uri;
+@@ -112,6 +112,7 @@ typedef struct {
+ 	int argc;
+ 	char **argv;
+ 	int proto_num;
++	long post_data_length, raw_post_data_length;
+ } sapi_request_info;
+ 
+ 
+@@ -119,7 +120,7 @@ typedef struct _sapi_globals_struct {
+ 	void *server_context;
+ 	sapi_request_info request_info;
+ 	sapi_headers_struct sapi_headers;
+-	int read_post_bytes;
++	long read_post_bytes;
+ 	unsigned char headers_sent;
+ 	struct stat global_stat;
+ 	char *default_mimetype;
+Index: php-5.4.13/sapi/cgi/cgi_main.c
+===================================================================
+--- php-5.4.13.orig/sapi/cgi/cgi_main.c
++++ php-5.4.13/sapi/cgi/cgi_main.c
+@@ -508,7 +508,7 @@ static int sapi_cgi_read_post(char *buff
+ 	uint read_bytes = 0;
+ 	int tmp_read_bytes;
+ 
+-	count_bytes = MIN(count_bytes, (uint) SG(request_info).content_length - SG(read_post_bytes));
++	count_bytes = MIN(count_bytes,  SG(request_info).content_length - SG(read_post_bytes));
+ 	while (read_bytes < count_bytes) {
+ 		tmp_read_bytes = read(STDIN_FILENO, buffer + read_bytes, count_bytes - read_bytes);
+ 		if (tmp_read_bytes <= 0) {
