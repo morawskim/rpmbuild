@@ -1,0 +1,21 @@
+Index: ext/standard/crypt.c
+===================================================================
+--- ext/standard/crypt.c.orig
++++ ext/standard/crypt.c
+@@ -247,6 +247,16 @@ PHPAPI int php_crypt(const char *passwor
+ 			return SUCCESS;
+ 		}
+ 	}
++# else
++        {
++		crypt_res = crypt(password, salt);
++		if (!crypt_res) {
++			return FAILURE;
++		} else {
++			*result = estrdup(crypt_res);
++			return SUCCESS;
++		}
++	}
+ # endif
+ #endif
+ }
