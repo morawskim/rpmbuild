@@ -1,0 +1,21 @@
+Index: ext/standard/crypt.c
+===================================================================
+--- ext/standard/crypt.c.orig	2015-07-10 14:11:29.079887559 +0200
++++ ext/standard/crypt.c	2015-07-14 13:07:59.187386170 +0200
+@@ -270,6 +270,16 @@
+ 			return result;
+ 		}
+ 	}
++# else
++        {
++		crypt_res = crypt(password, salt);
++		if (!crypt_res) {
++			return NULL;
++		} else {
++			result = zend_string_init(crypt_res, strlen(crypt_res), 0);
++			return result;
++		}
++	}
+ # endif
+ #endif
+ }

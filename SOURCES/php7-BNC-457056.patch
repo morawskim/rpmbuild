@@ -1,0 +1,14 @@
+Index: ext/xml/compat.c
+===================================================================
+--- ext/xml/compat.c.orig	2009-01-12 15:30:21.000000000 +0100
++++ ext/xml/compat.c	2009-03-14 18:32:40.000000000 +0100
+@@ -482,9 +482,7 @@ XML_ParserCreate_MM(const XML_Char *enco
+ 	parser->parser->charset = XML_CHAR_ENCODING_NONE;
+ #endif
+ 
+-#if LIBXML_VERSION >= 20703
+ 	xmlCtxtUseOptions(parser->parser, XML_PARSE_OLDSAX);
+-#endif
+ 
+ 	parser->parser->replaceEntities = 1;
+ 	parser->parser->wellFormed = 0;

@@ -1,0 +1,86 @@
+https://bugs.php.net/bug.php?id=53007
+Index: ext/odbc/php_odbc.c
+===================================================================
+--- ext/odbc/php_odbc.c.orig	2015-09-04 19:50:10.129774538 +0200
++++ ext/odbc/php_odbc.c	2015-09-04 19:52:34.202740738 +0200
+@@ -1796,7 +1796,7 @@
+ 
+ 				if (rc == SQL_SUCCESS_WITH_INFO) {
+ 					ZVAL_STRINGL(&tmp, buf, result->longreadlen);
+-				} else if (result->values[i].vallen == SQL_NULL_DATA) {
++				} else if ((int)result->values[i].vallen == (int)SQL_NULL_DATA) {
+ 					ZVAL_NULL(&tmp);
+ 					break;
+ 				} else {
+@@ -1805,7 +1805,7 @@
+ 				break;
+ 
+ 			default:
+-				if (result->values[i].vallen == SQL_NULL_DATA) {
++				if ((int)result->values[i].vallen == (int)SQL_NULL_DATA) {
+ 					ZVAL_NULL(&tmp);
+ 					break;
+ 				}
+@@ -1948,7 +1948,7 @@
+ 				}
+ 				if (rc == SQL_SUCCESS_WITH_INFO) {
+ 					ZVAL_STRINGL(&tmp, buf, result->longreadlen);
+-				} else if (result->values[i].vallen == SQL_NULL_DATA) {
++				} else if ((int)result->values[i].vallen == (int)SQL_NULL_DATA) {
+ 					ZVAL_NULL(&tmp);
+ 					break;
+ 				} else {
+@@ -1957,7 +1957,7 @@
+ 				break;
+ 
+ 			default:
+-				if (result->values[i].vallen == SQL_NULL_DATA) {
++				if ((int)result->values[i].vallen == (int)SQL_NULL_DATA) {
+ 					ZVAL_NULL(&tmp);
+ 					break;
+ 				}
+@@ -2185,7 +2185,7 @@
+ 				RETURN_FALSE;
+ 			}
+ 
+-			if (result->values[field_ind].vallen == SQL_NULL_DATA) {
++			if ((int)result->values[field_ind].vallen == (int)SQL_NULL_DATA) {
+ 				zend_string_free(field_str);
+ 				RETURN_NULL();
+ 			} else if (rc == SQL_NO_DATA_FOUND) {
+@@ -2211,7 +2211,7 @@
+ 			break;
+ 			
+ 		default:
+-			if (result->values[field_ind].vallen == SQL_NULL_DATA) {
++			if ((int)result->values[field_ind].vallen == (int)SQL_NULL_DATA) {
+ 				RETURN_NULL();
+ 			} else {
+ 				RETURN_STRINGL(result->values[field_ind].value, result->values[field_ind].vallen);
+@@ -2235,7 +2235,7 @@
+ 			RETURN_FALSE;
+ 		}
+ 		
+-		if (result->values[field_ind].vallen == SQL_NULL_DATA) {
++		if ((int)result->values[field_ind].vallen == (int)SQL_NULL_DATA) {
+ 			efree(field);
+ 			RETURN_NULL();
+ 		}
+@@ -2344,7 +2344,7 @@
+ 					}
+ 					if (rc == SQL_SUCCESS_WITH_INFO) {
+ 						PHPWRITE(buf, result->longreadlen);
+-					} else if (result->values[i].vallen == SQL_NULL_DATA) {
++					} else if ((int)result->values[i].vallen == (int)SQL_NULL_DATA) {
+ 						php_printf("<td>NULL</td>");
+ 						break;
+ 					} else {
+@@ -2353,7 +2353,7 @@
+ 					php_printf("</td>");
+ 					break;
+ 				default:
+-					if (result->values[i].vallen == SQL_NULL_DATA) {
++					if ((int)result->values[i].vallen == (int)SQL_NULL_DATA) {
+ 						php_printf("<td>NULL</td>");
+ 					} else {
+ 						php_printf("<td>%s</td>", result->values[i].value);

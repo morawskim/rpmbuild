@@ -1,0 +1,14 @@
+Index: ext/mbstring/libmbfl/filters/mbfilter_sjis_2004.c
+===================================================================
+--- ext/mbstring/libmbfl/filters/mbfilter_sjis_2004.c.orig	2013-09-18 07:48:57.000000000 +0200
++++ ext/mbstring/libmbfl/filters/mbfilter_sjis_2004.c	2013-09-25 11:59:19.925758346 +0200
+@@ -672,6 +672,8 @@
+ 			CK(mbfl_filt_conv_illegal_output(c, filter));
+ 		}
+ 	}
++
++	return c;
+ }
+ 
+ int
+
