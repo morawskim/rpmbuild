@@ -1,0 +1,12 @@
+--- ./easyrsa3/easyrsa.orig	2015-10-26 04:37:17.000000000 +0100
++++ ./easyrsa3/easyrsa	2016-03-21 18:32:18.620026037 +0100
+@@ -982,6 +982,9 @@
+ 	# command-line path:
+ 	if [ -f "$EASYRSA_VARS_FILE" ]; then
+ 		vars="$EASYRSA_VARS_FILE"
++	# packaging defaults
++    elif [ -f "/etc/easy-rsa/vars" ]; then
++		vars="/etc/easy-rsa/vars"
+ 	# EASYRSA_PKI, if defined:
+ 	elif [ -n "$EASYRSA_PKI" ] && [ -f "$EASYRSA_PKI/vars" ]; then
+ 		vars="$EASYRSA_PKI/vars"
