@@ -1,7 +1,7 @@
 #
 # spec file for package mphp-switcher
 #
-# Copyright (c) 2015 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -12,22 +12,22 @@
 # license that conforms to the Open Source Definition (Version 1.9)
 # published by the Open Source Initiative.
 
-# Please submit bugfixes or comments via http://bugs.opensuse.org/
+# Please submit bugfixes or comments via https://github.com/morawskim/rpmbuild/issues
 #
-%global commit0 579abc5c09198962f13d4b8bba28377f72e5dea0
+%global commit0 eb2385bab700b8fe6819508dd13e404d05149b5f
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
-Name:           mphp-switcher
-Version:	0.1.0
-Release:	1
-License:	MIT
-Summary:	Lorem
-BuildArch: 	noarch
-Url:		http://github.com/morawskim/mphp-switcher
-Source0:	https://github.com/morawskim/mphp-switcher/archive/%{shortcommit0}.tar.gz
-Source1:	https://github.com/wilmoore/php-version/archive/0.12.1.tar.gz
-Patch0:		mphp-switcher-fix-path.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+Name:       mphp-switcher
+Version:    0.1.1
+Release:    1
+License:    MIT
+Summary:    Lorem
+BuildArch:  noarch
+Url:        http://github.com/morawskim/mphp-switcher
+Source0:    https://github.com/morawskim/mphp-switcher/archive/%{shortcommit0}.tar.gz
+Source1:    https://github.com/wilmoore/php-version/archive/0.12.1.tar.gz
+Patch0:     mphp-switcher-fix-path.patch
+BuildRoot:  %{_tmppath}/%{name}-%{version}-build
 
 %description
 Lorem ipsum
@@ -44,13 +44,14 @@ exit 0
 %{__mkdir} -p %{buildroot}/etc/sysconfig
 %{__mkdir} -p %{buildroot}/etc/systemd/system
 %{__mkdir} -p %{buildroot}/usr/sbin
-%{__mkdir} -p %{buildroot}/etc/profile.d/
+%{__mkdir} -p %{buildroot}/etc/bash_completion.d/
+%{__mkdir} -p %{buildroot}/opt/php/php/{etc,usr/bin}
 
 
 %{__cp} mphp-fpm %{buildroot}/etc/sysconfig
 %{__cp} mphp-fpm-set-symlink %{buildroot}/usr/sbin
 %{__cp} php-fpm.service %{buildroot}/etc/systemd/system
-%{__cp} php-version-0.12.1/php-version.sh %{buildroot}/etc/profile.d/
+%{__cp} php-version-0.12.1/php-version.sh %{buildroot}/etc/bash_completion.d/php-version.sh
 %{__cp} php-version-0.12.1/LICENSE LICENSE-php-version
 %{__cp} php-version-0.12.1/README.md README-php-version.md
 
@@ -75,7 +76,16 @@ exit 0
 %doc README* LICENSE*
 %config(noreplace) /etc/sysconfig/mphp-fpm
 /etc/systemd/system/php-fpm.service
-/etc/profile.d/php-version.sh
+/opt/php/php/etc
+/opt/php/php/usr/bin
+%attr(0644, root, root) /etc/bash_completion.d/php-version.sh
 %attr(0750, root, root) /usr/sbin/mphp-fpm-set-symlink
 
-
+%changelog
+* Sat Apr 16 2016 Marcin Morawski <marcin@morawskim.pl>
+- Update to commit eb2385bab700b8fe6819508dd13e404d05149b5f
+- add /opt/php/php dir to package
+- add /etc/bash_completion.d/php-version.sh
+- reformat SPEC file
+- change Copyright info
+- change url to submit bugfixes or comments
