@@ -14,11 +14,11 @@
 
 # Please submit bugfixes or comments via https://github.com/morawskim/rpmbuild/issues
 #
-%global commit0 eb2385bab700b8fe6819508dd13e404d05149b5f
+%global commit0 84cc77451fc2f1f12eac612b9a790bba9fae1164
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:       mphp-switcher
-Version:    0.1.1
+Version:    0.2.0
 Release:    1
 License:    MIT
 Summary:    Lorem
@@ -43,13 +43,14 @@ exit 0
 %install
 %{__mkdir} -p %{buildroot}/etc/sysconfig
 %{__mkdir} -p %{buildroot}/etc/systemd/system
-%{__mkdir} -p %{buildroot}/usr/sbin
+%{__mkdir} -p %{buildroot}/%{_sbindir}
 %{__mkdir} -p %{buildroot}/etc/bash_completion.d/
 %{__mkdir} -p %{buildroot}/opt/php/php/{etc,usr/bin}
 
 
 %{__cp} mphp-fpm %{buildroot}/etc/sysconfig
-%{__cp} mphp-fpm-set-symlink %{buildroot}/usr/sbin
+%{__cp} mphp-fpm-set-symlink %{buildroot}/%{_sbindir}
+%{__cp} switch-php %{buildroot}/%{_sbindir}
 %{__cp} php-fpm.service %{buildroot}/etc/systemd/system
 %{__cp} php-version-0.12.1/php-version.sh %{buildroot}/etc/bash_completion.d/php-version.sh
 %{__cp} php-version-0.12.1/LICENSE LICENSE-php-version
@@ -76,12 +77,17 @@ exit 0
 %doc README* LICENSE*
 %config(noreplace) /etc/sysconfig/mphp-fpm
 /etc/systemd/system/php-fpm.service
+%attr(0755, root, root) %{_sbindir}/switch-php 
 /opt/php/php/etc
 /opt/php/php/usr/bin
 %attr(0644, root, root) /etc/bash_completion.d/php-version.sh
-%attr(0750, root, root) /usr/sbin/mphp-fpm-set-symlink
+%attr(0750, root, root) %{_sbindir}/mphp-fpm-set-symlink
 
 %changelog
+* Mon Apr 18 2016 Marcin Morawski <marcin@morawskim.pl>
+- Update to commit 84cc77451fc2f1f12eac612b9a790bba9fae1164
+- Replace hardcoded /usr/sbin with macro _sbindir
+
 * Sat Apr 16 2016 Marcin Morawski <marcin@morawskim.pl>
 - Update to commit eb2385bab700b8fe6819508dd13e404d05149b5f
 - add /opt/php/php dir to package
