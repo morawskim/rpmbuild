@@ -1,0 +1,10 @@
+--- ./configure.ac.orig	2009-03-24 15:53:16.000000000 +0100
++++ ./configure.ac	2016-04-22 18:10:21.130956824 +0200
+@@ -60,6 +60,7 @@
+                  php/libpuzzle/tests/pics/Makefile
+                  php/examples/Makefile
+                  php/examples/similar/Makefile                 
++                 puzzle.pc
+                  ])
+ AC_OUTPUT
+ 
