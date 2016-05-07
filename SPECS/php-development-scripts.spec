@@ -15,12 +15,12 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%global commit0 2c63f414b0f8498c99814cb5069a4082c861523a
+%global commit0 d73a8b9e205bd7b537358bf46b5331c1dea1ccf0
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           php-development-scripts
-Version: 0.1.0
-Release: 2
+Version: 20160507
+Release: 1
 License: MIT
 Summary: Shell scripts to download php apps and IDE
 Url: https://github.com/morawskim/opensuse-configuration-scripts
@@ -44,6 +44,7 @@ cp development/phpdoc.sh %{buildroot}/usr/sbin
 cp development/phpunit.sh %{buildroot}/usr/sbin
 cp development/yuml-php.sh %{buildroot}/usr/sbin
 cp jetbrains/phpstorm.sh %{buildroot}/usr/sbin
+%{__install} -D -p -m 755 development/build-php.sh %{buildroot}%{_bindir}/build-php
 
 %post
 exit 0
@@ -59,4 +60,9 @@ exit 0
 %{_sbindir}/phpunit.sh
 %{_sbindir}/yuml-php.sh
 %{_sbindir}/phpstorm.sh
+%attr(0755, root, root) %{_bindir}/build-php
 
+%changelog
+* Sat May 07 2016 Marcin Morawski <marcin@morawskim.pl>
+-  Add build-php script
+-  Change version numbering policy's
