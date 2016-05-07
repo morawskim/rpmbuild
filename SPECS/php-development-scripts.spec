@@ -19,13 +19,13 @@
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           php-development-scripts
-Version: 20160507
-Release: 1
-License: MIT
-Summary: Shell scripts to download php apps and IDE
-Url: https://github.com/morawskim/opensuse-configuration-scripts
-Source: https://github.com/morawskim/opensuse-configuration-scripts/archive/%{shortcommit0}.tar.gz
-BuildArch: noarch
+Version:        20160507
+Release:        2
+License:        MIT
+Summary:        Shell scripts to download php apps and IDE
+Url:            https://github.com/morawskim/opensuse-configuration-scripts
+Source:         https://github.com/morawskim/opensuse-configuration-scripts/archive/%{shortcommit0}.tar.gz
+BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -53,7 +53,7 @@ exit 0
 exit 0
 
 %files
-%defattr(0770,root,root)
+%defattr(0750,root,root)
 %{_sbindir}/composer.sh
 %{_sbindir}/phing.sh
 %{_sbindir}/phpdoc.sh
@@ -63,6 +63,7 @@ exit 0
 %attr(0755, root, root) %{_bindir}/build-php
 
 %changelog
-* Sat May 07 2016 Marcin Morawski <marcin@morawskim.pl>
+* Sat May 07 2016 Marcin Morawski <marcin@morawskim.plW
 -  Add build-php script
 -  Change version numbering policy's
+-  Reformat spec file
