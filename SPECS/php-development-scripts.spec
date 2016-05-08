@@ -15,12 +15,12 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%global commit0 d73a8b9e205bd7b537358bf46b5331c1dea1ccf0
+%global commit0 c03aed50fd8c1c7458694088307daec63babd95b
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           php-development-scripts
-Version:        20160507
-Release:        2
+Version:        20160508
+Release:        1
 License:        MIT
 Summary:        Shell scripts to download php apps and IDE
 Url:            https://github.com/morawskim/opensuse-configuration-scripts
@@ -63,6 +63,9 @@ exit 0
 %attr(0755, root, root) %{_bindir}/build-php
 
 %changelog
+* Sun May 08 2016 Marcin Morawski <marcin@morawskim.pl>
+-  Update to commit c03aed50fd8c1c7458694088307daec63babd95b
+
 * Sat May 07 2016 Marcin Morawski <marcin@morawskim.plW
 -  Add build-php script
 -  Change version numbering policy's
