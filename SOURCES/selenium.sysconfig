@@ -1,0 +1,31 @@
+## Type:        string
+## Default:     "/usr/bin/java"
+## ServiceRestart: selenium
+#
+# Java executable to run Selenium
+#
+SELENIUM_JAVA_CMD="/usr/bin/java"
+
+## Type:        string
+## Default:     ""
+## ServiceRestart: selenium
+#
+# Options to pass to java when running selenium.
+#
+SELENIUM_JAVA_OPTIONS=""
+
+## Type:        integer(0:65535)
+## Default:     4444
+## ServiceRestart: selenium
+#
+# Port Selenium is listening on.
+#
+SELENIUM_PORT="4444"
+
+## Type:        string
+## Default:     ""
+## ServiceRestart: selenium
+#
+# Pass arbitrary arguments to Selenium.
+#
+SELENIUM_ARGS=""

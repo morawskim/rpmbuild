@@ -1,0 +1,16 @@
+[Unit]
+Description=Start the Selenium server
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User=selenium
+Group=nogroup
+
+Environment=SELENIUM_JAVA_CMD=/usr/bin/java SELENIUM_PORT=4444
+EnvironmentFile=/etc/sysconfig/selenium
+
+ExecStart=/usr/bin/xvfb-run -s '-screen 0 1280x1024x16' -a $SELENIUM_JAVA_CMD $SELENIUM_JAVA_OPTIONS -jar @@JAR@@ -port $SELENIUM_PORT $SELENIUM_ARGS
+
+[Install]
+WantedBy=multi-user.target
