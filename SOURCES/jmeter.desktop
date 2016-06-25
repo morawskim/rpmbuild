@@ -1,0 +1,14 @@
+[Desktop Entry]
+Comment=Graphical server performance testing tool.
+Exec=/usr/bin/jmeter
+Icon=/usr/lib/jmeter/bin/jmeter_square.svg
+Name=Jmeter
+NoDisplay=false
+Path[$e]=
+StartupNotify=true
+Terminal=0
+TerminalOptions=
+Type=Application
+Categories=Development;Profiling;
+X-KDE-SubstituteUID=false
+X-KDE-Username=
