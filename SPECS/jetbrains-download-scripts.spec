@@ -15,11 +15,11 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%global commit0 c9b47b78955337b044e0dc2e87b37704278d3893
+%global commit0 d361cc9deb81995b67d118f168c48a818aebd9ca
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           jetbrains-download-scripts
-Version:        20160405
+Version:        20160601
 Release:        1
 License:        GPL
 Summary:        scripts to download and install Jetbrains IDE
@@ -46,7 +46,7 @@ exit 0
 %{__install} -D -p -m 0750 jetbrains/clion.sh %{buildroot}%{_sbindir}/install-clion
 %{__install} -D -p -m 0750 jetbrains/phpstorm.sh %{buildroot}%{_sbindir}/install-phpstorm
 %{__install} -D -p -m 0750 jetbrains/rubymine.sh %{buildroot}%{_sbindir}/install-rubymine
-
+%{__install} -D -p -m 0750 jetbrains/datagrip.sh %{buildroot}%{_sbindir}/install-datagrip
 
 %post
 exit 0
@@ -59,5 +59,9 @@ exit 0
 %{_sbindir}/install-clion
 %{_sbindir}/install-phpstorm
 %{_sbindir}/install-rubymine
+%{_sbindir}/install-datagrip
 
-
+%changelog
+* Sat Jun 25 2016 Marcin Morawski <marcin@morawskim.pl>
+-  update to d361cc9deb81995b67d118f168c48a818aebd9ca
+-  add script to install datagrip
