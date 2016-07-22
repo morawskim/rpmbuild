@@ -15,11 +15,11 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%global commit0 a64843be48b61b81fbea1d307033b0e66172fdcc
+%global commit0 4d4b96a0d1c78fd2b79aa689010ae78aa833c7f2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           jetbrains-download-scripts
-Version:        20160713
+Version:        20160722
 Release:        1
 License:        GPL
 Summary:        scripts to download and install Jetbrains IDE
@@ -62,6 +62,9 @@ exit 0
 %{_sbindir}/install-datagrip
 
 %changelog
+* Fri Jul 22 2016 Marcin Morawski <marcin@morawskim.pl>
+-  update to 4d4b96a0d1c78fd2b79aa689010ae78aa833c7f2
+
 * Wed Jul 13 2016 Marcin Morawski <marcin@morawskim.pl>
 -  update to a64843be48b61b81fbea1d307033b0e66172fdcc
 
