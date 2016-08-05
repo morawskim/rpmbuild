@@ -1,0 +1,146 @@
+Index: sslscan-1.8.2/sslscan.c
+===================================================================
+--- sslscan-1.8.2.orig/sslscan.c
++++ sslscan-1.8.2/sslscan.c
+@@ -57,6 +57,8 @@
+ #define ssl_v2 1
+ #define ssl_v3 2
+ #define tls_v1 3
++#define tls_v1_1 4
++#define tls_v1_2 5
+ 
+ // Colour Console Output...
+ #if !defined(__WIN32__)
+@@ -584,7 +586,7 @@ int testCipher(struct sslCheckOptions *o
+ 						else
+ 							printf("SSLv3  ");
+ 					}
+-					else
++					else if (sslCipherPointer->sslMethod == TLSv1_client_method())
+ 					{
+ 						if (options->xmlOutput != 0)
+ 							fprintf(options->xmlOutput, "TLSv1\" bits=\"");
+@@ -593,6 +595,28 @@ int testCipher(struct sslCheckOptions *o
+ 						else
+ 							printf("TLSv1  ");
+ 					}
++					else if (sslCipherPointer->sslMethod == TLSv1_1_client_method())
++					{
++						if (options->xmlOutput != 0)
++							fprintf(options->xmlOutput, "TLSv1.1\" bits=\"");
++						if (options->pout == true)
++							printf("TLSv1.1 || ");
++						else
++							printf("TLSv1.1  ");
++					}
++					else if (sslCipherPointer->sslMethod == TLSv1_2_client_method())
++					{
++						if (options->xmlOutput != 0)
++							fprintf(options->xmlOutput, "TLSv1.2\" bits=\"");
++						if (options->pout == true)
++							printf("TLSv1.2 || ");
++						else
++							printf("TLSv1.2  ");
++					}
++					else
++					{
++						printf("%sERROR: Could not determine protocol.%s\n", COL_RED, RESET);
++					}
+ 					if (sslCipherPointer->bits < 10)
+ 						tempInt = 2;
+ 					else if (sslCipherPointer->bits < 100)
+@@ -712,7 +736,7 @@ int defaultCipher(struct sslCheckOptions
+ 								else
+ 									printf("    SSLv3  ");
+ 							}
+-							else
++							else if (sslMethod == TLSv1_client_method())
+ 							{
+ 								if (options->xmlOutput != 0)
+ 									fprintf(options->xmlOutput, "  <defaultcipher sslversion=\"TLSv1\" bits=\"");
+@@ -721,6 +745,28 @@ int defaultCipher(struct sslCheckOptions
+ 								else
+ 									printf("    TLSv1  ");
+ 							}
++							else if (sslMethod == TLSv1_1_client_method())
++							{
++								if (options->xmlOutput != 0)
++									fprintf(options->xmlOutput, "  <defaultcipher sslversion=\"TLSv1\" bits=\"");
++								if (options->pout == true)
++									printf("|| TLSv1.1 || ");
++								else
++									printf("    TLSv1.1  ");
++							}
++							else if (sslMethod == TLSv1_2_client_method())
++							{
++								if (options->xmlOutput != 0)
++									fprintf(options->xmlOutput, "  <defaultcipher sslversion=\"TLSv1\" bits=\"");
++								if (options->pout == true)
++									printf("|| TLSv1.2 || ");
++								else
++									printf("    TLSv1.2  ");
++							}
++							else
++							{
++								printf("%sERROR: Could not determine protocol.%s\n", COL_RED, RESET);
++							}
+ 							if (SSL_get_cipher_bits(ssl, &tempInt2) < 10)
+ 								tempInt = 2;
+ 							else if (SSL_get_cipher_bits(ssl, &tempInt2) < 100)
+@@ -1205,6 +1251,10 @@ int testHost(struct sslCheckOptions *opt
+ 					status = defaultCipher(options, SSLv3_client_method());
+ 				if (status != false)
+ 					status = defaultCipher(options, TLSv1_client_method());
++				if (status != false)
++					status = defaultCipher(options, TLSv1_1_client_method());
++				if (status != false)
++					status = defaultCipher(options, TLSv1_2_client_method());
+ 				break;
+ #ifndef OPENSSL_NO_SSL2
+ 			case ssl_v2:
+@@ -1217,6 +1267,12 @@ int testHost(struct sslCheckOptions *opt
+ 			case tls_v1:
+ 				status = defaultCipher(options, TLSv1_client_method());
+ 				break;
++			case tls_v1_1:
++				status = defaultCipher(options, TLSv1_1_client_method());
++				break;
++			case tls_v1_2:
++				status = defaultCipher(options, TLSv1_2_client_method());
++				break;
+ 		}
+ 	}
+ 
+@@ -1320,6 +1376,14 @@ int main(int argc, char *argv[])
+ 		else if (strcmp("--tls1", argv[argLoop]) == 0)
+ 			options.sslVersion = tls_v1;
+ 
++		// TLS v1.1 only...
++		else if (strcmp("--tls1_1", argv[argLoop]) == 0)
++			options.sslVersion = tls_v1_1;
++
++		// TLS v1 only...
++		else if (strcmp("--tls1_2", argv[argLoop]) == 0)
++			options.sslVersion = tls_v1_2;
++
+ 		// SSL Bugs...
+ 		else if (strcmp("--bugs", argv[argLoop]) == 0)
+ 			options.sslbugs = 1;
+@@ -1392,6 +1456,8 @@ int main(int argc, char *argv[])
+ 			printf("  %s--ssl2%s               Only check SSLv2 ciphers.\n", COL_GREEN, RESET);
+ 			printf("  %s--ssl3%s               Only check SSLv3 ciphers.\n", COL_GREEN, RESET);
+ 			printf("  %s--tls1%s               Only check TLSv1 ciphers.\n", COL_GREEN, RESET);
++			printf("  %s--tls1_1%s             Only check TLSv1.1 ciphers.\n", COL_GREEN, RESET);
++			printf("  %s--tls1_2%s             Only check TLSv1.2 ciphers.\n", COL_GREEN, RESET);
+ 			printf("  %s--pk=<file>%s          A file containing the private key or\n", COL_GREEN, RESET);
+ 			printf("                       a PKCS#12  file containing a private\n");
+ 			printf("                       key/certificate pair (as produced by\n");
+@@ -1430,6 +1496,8 @@ int main(int argc, char *argv[])
+ #endif
+ 					populateCipherList(&options, SSLv3_client_method());
+ 					populateCipherList(&options, TLSv1_client_method());
++					populateCipherList(&options, TLSv1_1_client_method());
++					populateCipherList(&options, TLSv1_2_client_method());
+ 					break;
+ #ifndef OPENSSL_NO_SSL2
+ 				case ssl_v2:

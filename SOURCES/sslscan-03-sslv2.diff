@@ -1,0 +1,80 @@
+# Description: Fix build in case of disabled SSLv2. This is needed for build with OpenSSL 1.0.0.
+# Author: Ilya Barygin <barygin@gmail.com>
+--- sslscan.orig/sslscan.c
++++ sslscan/sslscan.c
+@@ -563,6 +563,7 @@
+ 					}
+ 					if (options->xmlOutput != 0)
+ 						fprintf(options->xmlOutput, " sslversion=\"");
++#ifndef OPENSSL_NO_SSL2
+ 					if (sslCipherPointer->sslMethod == SSLv2_client_method())
+ 					{
+ 						if (options->xmlOutput != 0)
+@@ -572,7 +573,9 @@
+ 						else
+ 							printf("SSLv2  ");
+ 					}
+-					else if (sslCipherPointer->sslMethod == SSLv3_client_method())
++					else
++#endif
++					if (sslCipherPointer->sslMethod == SSLv3_client_method())
+ 					{
+ 						if (options->xmlOutput != 0)
+ 							fprintf(options->xmlOutput, "SSLv3\" bits=\"");
+@@ -688,6 +691,7 @@
+ 						cipherStatus = SSL_connect(ssl);
+ 						if (cipherStatus == 1)
+ 						{
++#ifndef OPENSSL_NO_SSL2
+ 							if (sslMethod == SSLv2_client_method())
+ 							{
+ 								if (options->xmlOutput != 0)
+@@ -697,7 +701,9 @@
+ 								else
+ 									printf("    SSLv2  ");
+ 							}
+-							else if (sslMethod == SSLv3_client_method())
++							else
++#endif
++							if (sslMethod == SSLv3_client_method())
+ 							{
+ 								if (options->xmlOutput != 0)
+ 									fprintf(options->xmlOutput, "  <defaultcipher sslversion=\"SSLv3\" bits=\"");
+@@ -1192,15 +1198,19 @@
+ 		switch (options->sslVersion)
+ 		{
+ 			case ssl_all:
++#ifndef OPENSSL_NO_SSL2
+ 				status = defaultCipher(options, SSLv2_client_method());
+ 				if (status != false)
++#endif
+ 					status = defaultCipher(options, SSLv3_client_method());
+ 				if (status != false)
+ 					status = defaultCipher(options, TLSv1_client_method());
+ 				break;
++#ifndef OPENSSL_NO_SSL2
+ 			case ssl_v2:
+ 				status = defaultCipher(options, SSLv2_client_method());
+ 				break;
++#endif
+ 			case ssl_v3:
+ 				status = defaultCipher(options, SSLv3_client_method());
+ 				break;
+@@ -1415,13 +1425,17 @@
+ 			switch (options.sslVersion)
+ 			{
+ 				case ssl_all:
++#ifndef OPENSSL_NO_SSL2
+ 					populateCipherList(&options, SSLv2_client_method());
++#endif
+ 					populateCipherList(&options, SSLv3_client_method());
+ 					populateCipherList(&options, TLSv1_client_method());
+ 					break;
++#ifndef OPENSSL_NO_SSL2
+ 				case ssl_v2:
+ 					populateCipherList(&options, SSLv2_client_method());
+ 					break;
++#endif
+ 				case ssl_v3:
+ 					populateCipherList(&options, SSLv3_client_method());
+ 					break;

@@ -1,0 +1,20 @@
+diff -ru sslscan-1.8.2/sslscan.c sslscan-1.8.2.fc12/sslscan.c
+--- sslscan-1.8.2/sslscan.c	2009-09-01 14:35:59.000000000 +0200
++++ sslscan-1.8.2.fc12/sslscan.c	2010-01-29 01:59:02.000000000 +0100
+@@ -985,6 +985,8 @@
+ 													fprintf(options->xmlOutput, "   </pk>\n");
+ 												}
+ 												break;
++											/* Comment out patented technology not enabled in Fedora */
++											/*
+ 											case EVP_PKEY_EC:
+ 												printf("    EC Public Key:\n");
+ 												if (options->xmlOutput != 0)
+@@ -996,6 +998,7 @@
+ 													fprintf(options->xmlOutput, "   </pk>\n");
+ 												}
+ 												break;
++											*/
+ 											default:
+ 												printf("    Public Key: Unknown\n");
+ 												if (options->xmlOutput != 0)

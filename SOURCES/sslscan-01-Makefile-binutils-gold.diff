@@ -1,0 +1,21 @@
+# 01-Makefile-binutils-gold.diff
+# Author: Marvin Stark <marv@der-marv.de>
+# DP: Let sslscan build with binutils-gold
+Index: sslscan/Makefile
+===================================================================
+--- sslscan.orig/Makefile	2009-12-08 21:48:23.000000000 +0100
++++ sslscan/Makefile	2009-12-08 21:56:33.000000000 +0100
+@@ -3,11 +3,11 @@
+ MANPATH = /usr/share/man/
+ 
+ all:
+-	gcc -g -Wall -lssl -o sslscan $(SRCS) $(LDFLAGS) $(CFLAGS)
++	gcc -g -Wall -o sslscan $(SRCS) $(LDFLAGS) $(CFLAGS) -lssl -lcrypto
+ 
+ install:
+ 	cp sslscan $(BINPATH)
+-	cp sslscan.1 $(MANPATH)man1
++	cp sslscan.1 $(MANPATH)/man1/
+ 
+ uninstall:
+ 	rm -f $(BINPATH)sslscan
