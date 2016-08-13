@@ -1,0 +1,93 @@
+Index: main/snprintf.h
+===================================================================
+--- main/snprintf.h.orig
++++ main/snprintf.h
+@@ -83,7 +83,7 @@ PHPAPI int ap_php_vslprintf(char *buf, s
+ PHPAPI int ap_php_snprintf(char *, size_t, const char *, ...);
+ PHPAPI int ap_php_vsnprintf(char *, size_t, const char *, va_list ap);
+ PHPAPI int ap_php_vasprintf(char **buf, const char *format, va_list ap);
+-PHPAPI int ap_php_asprintf(char **buf, const char *format, ...);
++PHPAPI int ap_php_asprintf(char **buf, const char *format, ...) PHP_ATTRIBUTE_FORMAT(printf, 2, 3);
+ PHPAPI int php_sprintf (char* s, const char* format, ...) PHP_ATTRIBUTE_FORMAT(printf, 2, 3);
+ PHPAPI char * php_gcvt(double value, int ndigit, char dec_point, char exponent, char *buf);
+ PHPAPI char * php_conv_fp(register char format, register double num,
+Index: main/main.c
+===================================================================
+--- main/main.c.orig
++++ main/main.c
+@@ -935,7 +935,7 @@ PHPAPI void php_html_puts(const char *st
+ 
+ /* {{{ php_error_cb
+  extended error handling function */
+-static void php_error_cb(int type, const char *error_filename, const uint error_lineno, const char *format, va_list args)
++static PHP_ATTRIBUTE_FORMAT(printf, 4, 0) void php_error_cb(int type, const char *error_filename, const uint error_lineno, const char *format, va_list args)
+ {
+ 	char *buffer;
+ 	int buffer_len, display;
+Index: Zend/zend_alloc.h
+===================================================================
+--- Zend/zend_alloc.h.orig
++++ Zend/zend_alloc.h
+@@ -55,13 +55,13 @@ BEGIN_EXTERN_C()
+ ZEND_API char *zend_strndup(const char *s, unsigned int length) ZEND_ATTRIBUTE_MALLOC;
+ 
+ ZEND_API void *_emalloc(size_t size ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTRIBUTE_MALLOC ZEND_ATTRIBUTE_ALLOC_SIZE(1);
+-ZEND_API void *_safe_emalloc(size_t nmemb, size_t size, size_t offset ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTRIBUTE_MALLOC;
+-ZEND_API void *_safe_malloc(size_t nmemb, size_t size, size_t offset) ZEND_ATTRIBUTE_MALLOC;
++ZEND_API void *_safe_emalloc(size_t nmemb, size_t size, size_t offset ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTRIBUTE_MALLOC ZEND_ATTR_ALLOC_SIZE2(1,2);
++ZEND_API void *_safe_malloc(size_t nmemb, size_t size, size_t offset) ZEND_ATTR_ALLOC_SIZE2(1,2);
+ ZEND_API void _efree(void *ptr ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC);
+ ZEND_API void *_ecalloc(size_t nmemb, size_t size ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTRIBUTE_MALLOC ZEND_ATTRIBUTE_ALLOC_SIZE2(1,2);
+ ZEND_API void *_erealloc(void *ptr, size_t size, int allow_failure ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTRIBUTE_ALLOC_SIZE(2);
+-ZEND_API void *_safe_erealloc(void *ptr, size_t nmemb, size_t size, size_t offset ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC);
+-ZEND_API void *_safe_realloc(void *ptr, size_t nmemb, size_t size, size_t offset);
++ZEND_API void *_safe_erealloc(void *ptr, size_t nmemb, size_t size, size_t offset ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTR_ALLOC_SIZE2(2,3);
++ZEND_API void *_safe_realloc(void *ptr, size_t nmemb, size_t size, size_t offset) ZEND_ATTR_ALLOC_SIZE2(2,3);
+ ZEND_API char *_estrdup(const char *s ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTRIBUTE_MALLOC;
+ ZEND_API char *_estrndup(const char *s, unsigned int length ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC) ZEND_ATTRIBUTE_MALLOC;
+ ZEND_API size_t _zend_mem_block_size(void *ptr TSRMLS_DC ZEND_FILE_LINE_DC ZEND_FILE_LINE_ORIG_DC);
+@@ -90,7 +90,7 @@ ZEND_API size_t _zend_mem_block_size(voi
+ #define estrndup_rel(s, length)					_estrndup((s), (length) ZEND_FILE_LINE_RELAY_CC ZEND_FILE_LINE_CC)
+ #define zend_mem_block_size_rel(ptr)			_zend_mem_block_size((ptr) TSRMLS_CC ZEND_FILE_LINE_RELAY_CC ZEND_FILE_LINE_CC)
+ 
+-inline static void * __zend_malloc(size_t len)
++inline static ZEND_ATTR_ALLOC_SIZE(1) void * __zend_malloc(size_t len)
+ {
+ 	void *tmp = malloc(len);
+ 	if (tmp) {
+@@ -100,14 +100,14 @@ inline static void * __zend_malloc(size_
+ 	exit(1);
+ }
+ 
+-inline static void * __zend_calloc(size_t nmemb, size_t len)
++inline static ZEND_ATTR_ALLOC_SIZE2(1,2) void * __zend_calloc(size_t nmemb, size_t len)
+ {
+ 	void *tmp = _safe_malloc(nmemb, len, 0);
+ 	memset(tmp, 0, nmemb * len);
+ 	return tmp;
+ }
+ 
+-inline static void * __zend_realloc(void *p, size_t len)
++inline static ZEND_ATTR_ALLOC_SIZE(2) void * __zend_realloc(void *p, size_t len)
+ {
+ 	p = realloc(p, len);
+ 	if (p) {
+Index: Zend/zend.h
+===================================================================
+--- Zend/zend.h.orig
++++ Zend/zend.h
+@@ -159,6 +159,14 @@ char *alloca ();
+ # define ZEND_ATTRIBUTE_ALLOC_SIZE2(X,Y)
+ #endif
+ 
++#if ZEND_GCC_VERSION >= 4003
++#define ZEND_ATTR_ALLOC_SIZE(x) __attribute__((__alloc_size__(x)))
++#define ZEND_ATTR_ALLOC_SIZE2(x,y) __attribute__((__alloc_size__(x,y)))
++#else
++#define ZEND_ATTR_ALLOC_SIZE(x)
++#define ZEND_ATTR_ALLOC_SIZE2(x,y)
++#endif
++
+ #if ZEND_GCC_VERSION >= 2007
+ # define ZEND_ATTRIBUTE_FORMAT(type, idx, first) __attribute__ ((format(type, idx, first)))
+ #else

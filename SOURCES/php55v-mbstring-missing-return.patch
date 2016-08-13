@@ -1,0 +1,25 @@
+Index: ext/mbstring/libmbfl/filters/mbfilter_sjis_2004.c
+===================================================================
+--- ext/mbstring/libmbfl/filters/mbfilter_sjis_2004.c.orig	2013-09-18 07:48:57.000000000 +0200
++++ ext/mbstring/libmbfl/filters/mbfilter_sjis_2004.c	2013-09-25 11:59:19.925758346 +0200
+@@ -672,6 +672,8 @@
+ 			CK(mbfl_filt_conv_illegal_output(c, filter));
+ 		}
+ 	}
++
++	return c;
+ }
+ 
+ int
+Index: ext/mbstring/libmbfl/filters/mbfilter_utf8.c
+===================================================================
+--- ext/mbstring/libmbfl/filters/mbfilter_utf8.c.orig	2013-09-18 07:48:57.000000000 +0200
++++ ext/mbstring/libmbfl/filters/mbfilter_utf8.c	2013-09-25 12:22:04.061030824 +0200
+@@ -101,6 +101,7 @@
+ 	filter->status = 0;
+ 	filter->cache = 0;
+ 	CK((*filter->output_function)(w, filter->data));
++        return 0;
+ }
+ 
+ 
