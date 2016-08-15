@@ -15,11 +15,11 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%global commit0 4d4b96a0d1c78fd2b79aa689010ae78aa833c7f2
+%global commit0 46af4e9e2bf48110697bdd009d3130e7c44b7662
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           jetbrains-download-scripts
-Version:        20160722
+Version:        20160804
 Release:        1
 License:        GPL
 Summary:        scripts to download and install Jetbrains IDE
@@ -47,6 +47,7 @@ exit 0
 %{__install} -D -p -m 0750 jetbrains/phpstorm.sh %{buildroot}%{_sbindir}/install-phpstorm
 %{__install} -D -p -m 0750 jetbrains/rubymine.sh %{buildroot}%{_sbindir}/install-rubymine
 %{__install} -D -p -m 0750 jetbrains/datagrip.sh %{buildroot}%{_sbindir}/install-datagrip
+%{__install} -D -p -m 0750 jetbrains/intelliJ-ultimate.sh %{buildroot}%{_sbindir}/install-intellij
 
 %post
 exit 0
@@ -60,8 +61,13 @@ exit 0
 %{_sbindir}/install-phpstorm
 %{_sbindir}/install-rubymine
 %{_sbindir}/install-datagrip
+%{_sbindir}/install-intellij
 
 %changelog
+* Thu Aug 04 2016 Marcin Morawski <marcin@morawskim.pl>
+-  update to 46af4e9e2bf48110697bdd009d3130e7c44b7662
+-  add script to install intellij ultimate
+
 * Fri Jul 22 2016 Marcin Morawski <marcin@morawskim.pl>
 -  update to 4d4b96a0d1c78fd2b79aa689010ae78aa833c7f2
 
