@@ -15,16 +15,16 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%global commit0 46af4e9e2bf48110697bdd009d3130e7c44b7662
+%global commit0 86793b07857cc0550778c56f9116be5d29adc594
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           jetbrains-download-scripts
-Version:        20160804
+Version:        20160828
 Release:        1
 License:        GPL
 Summary:        scripts to download and install Jetbrains IDE
 Url:            https://github.com/morawskim/opensuse-configuration-scripts
-Source:         https://github.com/morawskim/opensuse-configuration-scripts/archive/%{shortcommit0}.tar.gz
+Source:         https://github.com/morawskim/opensuse-configuration-scripts/archive/%{shortcommit0}.tar.gz#/jetbrains-download-scripts-%{shortcommit0}.tar.gz
 Requires:       wget
 Requires:       tar
 Requires:       coreutils
@@ -64,6 +64,10 @@ exit 0
 %{_sbindir}/install-intellij
 
 %changelog
+* Sun Aug 28 2016 Marcin Morawski <marcin@morawskim.pl>
+-  update to 86793b07857cc0550778c56f9116be5d29adc594
+-  save source under different file name
+
 * Thu Aug 04 2016 Marcin Morawski <marcin@morawskim.pl>
 -  update to 46af4e9e2bf48110697bdd009d3130e7c44b7662
 -  add script to install intellij ultimate
