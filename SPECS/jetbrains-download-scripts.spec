@@ -15,11 +15,11 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%global commit0 86793b07857cc0550778c56f9116be5d29adc594
+%global commit0 d964d729cd1b368cee3cc3cd29fd96fb0498abca
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 
 Name:           jetbrains-download-scripts
-Version:        20160828
+Version:        20160901
 Release:        1
 License:        GPL
 Summary:        scripts to download and install Jetbrains IDE
