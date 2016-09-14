@@ -50,13 +50,14 @@
 
 Name:           php7
 Version:        7.0.1
-Release:        1.1
+Release:        2
 Summary:        PHP7 Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
 
 Url:            http://www.php.net
 Source0:        http://us2.php.net/distributions/php-%{version}.tar.xz
+Source1:        php7-fpm.service.template
 
 ## SUSE specific patches
 Patch0:         php7-phpize.patch
@@ -1278,6 +1279,25 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 #delete fastcgi bin (we don't support fastcgi sapi)
 %{__rm} -f %{buildroot}%{base_dir}%{_bindir}/php-cgi
 
+%{__install} -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}-fpm.service
+%{__sed} -i 's=@@VERSION@@=%{version}=g; s=@@PHP_PREFIX@@=%{base_dir}=g' %{buildroot}%{_unitdir}/%{name}-fpm.service
+
+%pre fpm
+%service_add_pre %{name}-fpm.service
+
+%postun fpm
+%service_del_postun %{name}-fpm.service
+%restart_on_update %{name}-fpm
+%insserv_cleanup
+
+%preun fpm
+%service_del_preun %{name}-fpm.service
+%stop_on_removal %{name}-fpm
+
+%post fpm
+%service_add_post %{name}-fpm.service
+%{fillup_and_insserv -f %{name}-fpm}
+
 %files
 %defattr(-, root, root)
 %doc %{base_dir}/usr/share/doc/packages/%{name}/*
@@ -1326,6 +1346,7 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %{base_dir}%{_mandir}/man8/php-fpm.8
 %dir %{php_datadir}/fpm
 %{php_datadir}/fpm/status.html
+%{_unitdir}/%{name}-fpm.service
 
 %files bcmath
 %defattr(644,root,root,755)
@@ -1594,5 +1615,8 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Wed Sep 14 2016 Marcin Morawski <marcin@morawskim.pl>
+-  add systemd service for php7-fpm
+
 * Mon Dec 21 2015 jimmy@boombatower.com
 - update to 7.0.1
