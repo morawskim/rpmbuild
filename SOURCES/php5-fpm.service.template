@@ -1,0 +1,15 @@
+[Unit]
+Description=The PHP @@VERSION@@ FastCGI Process Manager
+After=syslog.target network.target
+Before=apache2.service nginx.service lighttpd.service
+
+[Service]
+Type=notify
+ExecStart=@@PHP_PREFIX@@/usr/sbin/php-fpm --nodaemonize --fpm-config @@PHP_PREFIX@@/etc/php5/fpm/php-fpm.conf -p @@PHP_PREFIX@@ 
+ExecReload=/bin/kill -USR2 $MAINPID
+ExecStop=/bin/kill -QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+
