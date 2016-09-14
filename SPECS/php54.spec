@@ -101,7 +101,7 @@ Requires:       smtp_daemon
 %define _x11prefix %(pkg-config --variable=prefix xft)
 %define need_libxml2_hack  %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h;then echo 1; else echo 0; fi; else echo 0; fi)
 Version:        5.4.16
-Release:        1
+Release:        2
 Provides:       php54
 Provides:       php54-api = %{apiver}
 Provides:       php54-date
@@ -117,6 +117,7 @@ Provides:       php54-zend-abi = %{zendver}
 Provides:       php54(api) = %{apiver}
 Provides:       php54(zend-abi) = %{zendver}
 Source0:        http://museum.php.net/php5/php-%{version}.tar.gz
+Source1:        php5-fpm.service.template
 
 #SUSE specific stuff
 Patch0:         php54-phpize.patch
@@ -1499,6 +1500,26 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 #delete fastcgi bin (we don't support fastcgi sapi)
 %{__rm} -f %{buildroot}%{base_dir}%{_bindir}/php-cgi
 
+%{__install} -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}-fpm.service
+%{__sed} -i 's=@@VERSION@@=%{version}=g; s=@@PHP_PREFIX@@=%{base_dir}=g' %{buildroot}%{_unitdir}/%{name}-fpm.service
+
+%if %{with_systemd}
+%pre fpm
+%service_add_pre %{name}-fpm.service
+
+%postun fpm
+%service_del_postun %{name}-fpm.service
+%restart_on_update %{name}-fpm
+%insserv_cleanup
+
+%preun fpm
+%service_del_preun %{name}-fpm.service
+%stop_on_removal %{name}-fpm
+
+%post fpm
+%service_add_post %{name}-fpm.service
+%{fillup_and_insserv -f %{name}-fpm}
+%endif
 
 %files
 %defattr(-, root, root)
@@ -1538,6 +1559,7 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %{base_dir}%{_mandir}/man8/php-fpm.8
 %dir %{base_dir}/usr/share/php5/fpm
 %{base_dir}/usr/share/php5/fpm/status.html
+%{_unitdir}/%{name}-fpm.service
 
 %files bcmath
 %defattr(644,root,root,755)
@@ -1811,3 +1833,5 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Wed Sep 14 2016 Marcin Morawski <marcin@morawskim.pl>
+-  add systemd service for php-fpm
