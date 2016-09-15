@@ -50,7 +50,7 @@
 
 Name:           php7
 Version:        7.0.1
-Release:        2
+Release:        3
 Summary:        PHP7 Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
@@ -1282,6 +1282,10 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %{__install} -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}-fpm.service
 %{__sed} -i 's=@@VERSION@@=%{version}=g; s=@@PHP_PREFIX@@=%{base_dir}=g' %{buildroot}%{_unitdir}/%{name}-fpm.service
 
+#Create symbolic link to php binary in bindir
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__ln_s} -f %{base_dir}%{_bindir}/php %{buildroot}%{_bindir}/php-%{version}
+
 %pre fpm
 %service_add_pre %{name}-fpm.service
 
@@ -1307,6 +1311,7 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %dir %{php_sysconf}/cli
 %config(noreplace) %{php_sysconf}/cli/php.ini
 %{base_dir}%{_bindir}/php
+%{_bindir}/php-%{version}
 %dir %{base_dir}%{_libdir}/%{pkg_name}
 %dir %{extension_dir}
 %dir %{php_datadir}
@@ -1615,6 +1620,9 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Thu Sep 15 2016 Marcin Morawski <marcin@morawskim.pl>
+-  add symlink to php binary in bindir
+
 * Wed Sep 14 2016 Marcin Morawski <marcin@morawskim.pl>
 -  add systemd service for php7-fpm
 
