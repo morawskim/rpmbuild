@@ -101,7 +101,7 @@ Requires:       smtp_daemon
 %define _x11prefix %(pkg-config --variable=prefix xft)
 %define need_libxml2_hack  %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h;then echo 1; else echo 0; fi; else echo 0; fi)
 Version:        5.6.16
-Release:        2
+Release:        3
 Provides:       php56
 Provides:       php56-api = %{apiver}
 Provides:       php56-date
@@ -1502,6 +1502,10 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %{__install} -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}-fpm.service
 %{__sed} -i 's=@@VERSION@@=%{version}=g; s=@@PHP_PREFIX@@=%{base_dir}=g' %{buildroot}%{_unitdir}/%{name}-fpm.service
 
+#Create symbolic link to php binary in bindir
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__ln_s} -f %{base_dir}%{_bindir}/php %{buildroot}%{_bindir}/php-%{version}
+
 %if %{with_systemd}
 %pre fpm
 %service_add_pre %{name}-fpm.service
@@ -1529,6 +1533,7 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %dir %{php_sysconf}/cli
 %config(noreplace) %{php_sysconf}/cli/php.ini
 %{base_dir}%{_bindir}/php
+%{_bindir}/php-%{version}
 %dir %{base_dir}%{_libdir}/%{pkg_name}
 %dir %{extension_dir}
 %dir %{base_dir}%{_datadir}/%{pkg_name}
@@ -1837,5 +1842,8 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Thu Sep 15 2016 Marcin Morawski <marcin@morawskim.pl>
+-  add symlink to php binary in bindir
+
 * Wed Sep 14 2016 Marcin Morawski <marcin@morawskim.pl>
 -  add systemd service for php56-fpm
