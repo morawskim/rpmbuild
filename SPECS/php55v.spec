@@ -30,11 +30,12 @@
 
 Name:           %{php_dir_name}v
 Version:        5.5.38
-Release:        1
+Release:        2
 License:        PHP-3.01
 Summary:        PHP55 Core Files
 Url:            http://www.php.net
 Source0:        http://us2.php.net/distributions/php-%{version}.tar.xz
+Source1:        php5-fpm.service.template
 Patch0:         %{name}-phpize.patch
 Patch2:         %{name}-php-config.patch
 Patch10:        %{name}-mbstring-missing-return.patch
@@ -1492,6 +1493,30 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 #delete fastcgi bin (we don't support fastcgi sapi)
 %{__rm} -f %{buildroot}%{base_dir}%{_bindir}/php-cgi
 
+%{__install} -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}-fpm.service
+%{__sed} -i 's=@@VERSION@@=%{version}=g; s=@@PHP_PREFIX@@=%{base_dir}=g' %{buildroot}%{_unitdir}/%{name}-fpm.service
+
+#Create symbolic link to php binary in bindir
+%{__mkdir_p} %{buildroot}%{_bindir}
+%{__ln_s} -f %{base_dir}%{_bindir}/php %{buildroot}%{_bindir}/php-%{version}
+
+%if %{with_systemd}
+%pre fpm
+%service_add_pre %{name}-fpm.service
+
+%postun fpm
+%service_del_postun %{name}-fpm.service
+%restart_on_update %{name}-fpm
+%insserv_cleanup
+
+%preun fpm
+%service_del_preun %{name}-fpm.service
+%stop_on_removal %{name}-fpm
+
+%post fpm
+%service_add_post %{name}-fpm.service
+%{fillup_and_insserv -f %{name}-fpm}
+%endif
 
 %files
 %defattr(-, root, root)
@@ -1502,6 +1527,7 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %dir %{php_sysconf}/cli
 %config(noreplace) %{php_sysconf}/cli/php.ini
 %{base_dir}%{_bindir}/php
+%{_bindir}/php-%{version}
 %dir %{base_dir}%{_libdir}/%{pkg_name}
 %dir %{extension_dir}
 %dir %{base_dir}%{_datadir}/%{pkg_name}
@@ -1531,6 +1557,7 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %{base_dir}%{_mandir}/man8/php-fpm.8
 %dir %{base_dir}/usr/share/php5/fpm
 %{base_dir}/usr/share/php5/fpm/status.html
+%{_unitdir}/%{name}-fpm.service
 
 
 %files bcmath
@@ -1810,6 +1837,10 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Fri Sep 16 2016 Marcin Morawski <marcin@morawskim.pl>
+-  add systemd service for php55-fpm
+-  add symlink to php binary in bindir
+
 * Sat Aug 13 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 
