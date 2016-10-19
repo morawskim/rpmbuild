@@ -25,12 +25,12 @@
 
 Name:           php55v-%{pkg_name}
 Version:        2.4.1
-Release:        1
+Release:        2
 License:        BSD-3-Clause
 Summary:        Extended PHP debugger
 Url:            http://www.xdebug.org/
 Source:         http://www.xdebug.org/files/%{pkg_name}-%{version}.tgz
-Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/%{version}/%{pkg_name}.ini
+Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/XDEBUG_%(c=%{version}; echo ${c//./_})/%{pkg_name}.ini
 BuildRequires:  php55v
 BuildRequires:  php55v-devel
 BuildRequires:  php55v-soap
@@ -90,6 +90,9 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
 %changelog
+* Wed Oct 19 2016 Marcin Morawski <marcin@morawskim.pl>
+-  Change source url to xdebug.ini
+
 * Sun Oct 16 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 
