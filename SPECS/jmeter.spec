@@ -19,7 +19,7 @@
 
 Name:           jmeter
 Version:        3.0
-Release:        1
+Release:        2
 License:        Apache License 2.0
 Summary:        Apache JMeter
 Url:            http://jmeter.apache.org/
@@ -92,5 +92,8 @@ find %{buildroot}%{_jmeter_prefix}/bin -maxdepth 1 -type f | grep -v '/jmeter$' 
 %doc docs/ printable_docs/
 
 %changelog
+* Sat Oct 29 2016 Marcin Morawski <marcin@morawskim.pl>
+-  Change desktop file
+
 * Sat Jun 25 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

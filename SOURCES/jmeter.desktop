@@ -4,7 +4,6 @@ Exec=/usr/bin/jmeter
 Icon=/usr/lib/jmeter/bin/jmeter_square.svg
 Name=Jmeter
 NoDisplay=false
-Path[$e]=
 StartupNotify=true
 Terminal=0
 TerminalOptions=
