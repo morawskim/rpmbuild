@@ -68,7 +68,6 @@ export PATH="/opt/php/php55/usr/bin:$PATH"
 pushd %{name}
 export CFLAGS="%{optflags}"
 ../configure --enable-xdebug
-#sed -i -e 's|PHP_EXECUTABLE = %{_bindir}/php-cgi|PHP_EXECUTABLE = %{_bindir}/php|' Makefile
 make %{?_smp_mflags}
 popd
 sed -i -e "s|; This is a generated file, do not modify by hand|zend_extension = \"%{ext_dir}/%{pkg_name}.so\"|g" xdebug.ini
@@ -85,7 +84,6 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 
 %files
 %defattr(0644,root,root)
-#%doc ChangeLog README COPYING
 %{ext_dir}/%{pkg_name}.so
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
