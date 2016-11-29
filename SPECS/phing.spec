@@ -17,11 +17,11 @@
 
 Name:           phing
 Version:        2.15.2
-Release:        1
+Release:        2
 License:        LGPL-3.0
 Summary:        A PHP project build system
 Url:            https://www.phing.info
-Group:          Development/Tools/Building
+Group:          Development/Libraries/PHP
 Source:         https://github.com/phingofficial/phing/archive/%{version}.tar.gz#/phing-%{version}.tar.gz
 BuildRequires:  php5
 BuildRequires:  composer
@@ -76,5 +76,8 @@ composer install --no-dev --no-interaction --prefer-dist
 /usr/lib/phing/.gitmodules
 
 %changelog
+* Tue Nov 29 2016 Marcin Morawski <marcin@morawskim.pl>
+-  change Group to Development/Libraries/PHP
+
 * Mon Nov 28 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
