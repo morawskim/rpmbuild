@@ -24,7 +24,7 @@
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php54v-imagick
+Name:           php54-imagick
 Version:        3.4.1
 Release:        1
 License:        PHP License, version 3.01
