@@ -19,12 +19,12 @@
 
 Name:           jmeter
 Version:        3.0
-Release:        2
+Release:        3
 License:        Apache License 2.0
 Summary:        Apache JMeter
 Url:            http://jmeter.apache.org/
 Group:          Development/Tools
-Source0:        http://ftp.piotrkosoft.net/pub/mirrors/ftp.apache.org//jmeter/binaries/apache-jmeter-%{version}.tgz
+Source0:        https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-%{version}.tgz
 Source1:        jmeter.desktop
 Requires:       java >= 1.7.0
 BuildArch:      noarch
@@ -92,6 +92,9 @@ find %{buildroot}%{_jmeter_prefix}/bin -maxdepth 1 -type f | grep -v '/jmeter$' 
 %doc docs/ printable_docs/
 
 %changelog
+* Sat Dec 17 2016 Marcin Morawski <marcin@morawskim.pl>
+-  Change url to jmeter source code
+
 * Sat Oct 29 2016 Marcin Morawski <marcin@morawskim.pl>
 -  Change desktop file
 
