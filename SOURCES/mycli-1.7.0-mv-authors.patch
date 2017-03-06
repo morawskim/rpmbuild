@@ -1,0 +1,26 @@
+diff --git a/mycli/main.py b/mycli/main.py
+index cc42d6e..8d816ce 100755
+--- a/mycli/main.py
++++ b/mycli/main.py
+@@ -420,7 +420,7 @@ class MyCli(object):
+ 
+         self.refresh_completions()
+ 
+-        project_root = os.path.dirname(PACKAGE_ROOT)
++        project_root = os.path.join(os.path.dirname(PACKAGE_ROOT), 'mycli')
+         author_file = os.path.join(project_root, 'AUTHORS')
+         sponsor_file = os.path.join(project_root, 'SPONSORS')
+ 
+diff --git a/setup.py b/setup.py
+index 1876c6a..31e7ac8 100644
+--- a/setup.py
++++ b/setup.py
+@@ -33,7 +33,7 @@ setup(
+         version=version,
+         url='http://mycli.net',
+         packages=find_packages(),
+-        package_data={'mycli': ['myclirc', '../AUTHORS', '../SPONSORS']},
++        package_data={'mycli': ['myclirc', 'AUTHORS', 'SPONSORS']},
+         description=description,
+         long_description=description,
+         install_requires=install_requirements,
