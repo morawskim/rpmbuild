@@ -1,0 +1,4 @@
+## Type:        int
+## Default      2324
+## Description  Port to use by termshare
+PORT=2324

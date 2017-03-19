@@ -1,0 +1,11 @@
+--- termshare.go.orig	2016-11-14 18:21:25.020886829 +0100
++++ termshare.go	2016-11-14 18:11:06.956897897 +0100
+@@ -19,7 +19,7 @@
+ 	"syscall"
+ 	"time"
+ 
+-	"code.google.com/p/go.net/websocket"
++	"golang.org/x/net/websocket"
+ 	"github.com/heroku/hk/term"
+ 	"github.com/kr/pty"
+ 	"github.com/nu7hatch/gouuid"

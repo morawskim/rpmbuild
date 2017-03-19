@@ -1,0 +1,12 @@
+[Unit]
+Description=Start termshare server
+After=network.target
+
+[Service]
+Type=simple
+User=daemon
+EnvironmentFile=/etc/sysconfig/termshare
+ExecStart=/usr/bin/termshare -d -n
+
+[Install]
+WantedBy=multi-user.target
