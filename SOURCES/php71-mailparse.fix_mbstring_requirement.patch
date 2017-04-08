@@ -1,0 +1,15 @@
+--- mailparse.c.orig	2017-01-30 18:39:19.540000000 +0100
++++ mailparse.c	2017-01-30 18:39:55.812000000 +0100
+@@ -29,12 +29,6 @@
+ #include "main/php_output.h"
+ #include "php_open_temporary_file.h"
+ 
+-/* just in case the config check doesn't enable mbstring automatically */
+-#if !HAVE_MBSTRING
+-#error The mailparse extension requires the mbstring extension!
+-#endif
+-
+-#define MAILPARSE_DECODE_NONE		0		/* include headers and leave section untouched */
+ #define MAILPARSE_DECODE_8BIT		1		/* decode body into 8-bit */
+ #define MAILPARSE_DECODE_NOHEADERS	2		/* don't include the headers */
+ #define MAILPARSE_DECODE_NOBODY		4		/* don't include the body */
