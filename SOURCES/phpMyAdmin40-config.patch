@@ -1,0 +1,352 @@
+Index: config.sample.inc.php
+===================================================================
+--- config.sample.inc.php.orig
++++ config.sample.inc.php
+@@ -11,10 +11,51 @@
+  */
+ 
+ /*
++ * Your phpMyAdmin url
++ *
++ * Complete the variable below with the full url ie
++ *    https://www.your_web.net/path_to_your_phpMyAdmin_directory/
++ *
++ * It must contain characters that are valid for a URL, and the path is
++ * case sensitive on some Web servers, for example Unix-based servers.
++ *
++ * In most cases you can leave this variable empty, as the correct value
++ * will be detected automatically. However, we recommend that you do
++ * test to see that the auto-detection code works in your system. A good
++ * test is to browse a table, then edit a row and save it.  There will be
++ * an error message if phpMyAdmin cannot auto-detect the correct value.
++ *
++ * If the auto-detection code does work properly, you can set to true the
++ * $cfg['PmaAbsoluteUri_DisableWarning'] variable below.
++ */
++$cfg['PmaAbsoluteUri'] = '';
++
++/*
+  * This is needed for cookie based authentication to encrypt password in
+  * cookie
++ * YOU MUST FILL IN THIS FOR COOKIE AUTH!
++ */
++$cfg['blowfish_secret'] = '';
++
++/*
++ * Disable the default warning about $cfg['PmaAbsoluteUri'] not being set
++ * You should use this if and ONLY if the PmaAbsoluteUri auto-detection
++ * works perfectly.
+  */
+-$cfg['blowfish_secret'] = 'a8b7c6d'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
++$cfg['PmaAbsoluteUri_DisableWarning'] = false;
++
++/*
++ * Disable the default warning that is displayed on the DB Details Structure page if
++ * any of the required Tables for the relationfeatures could not be found
++ */
++$cfg['PmaNoRelation_DisableWarning']  = false;
++
++/*
++ * Disable the default warning that is displayed if Suhosin is detected
++ *
++ * @global boolean $cfg['SuhosinDisableWarning']
++ */
++$cfg['SuhosinDisableWarning'] = true;
+ 
+ /*
+  * Servers configuration
+@@ -25,43 +66,230 @@ $i = 0;
+  * First server
+  */
+ $i++;
+-/* Authentication type */
+-$cfg['Servers'][$i]['auth_type'] = 'cookie';
+-/* Server parameters */
+-$cfg['Servers'][$i]['host'] = 'localhost';
+-$cfg['Servers'][$i]['connect_type'] = 'tcp';
+-$cfg['Servers'][$i]['compress'] = false;
+-/* Select mysql if your server does not have mysqli */
+-$cfg['Servers'][$i]['extension'] = 'mysqli';
+-$cfg['Servers'][$i]['AllowNoPassword'] = false;
++// MySQL hostname or IP address
++$cfg['Servers'][$i]['host']                = 'localhost';
++
++// MySQL port - leave blank for default port
++$cfg['Servers'][$i]['port']                = '';
++
++// Path to the socket - leave blank for default socket
++$cfg['Servers'][$i]['socket']              = '';
++
++// Use SSL for connecting to MySQL server?
++$cfg['Servers'][$i]['ssl']                 = false;
++
++// How to connect to MySQL server ('tcp' or 'socket')
++$cfg['Servers'][$i]['connect_type']        = 'socket';
++
++// The PHP MySQL extension to use ('mysql' or 'mysqli')
++$cfg['Servers'][$i]['extension']           = 'mysqli';
++
++// Use compressed protocol for the MySQL connection (requires PHP >= 4.3.0)
++$cfg['Servers'][$i]['compress']            = false;
++
++// Authentication method (config, http or cookie based)?
++$cfg['Servers'][$i]['auth_type']           = 'cookie';
++
++// MySQL user
++$cfg['Servers'][$i]['user']                = 'root';
++
++// MySQL password (only needed with 'config' auth_type)
++$cfg['Servers'][$i]['password']            = '';
++
++// Allow access without password
++$cfg['Servers'][$i]['AllowNoPassword']     = false;
++
++// whether to allow root login
++$cfg['Servers'][$i]['AllowRoot']           = true;
++
++// Session to use for 'signon' authentication method
++$cfg['Servers'][$i]['SignonSession']       = '';
++
++// URL where to redirect user to login for 'signon' authentication method
++$cfg['Servers'][$i]['SignonURL']           = '';
++
++// URL where to redirect user after logout
++$cfg['Servers'][$i]['LogoutURL']           = '';
++
++// If set to a db-name, only this db is displayed in left frame
++// It may also be an array of db-names, where sorting order is relevant.
++$cfg['Servers'][$i]['only_db']             = '';
++
++// Verbose name for this host - leave blank to show the hostname
++$cfg['Servers'][$i]['verbose']             = '';
++
++// set to false if you know that your pma_* tables
++// are up to date. This prevents compatibility
++// checks and thereby increases performance.
++$cfg['Servers'][$i]['verbose_check']       = true;
++
++// Host authentication order, leave blank to not use
++$cfg['Servers'][$i]['AllowDeny']['order']  = '';
++
++// Host authentication rules, leave blank for defaults
++$cfg['Servers'][$i]['AllowDeny']['rules']  = array();
+ 
+ /*
+  * phpMyAdmin configuration storage settings.
+  */
++$cfg['Servers'][$i]['controlhost']         = '';
++
++// MySQL control user settings (this user must have read-only
++// access to the "mysql/user" and "mysql/db" tables).
++// The controluser is also used for all relational features (pmadb)
++$cfg['Servers'][$i]['controluser']         = '';
++
++// The password needed for the controluser to login
++// (see $cfg['Servers'][$i]['controluser'])
++$cfg['Servers'][$i]['controlpass']         = '';
++
++// Database used for Relation, Bookmark and PDF Features
++// (see _docdir/examples/create_tables.sql)
++//   - leave blank for no support
++//     DEFAULT: 'phpmyadmin'
++$cfg['Servers'][$i]['pmadb']               = '';
++
++// Bookmark table
++//   - leave blank for no bookmark support
++//     DEFAULT: 'pma_bookmark'
++$cfg['Servers'][$i]['bookmarktable']       = '';
++
++// table to describe the relation between links (see doc)
++//   - leave blank for no relation-links support
++//     DEFAULT: 'pma_relation'
++$cfg['Servers'][$i]['relation']            = '';
++
++// table to describe the display fields
++//   - leave blank for no display fields support
++//     DEFAULT: 'pma_table_info'
++$cfg['Servers'][$i]['table_info']          = '';
++
++// table to describe the tables position for the PDF schema
++//   - leave blank for no PDF schema support
++//     DEFAULT: 'pma_table_coords'
++$cfg['Servers'][$i]['table_coords']        = '';
++
++// table to describe pages of relationpdf
++//   - leave blank if you don't want to use this
++//     DEFAULT: 'pma_pdf_pages'
++$cfg['Servers'][$i]['pdf_pages']           = '';
++
++// table to store column information
++//   - leave blank for no column comments/mime types
++//     DEFAULT: 'pma_column_info'
++$cfg['Servers'][$i]['column_info']         = '';
++
++// table to store SQL history
++//   - leave blank for no SQL query history
++//     DEFAULT: 'pma_history'
++$cfg['Servers'][$i]['history']             = '';
++
++// Table to store user interface enhancement data.
++//   - Leave blank to disable.
++//     DEFAULT: 'pma_table_uiprefs'
++$cfg['Servers'][$i]['table_uiprefs']       = 'pma_table_uiprefs';
++
++// Table to store version/change tracking data
++//   - leave blank to disable
++//     DEFAULT: 'pma_tracking'
++$cfg['Servers'][$i]['tracking']            = 'pma_tracking';
++
++// Table in which to store information for the designer feature.
++//     DEFAULT: 'pma_designer_coords'
++$cfg['Servers'][$i]['designer_coords']     = 'pma_designer_coords';
++
++// Table to store user preferences -- allows users to set most
++// preferences by themselves and store them in the phpMyAdmin
++// configuration storage database.
++// If you don't allow for storing preferences in pmadb, users can
++// still personalize phpMyAdmin, but settings will be saved in
++// browser's local storage, or, it is is unavailable, until the end
++// of session.
++//    DEFAULT: 'pma_userconfig'
++$cfg['Servers'][$i]['userconfig']          = 'pma_userconfig';
++
++// Table to store a list of recently used tables to be shown in the
++// left navigation frame. It helps you to jump across table directly,
++// without the need to select the database, and then select the table.
++// Using $cfg['LeftRecentTable'] you can configure the maximum number
++// of recent tables shown.
++// Without configuring the storage, you can still access the recently
++// used tables, but it will disappear after you logout.
++//   DEFAULT: 'pma_recent'
++$cfg['Servers'][$i]['recent']              = 'pma_recent';
+ 
+-/* User used to manipulate with storage */
+-// $cfg['Servers'][$i]['controlhost'] = '';
+-// $cfg['Servers'][$i]['controluser'] = 'pma';
+-// $cfg['Servers'][$i]['controlpass'] = 'pmapass';
+-
+-/* Storage database and tables */
+-// $cfg['Servers'][$i]['pmadb'] = 'phpmyadmin';
+-// $cfg['Servers'][$i]['bookmarktable'] = 'pma__bookmark';
+-// $cfg['Servers'][$i]['relation'] = 'pma__relation';
+-// $cfg['Servers'][$i]['table_info'] = 'pma__table_info';
+-// $cfg['Servers'][$i]['table_coords'] = 'pma__table_coords';
+-// $cfg['Servers'][$i]['pdf_pages'] = 'pma__pdf_pages';
+-// $cfg['Servers'][$i]['column_info'] = 'pma__column_info';
+-// $cfg['Servers'][$i]['history'] = 'pma__history';
+-// $cfg['Servers'][$i]['table_uiprefs'] = 'pma__table_uiprefs';
+-// $cfg['Servers'][$i]['tracking'] = 'pma__tracking';
+-// $cfg['Servers'][$i]['designer_coords'] = 'pma__designer_coords';
+-// $cfg['Servers'][$i]['userconfig'] = 'pma__userconfig';
+-// $cfg['Servers'][$i]['recent'] = 'pma__recent';
+ /* Contrib / Swekey authentication */
+-// $cfg['Servers'][$i]['auth_swekey_config'] = '/etc/swekey-pma.conf';
++// The name of the file containing Swekey ids and login names for
++// hardware authentication. Leave the string empty to deactivate this
++// feature.
++// see _docdir/examples/swekey.sample.conf
++//$cfg['Servers'][$i]['auth_swekey_config']  = '/etc/phpMyAdmin/swekey-pma.conf';
++
++
++/***************************************
++ * Second Server
++ */
++
++/*
+++$i++;
+++$cfg['Servers'][$i]['host']                = 'localhost';
+++$cfg['Servers'][$i]['port']                = '';
+++$cfg['Servers'][$i]['socket']              = '';
++$cfg['Servers'][$i]['ssl']                 = false;
++$cfg['Servers'][$i]['connect_type']        = 'socket';
++$cfg['Servers'][$i]['extension']           = 'mysqli';
++$cfg['Servers'][$i]['compress']            = false;
++$cfg['Servers'][$i]['auth_type']           = 'cookie';
++$cfg['Servers'][$i]['user']                = 'root';
++$cfg['Servers'][$i]['password']            = '';
++$cfg['Servers'][$i]['AllowNoPassword']     = false;
++$cfg['Servers'][$i]['AllowRoot']           = true;
++$cfg['Servers'][$i]['SignonSession']       = '';
++$cfg['Servers'][$i]['SignonURL']           = '';
++$cfg['Servers'][$i]['LogoutURL']           = '';
++$cfg['Servers'][$i]['only_db']             = '';
++$cfg['Servers'][$i]['verbose']             = '';
++$cfg['Servers'][$i]['verbose_check']       = true;
++$cfg['Servers'][$i]['AllowDeny']['order']  = '';
++$cfg['Servers'][$i]['AllowDeny']['rules']  = array();
++*/
+ 
+ /*
++ * phpMyAdmin configuration storage settings.
++ */
++
++/*
++$cfg['Servers'][$i]['controlhost']         = '';
++$cfg['Servers'][$i]['controluser']         = '';
++$cfg['Servers'][$i]['controlpass']         = '';
++$cfg['Servers'][$i]['pmadb']               = '';
++$cfg['Servers'][$i]['bookmarktable']       = '';
++$cfg['Servers'][$i]['relation']            = '';
++$cfg['Servers'][$i]['table_info']          = '';
++$cfg['Servers'][$i]['table_coords']        = '';
++$cfg['Servers'][$i]['pdf_pages']           = '';
++$cfg['Servers'][$i]['column_info']         = '';
++$cfg['Servers'][$i]['history']             = '';
++$cfg['Servers'][$i]['table_uiprefs']       = 'pma_table_uiprefs';
++$cfg['Servers'][$i]['tracking']            = 'pma_tracking';
++$cfg['Servers'][$i]['designer_coords']     = 'pma_designer_coords';
++$cfg['Servers'][$i]['userconfig']          = 'pma_userconfig';
++$cfg['Servers'][$i]['recent']              = 'pma_recent';
++$cfg['Servers'][$i]['auth_swekey_config']  = '/etc/phpMyAdmin/swekey-pma_02.conf';
++*/
++
++// If you have more than one server configured, you can set $cfg['ServerDefault']
++// to any one of them to autoconnect to that server when phpMyAdmin is started,
++// or set it to 0 to be given a list of servers without logging in
++// If you have only one server configured, $cfg['ServerDefault'] *MUST* be
++// set to that server.
++
++// Default server (0 = no default server)
++$cfg['ServerDefault'] = 1;
++$cfg['Server']        = '0';
++unset($cfg['Servers'][0]);
++
++/***************************************
+  * End of servers configuration
+  */
+ 
+Index: libraries/vendor_config.php
+===================================================================
+--- libraries/vendor_config.php.orig
++++ libraries/vendor_config.php
+@@ -17,18 +17,18 @@ if (! defined('PHPMYADMIN')) {
+  * Path to changelog file, can be gzip compressed. Useful when you want to
+  * have documentation somewhere else, eg. /usr/share/doc.
+  */
+-define('CHANGELOG_FILE', './ChangeLog');
++define('CHANGELOG_FILE', '@docdir@/ChangeLog');
+ 
+ /**
+  * Path to license file. Useful when you want to have documentation somewhere
+  * else, eg. /usr/share/doc.
+  */
+-define('LICENSE_FILE', './LICENSE');
++define('LICENSE_FILE', '@docdir@/LICENSE');
+ 
+ /**
+  * Path to config file generated using setup script.
+  */
+-define('SETUP_CONFIG_FILE', './config/config.inc.php');
++define('SETUP_CONFIG_FILE', '@sysconfdir@/config.inc.php');
+ 
+ /**
+  * Whether setup requires writable directory where config
+@@ -46,7 +46,7 @@ define('CONFIG_DIR', './');
+ /**
+  * Filename of a configuration file.
+  */
+-define('CONFIG_FILE', CONFIG_DIR . 'config.inc.php');
++define('CONFIG_FILE', SETUP_CONFIG_FILE );
+ 
+ /**
+  * Filename of custom header file.
