@@ -1,0 +1,11 @@
+[Unit]
+Description=Start mailhog at startup.
+After=network.target
+
+[Service]
+Type=simple
+User=mailhog
+ExecStart=/usr/bin/mailhog
+
+[Install]
+WantedBy=multi-user.target
