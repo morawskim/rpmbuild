@@ -1,0 +1,21 @@
+--- docs/conf.py.orig	2016-12-21 14:47:30.865525015 +0100
++++ docs/conf.py	2016-12-21 14:53:49.491518235 +0100
+@@ -196,17 +196,7 @@
+ # Output file base name for HTML help builder.
+ htmlhelp_basename = 'mitmproxydoc'
+ 
+-last_tag, tag_dist, commit = (
+-    subprocess.check_output(["git", "describe", "--tags", "--long"])
+-        .decode()
+-        .strip()
+-        .rsplit("-", 2)
+-)
+-tag_dist = int(tag_dist)
+-if tag_dist == 0:
+-    tag = last_tag
+-else:
+-    tag = "master"
++tag = "@@VERSION@@"
+ 
+ SRCBASE = "https://github.com/mitmproxy/mitmproxy/blob/{}".format(tag)
+ 

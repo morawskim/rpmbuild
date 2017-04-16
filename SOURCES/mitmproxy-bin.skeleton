@@ -1,0 +1,9 @@
+#!/usr/bin/python2
+
+import sys
+sys.path.insert(
+  0,
+  "@MITMPROXY_ROOT@/lib/python2.7/site-packages"
+)
+
+execfile('@MITMPROXY_ROOT@/bin/@BIN_FILE@')
