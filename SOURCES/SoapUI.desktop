@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment=Functional Testing for SOAP and REST APIs
+Exec=/usr/lib/SoapUI/bin/soapui.sh
+Icon=/usr/lib/SoapUI/icon.png
+Name=SoapUI
+NoDisplay=false
+StartupNotify=true
+Terminal=0
+TerminalOptions=
+Type=Application
+Categories=Development;IDE;
+X-KDE-SubstituteUID=false
+X-KDE-Username=
