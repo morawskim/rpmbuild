@@ -1,0 +1,9 @@
+diff -up scripts/signal-rr-recording.sh.orig scripts/signal-rr-recording.sh
+--- scripts/signal-rr-recording.sh.orig	2016-12-25 12:03:06.800000000 +0100
++++ scripts/signal-rr-recording.sh	2016-12-25 12:03:19.640000000 +0100
+@@ -1,4 +1,4 @@
+-#!/usr/bin/bash
++#!/bin/bash
+ 
+ signal=$1
+ if [[ "$signal" == "" ]]; then
