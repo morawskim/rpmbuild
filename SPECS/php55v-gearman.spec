@@ -74,3 +74,7 @@ EOF
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 %{ext_dir}/%{pkg_name}.so
 %doc README LICENSE CREDITS ChangeLog examples
+
+%changelog
+* Mon Nov 7 2016 Marcin Morawski <marcin@morawskim.pl>
+-  init release
