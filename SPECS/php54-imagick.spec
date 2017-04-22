@@ -81,3 +81,10 @@ EOF
 %files devel
 %defattr(-,root,root,-)
 %{php_dir_prefix}/%{_includedir}/php5/ext/imagick/*.h
+
+%changelog
+* Tue Dec 13 2016 Marcin Morawski <marcin@morawskim.pl>
+-  change package name
+
+* Mon Oct 24 2016 Marcin Morawski <marcin@morawskim.pl>
+-  init release
