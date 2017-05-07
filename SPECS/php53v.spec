@@ -1,5 +1,5 @@
 #
-# spec file for package php53m
+# spec file for package php53v
 #
 # Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -19,13 +19,11 @@
 # _without_ make_test by default
 # use build-test.sh for testing!
 %bcond_with make_test
-#taka nazwa pakietu bo na opensuse 13.2 php5 ma conflict z pakietem php53!!
-Name:           php53m
+Name:           php53v
 %global apiver      20090626
 %global zendver     20090626
 %define pkg_name php5
 %define with_spell 1
-%define php_dir_name php53
 
 BuildRequires:  autoconf
 BuildRequires:  bison
@@ -81,10 +79,10 @@ BuildRequires:  aspell-devel
 %endif
 # I would like this to become a hard dependency, as PHP is
 # documented to have this modules by default (no addtional libs are needed)
-Recommends:     php53m-ctype php53m-dom php53m-iconv php53m-sqlite php53m-tokenizer
-Recommends:     php53m-xmlreader php53m-xmlwriter php53m-json
+Recommends:     php53v-ctype php53v-dom php53v-iconv php53v-sqlite php53v-tokenizer
+Recommends:     php53v-xmlreader php53v-xmlwriter php53v-json
 # other highly reccommended extensions
-Suggests:       php53m-mbstring php53m-gd php53m-pear php53m-gettext php53m-mysql
+Suggests:       php53v-mbstring php53v-gd php53v-pear php53v-gettext php53v-mysql
 BuildRequires:  libedit-devel
 BuildRequires:  libjpeg-devel
 BuildRequires:  pcre-devel
@@ -95,7 +93,7 @@ BuildRequires:  sqlite2-devel
 #10.3 does not install sendmail binary with the minimal system
 Requires:       smtp_daemon
 
-%define base_dir		  /opt/php/%{php_dir_name}
+%define base_dir		  /opt/php/%{name}
 %define php_datadir		  %{base_dir}%{_datadir}/%{pkg_name}
 %define extension_dir     %{base_dir}%{_libdir}/%{pkg_name}/extensions
 %define peardir           %{php_datadir}/PEAR
@@ -104,34 +102,34 @@ Requires:       smtp_daemon
 %define need_libxml2_hack  %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h;then echo 1; else echo 0; fi; else echo 0; fi)
 Version:        5.3.29
 Release:        3
-Provides:       php53m
-Provides:       php53m-api = %{apiver}
-Provides:       php53m-date
-Provides:       php53m-filter
-Provides:       php53m-hash
-Provides:       php53m-pcre
-Provides:       php53m-reflection
-Provides:       php53m-session
-Provides:       php53m-simplexml
-Provides:       php53m-spl
-Provides:       php53m-xml
-Provides:       php53m-zend-abi = %{zendver}
-Provides:       php53m(api) = %{apiver}
-Provides:       php53m(zend-abi) = %{zendver}
+Provides:       php53v
+Provides:       php53v-api = %{apiver}
+Provides:       php53v-date
+Provides:       php53v-filter
+Provides:       php53v-hash
+Provides:       php53v-pcre
+Provides:       php53v-reflection
+Provides:       php53v-session
+Provides:       php53v-simplexml
+Provides:       php53v-spl
+Provides:       php53v-xml
+Provides:       php53v-zend-abi = %{zendver}
+Provides:       php53v(api) = %{apiver}
+Provides:       php53v(zend-abi) = %{zendver}
 Source0:        http://museum.php.net/php5/php-%{version}.tar.gz
 Source1:        php5-fpm.service.template
 
 #SUSE specific stuff
-Patch0:         php53-phpize.patch
-Patch2:         php53-php-config.patch
+Patch0:         php53v-phpize.patch
+Patch2:         php53v-php-config.patch
 #bugs
-Patch11:		php53-bnc513080.patch
-Patch12:        php53-BNC-457056.patch
-Patch13:        php53-cloexec.patch
-#Patch14:       php53-missing-extdeps.patch
+Patch11:		php53v-bnc513080.patch
+Patch12:        php53v-BNC-457056.patch
+Patch13:        php53v-cloexec.patch
+#Patch14:       php53v-missing-extdeps.patch
 %if 0%{suse_version} > 1120
 %ifarch x86_64
-Patch15:        php53-gcc_builtins.patch
+Patch15:        php53v-gcc_builtins.patch
 %endif
 %endif
 # following patch is to fix configure tests for crypt; the aim is to have php
@@ -139,14 +137,14 @@ Patch15:        php53-gcc_builtins.patch
 # DES, so as soon as upstream fixes this, don't forgot to remove extended DES
 # from their checking as I indicated in crypt-tests.patch yet, or php will
 # silently use his own implementation again
-Patch16:        php53-crypt-tests.patch
+Patch16:        php53v-crypt-tests.patch
 # related to previous patch; !(defined(_REENTRANT) || defined(_THREAD_SAFE))
-Patch17:        php53-no-reentrant-crypt.patch
+Patch17:        php53v-no-reentrant-crypt.patch
 
 # PATCH-FIX-UPSTREAM php5-autoconf-2.65.patch http://bugs.php.ney/bug.php?id=50291 dimstar@opensuse.org -- Build fails with autoconf > 2.63
 # Modified to work with PHP 5.3.7 release
-Patch22:        php53-aconf26x.patch
-Patch200:		php53-freetype2-include-dir.patch
+Patch22:        php53v-aconf26x.patch
+Patch200:		php53v-freetype2-include-dir.patch
 
 
 Url:            http://www.php.net
@@ -172,7 +170,7 @@ Authors:
 
 %package devel
 Provides:       pecl
-Provides:       php53m-devel
+Provides:       php53v-devel
 Summary:        Include files of php53
 Group:          Development/Languages/C and C++
 #this is required by the installed  development headers
@@ -184,8 +182,8 @@ Requires:       autoconf
 Requires:       automake
 Requires:       libtool
 Requires:       pcre-devel
-Provides:       php53m-macros = 2.0
-Obsoletes:      php53m-macros < 2.0
+Provides:       php53v-macros = 2.0
+Obsoletes:      php53v-macros < 2.0
 
 %description devel
 PHP is a server-side, cross-platform, HTML embedded scripting language.
@@ -202,7 +200,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pear
-Provides:       php53m-pear
+Provides:       php53v-pear
 Summary:        PHP Extension and Application Repository
 Group:          Development/Libraries/PHP
 Requires:       %{name}-zlib = %{version}
@@ -210,8 +208,8 @@ Requires:       %{name}-zlib = %{version}
 # by pear package itself; php5-pear-Archive_Tar was dropped
 # on version 1.3.10, install-pear-nozlib.phar
 # provides 1.3.11 currently
-Provides:       php53m-pear-Archive_Tar = 1.3.11
-Obsoletes:      php53m-pear-Archive_Tar < 1.3.11
+Provides:       php53v-pear-Archive_Tar = 1.3.11
+Obsoletes:      php53v-pear-Archive_Tar < 1.3.11
 %if 0%{?suse_version} > 1110
 BuildArch:      noarch
 %endif
@@ -236,15 +234,15 @@ Summary:        FastCGI Process Manager PHP5 Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 PreReq:         %insserv_prereq
-Provides:       php53m-date
-Provides:       php53m-filter
-Provides:       php53m-fpm
-Provides:       php53m-pcre
-Provides:       php53m-reflection
-Provides:       php53m-session
-Provides:       php53m-simplexml
-Provides:       php53m-spl
-Provides:       php53m-xml
+Provides:       php53v-date
+Provides:       php53v-filter
+Provides:       php53v-fpm
+Provides:       php53v-pcre
+Provides:       php53v-reflection
+Provides:       php53v-session
+Provides:       php53v-simplexml
+Provides:       php53v-spl
+Provides:       php53v-xml
 %if 0%{suse_version} > 1130
 %define with_systemd 1
 %{systemd_requires}
@@ -272,7 +270,7 @@ BuildRequires:  pkgconfig(libsystemd-daemon)
       See http://www.php.net/credits.php for more details
 
 %package bcmath
-Provides:       php53m-bcmath
+Provides:       php53v-bcmath
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -289,7 +287,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package bz2
-Provides:       php53m-bz2
+Provides:       php53v-bz2
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -305,7 +303,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package calendar
-Provides:       php53m-calendar
+Provides:       php53v-calendar
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -321,7 +319,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ctype
-Provides:       php53m-ctype
+Provides:       php53v-ctype
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -338,7 +336,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package curl
-Provides:       php53m-curl
+Provides:       php53v-curl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -356,7 +354,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package dba
-Provides:       php53m-dba
+Provides:       php53v-dba
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -376,7 +374,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package dom
-Provides:       php53m-dom
+Provides:       php53v-dom
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -392,7 +390,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package enchant
-Provides:       php53m-enchant
+Provides:       php53v-enchant
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -407,7 +405,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package exif
-Provides:       php53m-exif
+Provides:       php53v-exif
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -425,7 +423,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package fileinfo
-Provides:       php53m-fileinfo
+Provides:       php53v-fileinfo
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -440,7 +438,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ftp
-Provides:       php53m-ftp
+Provides:       php53v-ftp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -458,7 +456,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gd
-Provides:       php53m-gd
+Provides:       php53v-gd
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -476,7 +474,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gettext
-Provides:       php53m-gettext
+Provides:       php53v-gettext
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -493,7 +491,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gmp
-Provides:       php53m-gmp
+Provides:       php53v-gmp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -511,7 +509,7 @@ Authors:
 
 
 %package iconv
-Provides:       php53m-iconv
+Provides:       php53v-iconv
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -527,7 +525,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package imap
-Provides:       php53m-imap
+Provides:       php53v-imap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -546,7 +544,7 @@ Authors:
 
 
 %package intl
-Provides:       php53m-intl
+Provides:       php53v-intl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -563,7 +561,7 @@ Authors:
 
 
 %package json
-Provides:       php53m-json
+Provides:       php53v-json
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -579,7 +577,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ldap
-Provides:       php53m-ldap
+Provides:       php53v-ldap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -596,7 +594,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package mbstring
-Provides:       php53m-mbstring
+Provides:       php53v-mbstring
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -613,7 +611,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package mcrypt
-Provides:       php53m-mcrypt
+Provides:       php53v-mcrypt
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -632,7 +630,7 @@ Authors:
 
 
 %package mssql
-Provides:       php53m-mssql
+Provides:       php53v-mssql
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
@@ -642,16 +640,16 @@ PHP functions for access to MSSQL database servers.
 
 
 %package mysql
-Provides:       php53m-mysql
-Provides:       php53m-mysqli = %{version}
-Provides:       php53m-pdo_mysql = %{version}
+Provides:       php53v-mysql
+Provides:       php53v-mysqli = %{version}
+Provides:       php53v-pdo_mysql = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php53m-mysqli < %{version}
-Obsoletes:      php53m-pdo_mysql < %{version}
+Obsoletes:      php53v-mysqli < %{version}
+Obsoletes:      php53v-pdo_mysql < %{version}
 
 %description mysql
 PHP functions for access to MySQL database servers.
@@ -665,14 +663,14 @@ Authors:
 
 %if %{with_firebird}
 %package firebird
-Provides:       php53m-interbase
-Provides:       php53m-pdo_firebird = %{version}
+Provides:       php53v-interbase
+Provides:       php53v-pdo_firebird = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php53m-pdo_firebird < %{version}
+Obsoletes:      php53v-pdo_firebird < %{version}
 
 %description firebird
 PHP functions for access to firebird database servers.
@@ -686,8 +684,8 @@ Authors:
 %endif
 
 %package odbc
-Provides:       php53m-odbc
-Provides:       php53m-pdo_odbc
+Provides:       php53v-odbc
+Provides:       php53v-pdo_odbc
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -704,7 +702,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package openssl
-Provides:       php53m-openssl
+Provides:       php53v-openssl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -720,7 +718,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pcntl
-Provides:       php53m-pcntl
+Provides:       php53v-pcntl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -740,7 +738,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package phar
-Provides:       php53m-phar
+Provides:       php53v-phar
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -755,7 +753,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pdo
-Provides:       php53m-pdo
+Provides:       php53v-pdo
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -779,14 +777,14 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pgsql
-Provides:       php53m-pgsql
-Provides:       php53m-pdo_pgsql = %{version}
+Provides:       php53v-pgsql
+Provides:       php53v-pdo_pgsql = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php53m-pdo_pgsql < %{version}
+Obsoletes:      php53v-pdo_pgsql < %{version}
 
 %description pgsql
 PHP functions for access to PostgreSQL database servers. It includes
@@ -800,7 +798,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package posix
-Provides:       php53m-posix
+Provides:       php53v-posix
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -818,7 +816,7 @@ Authors:
 %if %{with_spell}
 
 %package pspell
-Provides:       php53m-pspell
+Provides:       php53v-pspell
 Summary:        PHP5 pspell extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -838,7 +836,7 @@ Authors:
 %endif
 
 %package readline
-Provides:       php53m-readline
+Provides:       php53v-readline
 Summary:        PHP5 readline extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -855,7 +853,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package shmop
-Provides:       php53m-shmop
+Provides:       php53v-shmop
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -872,7 +870,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package snmp
-Provides:       php53m-snmp
+Provides:       php53v-snmp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -888,7 +886,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package soap
-Provides:       php53m-soap
+Provides:       php53v-soap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -907,7 +905,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sockets
-Provides:       php53m-sockets
+Provides:       php53v-sockets
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -925,10 +923,10 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sqlite
-Provides:       php53m-sqlite
-Provides:       php53m-sqlite3 = %{version}
-Provides:       php53m-pdo_sqlite = %{version}
-Provides:       php53m-sqlite3 = %{version}
+Provides:       php53v-sqlite
+Provides:       php53v-sqlite3 = %{version}
+Provides:       php53v-pdo_sqlite = %{version}
+Provides:       php53v-sqlite3 = %{version}
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -957,7 +955,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvmsg
-Provides:       php53m-sysvmsg
+Provides:       php53v-sysvmsg
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -973,7 +971,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvsem
-Provides:       php53m-sysvsem
+Provides:       php53v-sysvsem
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -989,7 +987,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvshm
-Provides:       php53m-sysvshm
+Provides:       php53v-sysvshm
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1005,7 +1003,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package tidy
-Provides:       php53m-tidy
+Provides:       php53v-tidy
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1024,7 +1022,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package tokenizer
-Provides:       php53m-tokenizer
+Provides:       php53v-tokenizer
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1043,7 +1041,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package wddx
-Provides:       php53m-wddx
+Provides:       php53v-wddx
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1059,7 +1057,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlrpc
-Provides:       php53m-xmlrpc
+Provides:       php53v-xmlrpc
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1075,7 +1073,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xsl
-Provides:       php53m-xsl
+Provides:       php53v-xsl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1092,7 +1090,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlreader
-Provides:       php53m-xmlreader
+Provides:       php53v-xmlreader
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1110,7 +1108,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlwriter
-Provides:       php53m-xmlwriter
+Provides:       php53v-xmlwriter
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1128,7 +1126,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package zip
-Provides:       php53m-zip
+Provides:       php53v-zip
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1144,7 +1142,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package zlib
-Provides:       php53m-zlib
+Provides:       php53v-zlib
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1844,6 +1842,9 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php53m to php53v
+
 * Thu Sep 15 2016 Marcin Morawski <marcin@morawskim.pl>
 -  add symlink to php binary in bindir
 

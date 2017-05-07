@@ -1,5 +1,5 @@
 #
-# spec file for package php53m-imagick
+# spec file for package php53v-imagick
 #
 # Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>.
 #
@@ -16,7 +16,7 @@
 #
 
 %define pkg_name imagick
-%define php_dir_prefix /opt/php/php53
+%define php_dir_prefix /opt/php/php53v
 %define phpize %{php_dir_prefix}/usr/bin/phpize
 %define phpconfig %{php_dir_prefix}/usr/bin/php-config
 %define conf_dir %{php_dir_prefix}/etc/php5/conf.d
@@ -24,7 +24,7 @@
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php53m-imagick
+Name:           php53v-imagick
 Version:        3.3.0
 Release:        1
 License:        PHP License, version 3.01
@@ -32,11 +32,11 @@ Summary:        Wrapper to the ImageMagick/GraphicsMagick library
 Url:            http://pecl.php.net/package/imagick
 Group:          Productivity/Networking/Web/Servers
 Source:         http://pecl.php.net/get/imagick-%{version}.tgz
-BuildRequires:  php53m-devel
+BuildRequires:  php53v-devel
 BuildRequires:  ImageMagick-devel >= 6.5.3.10
 BuildRequires:  pkgconfig
-Requires:       php53m(api) = %{php_core_api}
-Requires:       php53m(zend-abi) = %{php_zend_api}
+Requires:       php53v(api) = %{php_core_api}
+Requires:       php53v(zend-abi) = %{php_zend_api}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -53,7 +53,7 @@ This package contains necessary header files for imagick development.
 %setup -qn imagick-%{version}
 
 %build
-export PATH="/opt/php/php53/usr/bin/:$PATH"
+export PATH="/opt/php/php53v/usr/bin/:$PATH"
 %{phpize}
 %configure
 make %{?_smp_mflags}
@@ -83,6 +83,9 @@ EOF
 %{php_dir_prefix}/%{_includedir}/php5/ext/imagick/*.h
 
 %changelog
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php53m-imagick to php53v-imagick
+
 * Sun Oct 23 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

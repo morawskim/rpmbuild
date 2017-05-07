@@ -1,5 +1,5 @@
 #
-# spec file for package php53m-ssh2
+# spec file for package php53v-ssh2
 #
 # Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>.
 #
@@ -16,14 +16,14 @@
 #
 
 %define         pkg_name    ssh2
-%define         phpize /opt/php/php53/usr/bin/phpize
-%define         phpconfig /opt/php/php53/usr/bin/php-config
-%define         conf_dir /opt/php/php53/etc/php5/conf.d
+%define         phpize /opt/php/php53v/usr/bin/phpize
+%define         phpconfig /opt/php/php53v/usr/bin/php-config
+%define         conf_dir /opt/php/php53v/etc/php5/conf.d
 %define         ext_dir %(%{phpconfig} --extension-dir)
 %define         php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define         php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php53m-ssh2
+Name:           php53v-ssh2
 Version:        0.12
 Release:        1
 License:        PHP-3.01
@@ -32,11 +32,11 @@ Url:            http://pecl.php.net/ssh2
 Group:          Productivity/Networking/Web/Servers
 Source:         https://pecl.php.net/get/%{pkg_name}-%{version}.tgz
 BuildRequires:  libssh2-devel
-BuildRequires:  php53m-devel
-Provides:       php53m-ssh2 = %{version}
-Obsoletes:      php53m-ssh2 < %{version}
-Requires:       php53m(api) = %{php_core_api}
-Requires:       php53m(zend-abi) = %{php_zend_api}
+BuildRequires:  php53v-devel
+Provides:       php53v-ssh2 = %{version}
+Obsoletes:      php53v-ssh2 < %{version}
+Requires:       php53v(api) = %{php_core_api}
+Requires:       php53v(zend-abi) = %{php_zend_api}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -48,7 +48,7 @@ protocol.
 mkdir %{name}
 
 %build
-export PATH="/opt/php/php53/usr/bin:$PATH"
+export PATH="/opt/php/php53v/usr/bin:$PATH"
 %{phpize}
 pushd %{name}
 export CFLAGS="%{optflags} -fno-strict-aliasing -fstack-protector"
@@ -77,3 +77,7 @@ popd
 %doc LICENSE
 %{ext_dir}/%{pkg_name}.so
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
+
+%changelog
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php53m-ssh2 to php53v-ssh2

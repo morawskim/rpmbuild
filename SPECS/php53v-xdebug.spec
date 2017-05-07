@@ -1,5 +1,5 @@
 #
-# spec file for package php53m-xdebug
+# spec file for package php53v-xdebug
 #
 # Copyright (c) 2015 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -15,14 +15,14 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 %define pkg_name xdebug
-%define phpize /opt/php/php53/usr/bin/phpize
-%define phpconfig /opt/php/php53/usr/bin/php-config
-%define conf_dir /opt/php/php53/etc/php5/conf.d
+%define phpize /opt/php/php53v/usr/bin/phpize
+%define phpconfig /opt/php/php53v/usr/bin/php-config
+%define conf_dir /opt/php/php53v/etc/php5/conf.d
 %define ext_dir %(%{phpconfig} --extension-dir)
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php53m-%{pkg_name}
+Name:           php53v-%{pkg_name}
 Version:	2.2.7
 Release:	1
 License:	BSD-3-Clause
@@ -30,12 +30,12 @@ Summary:	Extended PHP debugger
 Url:		http://www.xdebug.org/
 Source: 	http://www.xdebug.org/files/%{pkg_name}-%{version}.tgz
 Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/%{version}/%{pkg_name}.ini
-BuildRequires:	php53m
-BuildRequires:	php53m-devel
-BuildRequires:	php53m-soap
+BuildRequires:	php53v
+BuildRequires:	php53v-devel
+BuildRequires:	php53v-soap
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-Requires:	php53m(api) = %{php_core_api}
-Requires:	php53m(zend-abi) = %{php_zend_api}
+Requires:	php53v(api) = %{php_core_api}
+Requires:	php53v(zend-abi) = %{php_zend_api}
 
 %description
 
@@ -62,7 +62,7 @@ Xdebug also provides:
 install -m 644 %{SOURCE1} xdebug.ini
 
 %build
-export PATH="/opt/php/php53/usr/bin:$PATH"
+export PATH="/opt/php/php53v/usr/bin:$PATH"
 %{phpize}
 pushd %{name}
 export CFLAGS="%{optflags}"
@@ -88,3 +88,6 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 %{ext_dir}/%{pkg_name}.so
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
+%changelog
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php53m-xdebug to php53v-xdebug
