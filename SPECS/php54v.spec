@@ -1,5 +1,5 @@
 #
-# spec file for package php54
+# spec file for package php54v
 #
 # Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -20,7 +20,7 @@
 # use build-test.sh for testing!
 %bcond_with make_test
 
-Name:           php54
+Name:           php54v
 %global apiver      20100412
 %global zendver     20100525
 %define pkg_name php5
@@ -81,10 +81,10 @@ BuildRequires:  aspell-devel
 %endif
 # I would like this to become a hard dependency, as PHP is
 # documented to have this modules by default (no addtional libs are needed)
-Recommends:     php54-ctype php54-dom php54-iconv php54-sqlite php54-tokenizer
-Recommends:     php54-xmlreader php54-xmlwriter php54-json
+Recommends:     php54v-ctype php54v-dom php54v-iconv php54v-sqlite php54v-tokenizer
+Recommends:     php54v-xmlreader php54v-xmlwriter php54v-json
 # other highly reccommended extensions
-Suggests:       php54-mbstring php54-gd php54-pear php54-gettext php54-mysql
+Suggests:       php54v-mbstring php54v-gd php54v-pear php54v-gettext php54v-mysql
 BuildRequires:  libedit-devel
 BuildRequires:  libjpeg-devel
 BuildRequires:  pcre-devel
@@ -102,34 +102,34 @@ Requires:       smtp_daemon
 %define need_libxml2_hack  %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h;then echo 1; else echo 0; fi; else echo 0; fi)
 Version:        5.4.16
 Release:        3
-Provides:       php54
-Provides:       php54-api = %{apiver}
-Provides:       php54-date
-Provides:       php54-filter
-Provides:       php54-hash
-Provides:       php54-pcre
-Provides:       php54-reflection
-Provides:       php54-session
-Provides:       php54-simplexml
-Provides:       php54-spl
-Provides:       php54-xml
-Provides:       php54-zend-abi = %{zendver}
-Provides:       php54(api) = %{apiver}
-Provides:       php54(zend-abi) = %{zendver}
+Provides:       php54v
+Provides:       php54v-api = %{apiver}
+Provides:       php54v-date
+Provides:       php54v-filter
+Provides:       php54v-hash
+Provides:       php54v-pcre
+Provides:       php54v-reflection
+Provides:       php54v-session
+Provides:       php54v-simplexml
+Provides:       php54v-spl
+Provides:       php54v-xml
+Provides:       php54v-zend-abi = %{zendver}
+Provides:       php54v(api) = %{apiver}
+Provides:       php54v(zend-abi) = %{zendver}
 Source0:        http://museum.php.net/php5/php-%{version}.tar.gz
 Source1:        php5-fpm.service.template
 
 #SUSE specific stuff
-Patch0:         php54-phpize.patch
-Patch2:         php54-php-config.patch
+Patch0:         php54v-phpize.patch
+Patch2:         php54v-php-config.patch
 #bugs
-Patch11:        php54-mbstring-missing-return.patch
-Patch12:        php54-BNC-457056.patch
-Patch13:        php54-cloexec.patch
-Patch14:        php54-missing-extdeps.patch
+Patch11:        php54v-mbstring-missing-return.patch
+Patch12:        php54v-BNC-457056.patch
+Patch13:        php54v-cloexec.patch
+Patch14:        php54v-missing-extdeps.patch
 %if 0%{suse_version} > 1120
 %ifarch x86_64
-Patch15:        php54-gcc_builtins.patch
+Patch15:        php54v-gcc_builtins.patch
 %endif
 %endif
 # following patch is to fix configure tests for crypt; the aim is to have php
@@ -137,18 +137,18 @@ Patch15:        php54-gcc_builtins.patch
 # DES, so as soon as upstream fixes this, don't forgot to remove extended DES
 # from their checking as I indicated in crypt-tests.patch yet, or php will
 # silently use his own implementation again
-Patch16:        php54-crypt-tests.patch
+Patch16:        php54v-crypt-tests.patch
 # related to previous patch; !(defined(_REENTRANT) || defined(_THREAD_SAFE))
-Patch17:        php54-no-reentrant-crypt.patch
-Patch18:        php54-format-string-issues.patch
+Patch17:        php54v-no-reentrant-crypt.patch
+Patch18:        php54v-format-string-issues.patch
 # following patch connected fixes or workarounds https://bugs.php.net/bug.php?id=44522
-Patch19:        php54-64-bit-post-large-files.patch
-Patch200:		php54-freetype2-include-dir.patch
+Patch19:        php54v-64-bit-post-large-files.patch
+Patch200:		php54v-freetype2-include-dir.patch
 
 
 Url:            http://www.php.net
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-Summary:        php54 Core Files
+Summary:        php54v Core Files
 License:        PHP-3.01
 Requires:       timezone
 
@@ -169,8 +169,8 @@ Authors:
 
 %package devel
 Provides:       pecl
-Provides:       php54-devel
-Summary:        Include files of php54
+Provides:       php54v-devel
+Summary:        Include files of php54v
 Group:          Development/Languages/C and C++
 #this is required by the installed  development headers
 Requires:       %{name} = %{version}
@@ -182,8 +182,8 @@ Requires:       automake
 Requires:       libtool
 Requires:       pcre-devel
 Conflicts:      php4-devel
-Provides:       php54-macros = 2.0
-Obsoletes:      php54-macros < 2.0
+Provides:       php54v-macros = 2.0
+Obsoletes:      php54v-macros < 2.0
 
 %description devel
 PHP is a server-side, cross-platform, HTML embedded scripting language.
@@ -200,7 +200,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pear
-Provides:       php54-pear
+Provides:       php54v-pear
 Summary:        PHP Extension and Application Repository
 Group:          Development/Libraries/PHP
 Requires:       %{name}-zlib = %{version}
@@ -234,15 +234,15 @@ Summary:        FastCGI Process Manager PHP5 Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 PreReq:         %insserv_prereq
-Provides:       php54-date
-Provides:       php54-filter
-Provides:       php54-fpm
-Provides:       php54-pcre
-Provides:       php54-reflection
-Provides:       php54-session
-Provides:       php54-simplexml
-Provides:       php54-spl
-Provides:       php54-xml
+Provides:       php54v-date
+Provides:       php54v-filter
+Provides:       php54v-fpm
+Provides:       php54v-pcre
+Provides:       php54v-reflection
+Provides:       php54v-session
+Provides:       php54v-simplexml
+Provides:       php54v-spl
+Provides:       php54v-xml
 %if 0%{suse_version} > 1130
 %define with_systemd 1
 %{systemd_requires}
@@ -270,7 +270,7 @@ BuildRequires:  pkgconfig(libsystemd-daemon)
       See http://www.php.net/credits.php for more details
 
 %package bcmath
-Provides:       php54-bcmath
+Provides:       php54v-bcmath
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -287,7 +287,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package bz2
-Provides:       php54-bz2
+Provides:       php54v-bz2
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -303,7 +303,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package calendar
-Provides:       php54-calendar
+Provides:       php54v-calendar
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -319,7 +319,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ctype
-Provides:       php54-ctype
+Provides:       php54v-ctype
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -336,7 +336,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package curl
-Provides:       php54-curl
+Provides:       php54v-curl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -354,7 +354,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package dba
-Provides:       php54-dba
+Provides:       php54v-dba
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -374,7 +374,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package dom
-Provides:       php54-dom
+Provides:       php54v-dom
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -390,7 +390,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package enchant
-Provides:       php54-enchant
+Provides:       php54v-enchant
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -405,7 +405,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package exif
-Provides:       php54-exif
+Provides:       php54v-exif
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -423,7 +423,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package fileinfo
-Provides:       php54-fileinfo
+Provides:       php54v-fileinfo
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -438,7 +438,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ftp
-Provides:       php54-ftp
+Provides:       php54v-ftp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -456,7 +456,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gd
-Provides:       php54-gd
+Provides:       php54v-gd
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -474,7 +474,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gettext
-Provides:       php54-gettext
+Provides:       php54v-gettext
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -491,7 +491,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gmp
-Provides:       php54-gmp
+Provides:       php54v-gmp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -509,7 +509,7 @@ Authors:
 
 
 %package iconv
-Provides:       php54-iconv
+Provides:       php54v-iconv
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -525,7 +525,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package imap
-Provides:       php54-imap
+Provides:       php54v-imap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -544,7 +544,7 @@ Authors:
 
 
 %package intl
-Provides:       php54-intl
+Provides:       php54v-intl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -561,7 +561,7 @@ Authors:
 
 
 %package json
-Provides:       php54-json
+Provides:       php54v-json
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -577,7 +577,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ldap
-Provides:       php54-ldap
+Provides:       php54v-ldap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -594,7 +594,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package mbstring
-Provides:       php54-mbstring
+Provides:       php54v-mbstring
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -611,7 +611,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package mcrypt
-Provides:       php54-mcrypt
+Provides:       php54v-mcrypt
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -630,7 +630,7 @@ Authors:
 
 
 %package mssql
-Provides:       php54-mssql
+Provides:       php54v-mssql
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
@@ -640,16 +640,16 @@ PHP functions for access to MSSQL database servers.
 
 
 %package mysql
-Provides:       php54-mysql
-Provides:       php54-mysqli = %{version}
-Provides:       php54-pdo_mysql = %{version}
+Provides:       php54v-mysql
+Provides:       php54v-mysqli = %{version}
+Provides:       php54v-pdo_mysql = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php54-mysqli < %{version}
-Obsoletes:      php54-pdo_mysql < %{version}
+Obsoletes:      php54v-mysqli < %{version}
+Obsoletes:      php54v-pdo_mysql < %{version}
 
 %description mysql
 PHP functions for access to MySQL database servers.
@@ -663,14 +663,14 @@ Authors:
 
 %if %{with_firebird}
 %package firebird
-Provides:       php54-interbase
-Provides:       php54-pdo_firebird = %{version}
+Provides:       php54v-interbase
+Provides:       php54v-pdo_firebird = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php54-pdo_firebird < %{version}
+Obsoletes:      php54v-pdo_firebird < %{version}
 
 %description firebird
 PHP functions for access to firebird database servers.
@@ -684,8 +684,8 @@ Authors:
 %endif
 
 %package odbc
-Provides:       php54-odbc
-Provides:       php54-pdo_odbc
+Provides:       php54v-odbc
+Provides:       php54v-pdo_odbc
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -702,7 +702,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package openssl
-Provides:       php54-openssl
+Provides:       php54v-openssl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -718,7 +718,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pcntl
-Provides:       php54-pcntl
+Provides:       php54v-pcntl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -738,7 +738,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package phar
-Provides:       php54-phar
+Provides:       php54v-phar
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -753,7 +753,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pdo
-Provides:       php54-pdo
+Provides:       php54v-pdo
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -777,14 +777,14 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pgsql
-Provides:       php54-pgsql
-Provides:       php54-pdo_pgsql = %{version}
+Provides:       php54v-pgsql
+Provides:       php54v-pdo_pgsql = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php54-pdo_pgsql < %{version}
+Obsoletes:      php54v-pdo_pgsql < %{version}
 
 %description pgsql
 PHP functions for access to PostgreSQL database servers. It includes
@@ -798,7 +798,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package posix
-Provides:       php54-posix
+Provides:       php54v-posix
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -816,7 +816,7 @@ Authors:
 %if %{with_spell}
 
 %package pspell
-Provides:       php54-pspell
+Provides:       php54v-pspell
 Summary:        PHP5 pspell extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -836,7 +836,7 @@ Authors:
 %endif
 
 %package readline
-Provides:       php54-readline
+Provides:       php54v-readline
 Summary:        PHP5 readline extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -853,7 +853,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package shmop
-Provides:       php54-shmop
+Provides:       php54v-shmop
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -870,7 +870,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package snmp
-Provides:       php54-snmp
+Provides:       php54v-snmp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -886,7 +886,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package soap
-Provides:       php54-soap
+Provides:       php54v-soap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -905,7 +905,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sockets
-Provides:       php54-sockets
+Provides:       php54v-sockets
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -923,10 +923,10 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sqlite
-Provides:       php54-sqlite
-Provides:       php54-sqlite3 = %{version}
-Provides:       php54-pdo_sqlite = %{version}
-Provides:       php54-sqlite3 = %{version}
+Provides:       php54v-sqlite
+Provides:       php54v-sqlite3 = %{version}
+Provides:       php54v-pdo_sqlite = %{version}
+Provides:       php54v-sqlite3 = %{version}
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -955,7 +955,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvmsg
-Provides:       php54-sysvmsg
+Provides:       php54v-sysvmsg
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -971,7 +971,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvsem
-Provides:       php54-sysvsem
+Provides:       php54v-sysvsem
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -987,7 +987,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvshm
-Provides:       php54-sysvshm
+Provides:       php54v-sysvshm
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1003,7 +1003,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package tidy
-Provides:       php54-tidy
+Provides:       php54v-tidy
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1022,7 +1022,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package tokenizer
-Provides:       php54-tokenizer
+Provides:       php54v-tokenizer
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1041,7 +1041,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package wddx
-Provides:       php54-wddx
+Provides:       php54v-wddx
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1057,7 +1057,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlrpc
-Provides:       php54-xmlrpc
+Provides:       php54v-xmlrpc
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1073,7 +1073,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xsl
-Provides:       php54-xsl
+Provides:       php54v-xsl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1090,7 +1090,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlreader
-Provides:       php54-xmlreader
+Provides:       php54v-xmlreader
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1108,7 +1108,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlwriter
-Provides:       php54-xmlwriter
+Provides:       php54v-xmlwriter
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1126,7 +1126,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package zip
-Provides:       php54-zip
+Provides:       php54v-zip
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1142,7 +1142,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package zlib
-Provides:       php54-zlib
+Provides:       php54v-zlib
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}

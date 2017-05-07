@@ -1,5 +1,5 @@
 #
-# spec file for package php54-xdebug
+# spec file for package php54v-xdebug
 #
 # Copyright (c) 2015 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -15,14 +15,14 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 %define pkg_name xdebug
-%define phpize /opt/php/php54/usr/bin/phpize
-%define phpconfig /opt/php/php54/usr/bin/php-config
-%define conf_dir /opt/php/php54/etc/php5/conf.d
+%define phpize /opt/php/php54v/usr/bin/phpize
+%define phpconfig /opt/php/php54v/usr/bin/php-config
+%define conf_dir /opt/php/php54v/etc/php5/conf.d
 %define ext_dir %(%{phpconfig} --extension-dir)
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php54-%{pkg_name}
+Name:           php54v-%{pkg_name}
 Version:	2.3.3
 Release:	1
 License:	BSD-3-Clause
@@ -30,12 +30,12 @@ Summary:	Extended PHP debugger
 Url:		http://www.xdebug.org/
 Source: 	http://www.xdebug.org/files/%{pkg_name}-%{version}.tgz
 Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/%{version}/%{pkg_name}.ini
-BuildRequires:	php54
-BuildRequires:	php54-devel
-BuildRequires:	php54-soap
+BuildRequires:	php54v
+BuildRequires:	php54v-devel
+BuildRequires:	php54v-soap
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-Requires:	php54(api) = %{php_core_api}
-Requires:	php54(zend-abi) = %{php_zend_api}
+Requires:	php54v(api) = %{php_core_api}
+Requires:	php54v(zend-abi) = %{php_zend_api}
 
 %description
 
@@ -62,7 +62,7 @@ Xdebug also provides:
 install -m 644 %{SOURCE1} xdebug.ini
 
 %build
-export PATH="/opt/php/php54/usr/bin:$PATH"
+export PATH="/opt/php/php54v/usr/bin:$PATH"
 %{phpize}
 pushd %{name}
 export CFLAGS="%{optflags}"
