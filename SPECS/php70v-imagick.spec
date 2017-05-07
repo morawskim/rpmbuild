@@ -1,7 +1,7 @@
 #
-# spec file for package php7-mailparse
+# spec file for package php70v-imagick
 #
-# Copyright (c) 2017 Marcin Morawski <marcin@morawskim.pl>.
+# Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -15,40 +15,45 @@
 # Please submit bugfixes or comments via https://github.com/morawskim/rpmbuild/issues
 #
 
-%define pkg_name mailparse
-%define php_dir_prefix /opt/php/php7
+%define pkg_name imagick
+%define php_dir_prefix /opt/php/php70v
 %define phpize %{php_dir_prefix}/usr/bin/phpize
 %define phpconfig %{php_dir_prefix}/usr/bin/php-config
-%define conf_dir %{php_dir_prefix}/etc/php5/conf.d
+%define conf_dir %{php_dir_prefix}/etc/php7/conf.d
 %define ext_dir %(%{phpconfig} --extension-dir)
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php7-mailparse
-Version:        3.0.2
+Name:           php70v-imagick
+Version:        3.4.1
 Release:        1
-License:        PHP-2.2
-Summary:        Email Message Manipulation
-Url:            https://pecl.php.net/package/mailparse
+License:        PHP License, version 3.01
+Summary:        Wrapper to the ImageMagick/GraphicsMagick library
+Url:            http://pecl.php.net/package/imagick
 Group:          Productivity/Networking/Web/Servers
-Source:         http://pecl.php.net/get/%{pkg_name}-%{version}.tgz
-Patch1:         %{name}.fix_mbstring_requirement.patch
-BuildRequires:  php7-devel
-BuildRequires:  re2c
-Requires:       php7(api) = %{php_core_api}
-Requires:       php7(zend-abi) = %{php_zend_api}
+Source:         http://pecl.php.net/get/imagick-%{version}.tgz
+BuildRequires:  php70v-devel
+BuildRequires:  ImageMagick-devel >= 6.5.3.10
+BuildRequires:  pkgconfig
+Requires:       php70v(api) = %{php_core_api}
+Requires:       php70v(zend-abi) = %{php_zend_api}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
-Mailparse is an extension for parsing and working with email messages.
-It can deal with rfc822 and rfc2045 (MIME) compliant messages.
+Provides a wrapper to the ImageMagick/GraphicsMagick library.
+
+%package devel
+Summary:        Header files for imagick development
+Group:          Development/C
+
+%description devel
+This package contains necessary header files for imagick development.
 
 %prep
-%setup -qn mailparse-%{version}
-%patch1
+%setup -qn imagick-%{version}
 
 %build
-export PATH="/opt/php/php7/usr/bin/:$PATH"
+export PATH="/opt/php/php70v/usr/bin/:$PATH"
 %{phpize}
 %configure
 make %{?_smp_mflags}
@@ -70,8 +75,16 @@ EOF
 %defattr(0644,root,root)
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 %{ext_dir}/%{pkg_name}.so
-%doc README CREDITS
+%dir %{php_dir_prefix}/%{_includedir}/php7/ext/imagick
+%doc CREDITS LICENSE
+
+%files devel
+%defattr(-,root,root,-)
+%{php_dir_prefix}/%{_includedir}/php7/ext/imagick/*.h
 
 %changelog
-* Sun Apr 02 2017 Marcin Morawski <marcin@morawskim.pl>
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php7-imagick to php70v-imagick
+
+* Sat Apr 01 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

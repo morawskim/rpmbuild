@@ -1,5 +1,5 @@
 #
-# spec file for package php7
+# spec file for package php70v
 #
 # Copyright (c) 2015 SUSE LINUX GmbH, Nuernberg, Germany.
 #
@@ -38,7 +38,7 @@
 %global apiver            20151012
 %global zendver           20151012
 
-%define pkg_name          php7
+%define pkg_name          php70v
 %define php_dir_name	  %{name}
 %define base_dir		  /opt/php/%{php_dir_name}
 %define php_datadir		  %{base_dir}%{_datadir}/%{pkg_name}
@@ -48,7 +48,7 @@
 %define _x11prefix        %(pkg-config --variable=prefix xft)
 %define need_libxml2_hack %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h; then echo 1; else echo 0; fi; else echo 0; fi)
 
-Name:           php7
+Name:           php70v
 Version:        7.0.1
 Release:        3
 Summary:        PHP7 Core Files
@@ -57,27 +57,27 @@ Group:          Development/Languages/Other
 
 Url:            http://www.php.net
 Source0:        http://us2.php.net/distributions/php-%{version}.tar.xz
-Source1:        php7-fpm.service.template
+Source1:        %{name}-fpm.service.template
 
 ## SUSE specific patches
-Patch0:         php7-phpize.patch
-Patch2:         php7-php-config.patch
+Patch0:         %{name}-phpize.patch
+Patch2:         %{name}-php-config.patch
 
 ## Bugfix patches
-Patch10:        php7-mbstring-missing-return.patch
-Patch11:        php7-BNC-457056.patch
+Patch10:        %{name}-mbstring-missing-return.patch
+Patch11:        %{name}-BNC-457056.patch
 # following patch is to fix configure tests for crypt; the aim is to have php
 # built against glibc's crypt; problem is, that our glibc doesn't support extended
 # DES, so as soon as upstream fixes this, don't forgot to remove extended DES
 # from their checking as I indicated in crypt-tests.patch yet, or php will
 # silently use his own implementation again
-Patch12:        php7-crypt-tests.patch
+Patch12:        %{name}-crypt-tests.patch
 # related to previous patch; !(defined(_REENTRANT) || defined(_THREAD_SAFE))
-Patch13:        php7-no-reentrant-crypt.patch
+Patch13:        %{name}-no-reentrant-crypt.patch
 # https://bugs.php.net/bug.php?id=53007
-Patch14:        php7-odbc-cmp-int-cast.patch
+Patch14:        %{name}-odbc-cmp-int-cast.patch
 # https://bugs.php.net/bug.php?id=70461
-Patch15:        php7-fix_net-snmp_disable_MD5.patch
+Patch15:        %{name}-fix_net-snmp_disable_MD5.patch
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  autoconf
@@ -156,33 +156,33 @@ Requires:       timezone
 
 # I would like this to become a hard dependency, as PHP is
 # documented to have this modules by default (no addtional libs are needed)
-Recommends:     php7-ctype php7-dom php7-iconv php7-sqlite php7-tokenizer
-Recommends:     php7-xmlreader php7-xmlwriter php7-json
+Recommends:     %{name}-ctype %{name}-dom %{name}-iconv %{name}-sqlite %{name}-tokenizer
+Recommends:     %{name}-xmlreader %{name}-xmlwriter %{name}-json
 
 # other highly reccommended extensions
-Suggests:       php7-mbstring php7-gd php7-pear php7-gettext php7-mysql
+Suggests:       %{name}-mbstring %{name}-gd %{name}-pear %{name}-gettext %{name}-mysql
 
 ## Provides
-Provides:       php7 = %{version}
-Provides:       php7-api = %{apiver}
-Provides:       php7-zend-abi = %{zendver}
-Provides:       php7(api) = %{apiver}
-Provides:       php7(zend-abi) = %{zendver}
+Provides:       %{name} = %{version}
+Provides:       %{name}-api = %{apiver}
+Provides:       %{name}-zend-abi = %{zendver}
+Provides:       %{name}(api) = %{apiver}
+Provides:       %{name}(zend-abi) = %{zendver}
 
 # builtin extensions
-Provides:       php7-date
-Provides:       php7-filter
-Provides:       php7-hash
-Provides:       php7-pcre
-Provides:       php7-reflection
-Provides:       php7-session
-Provides:       php7-simplexml
-Provides:       php7-spl
-Provides:       php7-xml
+Provides:       %{name}-date
+Provides:       %{name}-filter
+Provides:       %{name}-hash
+Provides:       %{name}-pcre
+Provides:       %{name}-reflection
+Provides:       %{name}-session
+Provides:       %{name}-simplexml
+Provides:       %{name}-spl
+Provides:       %{name}-xml
 Provides:       zend7
 
-# conflicts with php5 and should replace it
-Obsoletes:      php7 < %{version}
+# conflicts with php70v and should replace it
+Obsoletes:      %{name} < %{version}
 
 %description
 This package contains the PHP 7 core files, including PHP binary (CLI)
@@ -206,8 +206,8 @@ Requires:       automake
 Requires:       libtool
 Requires:       pcre-devel
 Provides:       pecl
-Provides:       php7-devel = %{version}
-Obsoletes:      php7-devel < %{version}
+Provides:       %{name}-devel = %{version}
+Obsoletes:      %{name}-devel < %{version}
 
 %description devel
 PHP is a server-side, cross-platform, HTML embedded scripting language.
@@ -222,9 +222,9 @@ Summary:        PHP Extension and Application Repository
 Group:          Development/Libraries/PHP
 BuildArch:      noarch
 Requires:       %{name}-zlib = %{version}
-Requires:       php7-pear-Archive_Tar
-Provides:       php7-pear = %{version}
-Obsoletes:      php7-pear < %{version}
+Requires:       %{name}-pear-Archive_Tar
+Provides:       %{name}-pear = %{version}
+Obsoletes:     %{name}-pear < %{version}
 
 %description pear
 PEAR is a code repository for PHP extensions and PHP library code
@@ -243,8 +243,8 @@ Requires:       %{name}-pear = %{version}
 # by pear package itself; php5-pear-Archive_Tar was dropped
 # on version 1.3.10, install-pear-nozlib.phar
 # provides 1.4.0 currently
-Provides:       php7-pear-Archive_Tar = 1.4.0
-Obsoletes:      php7-pear-Archive_Tar < 1.3.11
+Provides:       %{name}-pear-Archive_Tar = 1.4.0
+Obsoletes:      %{name}-pear-Archive_Tar < 1.3.11
 
 %description pear-Archive_Tar
 This class provides handling of tar files in PHP.
@@ -258,21 +258,21 @@ Summary:        FastCGI Process Manager PHP7 Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 PreReq:         %insserv_prereq
-Provides:       php7-date
-Provides:       php7-filter
-Provides:       php7-fpm = %{version}
-Provides:       php7-pcre
-Provides:       php7-reflection
-Provides:       php7-session
-Provides:       php7-simplexml
-Provides:       php7-spl
-Provides:       php7-xml
+Provides:       %{name}-date
+Provides:       %{name}-filter
+Provides:       %{name}-fpm = %{version}
+Provides:       %{name}-pcre
+Provides:       %{name}-reflection
+Provides:       %{name}-session
+Provides:       %{name}-simplexml
+Provides:       %{name}-spl
+Provides:       %{name}-xml
 
 %if %{with systemd}
 %{systemd_requires}
 BuildRequires:  pkgconfig(libsystemd-daemon)
 %endif
-Obsoletes:      php7-fpm < %{version}
+Obsoletes:      %{name}-fpm < %{version}
 
 %description fpm
 PHP is a server-side, cross-platform HTML embedded scripting language.
@@ -289,8 +289,8 @@ information on how to use this module.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-bcmath = %{version}
-Obsoletes:      php7-bcmath < %{version}
+Provides:       %{name}-bcmath = %{version}
+Obsoletes:      %{name}-bcmath < %{version}
 
 %description bcmath
 Binary Calculator which supports numbers of any size and precision,
@@ -301,8 +301,8 @@ represented as strings.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-bz2 = %{version}
-Obsoletes:      php7-bz2 < %{version}
+Provides:       %{name}-bz2 = %{version}
+Obsoletes:      %{name}-bz2 < %{version}
 
 %description bz2
 PHP functions to read and write bzip2 (.bz2) compressed files.
@@ -313,8 +313,8 @@ PHP functions to read and write bzip2 (.bz2) compressed files.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-calendar = %{version}
-Obsoletes:      php7-calendar < %{version}
+Provides:       %{name}-calendar = %{version}
+Obsoletes:      %{name}-calendar < %{version}
 
 %description calendar
 PHP functions for converting between different calendar formats.
@@ -325,8 +325,8 @@ PHP functions for converting between different calendar formats.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-ctype = %{version}
-Obsoletes:      php7-ctype < %{version}
+Provides:       %{name}-ctype = %{version}
+Obsoletes:      %{name}-ctype < %{version}
 
 %description ctype
 PHP functions for checking whether a character or string falls into a
@@ -338,8 +338,8 @@ certain character class according to the current locale.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-curl = %{version}
-Obsoletes:      php7-curl < %{version}
+Provides:       %{name}-curl = %{version}
+Obsoletes:      %{name}-curl < %{version}
 
 %description curl
 PHP interface to libcurl that allows you to connect to and communicate
@@ -352,8 +352,8 @@ types.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-dba = %{version}
-Obsoletes:      php7-dba < %{version}
+Provides:       %{name}-dba = %{version}
+Obsoletes:      %{name}-dba < %{version}
 
 %description dba
 This is a general abstraction layer for several file-based databases.
@@ -367,8 +367,8 @@ through the ODBC functions.)
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-dom = %{version}
-Obsoletes:      php7-dom < %{version}
+Provides:       %{name}-dom = %{version}
+Obsoletes:      %{name}-dom < %{version}
 
 %description dom
 This module adds DOM support.
@@ -378,8 +378,8 @@ This module adds DOM support.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-enchant = %{version}
-Obsoletes:      php7-enchant < %{version}
+Provides:       %{name}-enchant = %{version}
+Obsoletes:      %{name}-enchant < %{version}
 
 %description enchant
 Enchant is the PHP binding for the Enchant library. Enchant steps in to provide uniformity and conformity on top of all spelling libraries, and implements certain features that may be lacking in any individual provider library. Everything should "just work" for any and every definition of "just working."
@@ -390,8 +390,8 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-mbstring = %{version}
-Provides:       php7-exif = %{version}
-Obsoletes:      php7-exif < %{version}
+Provides:       %{name}-exif = %{version}
+Obsoletes:      %{name}-exif < %{version}
 
 %description exif
 PHP functions for extracting EXIF (metadata from images) information
@@ -402,8 +402,8 @@ stored in headers of JPEG and TIFF images.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-fileinfo = %{version}
-Obsoletes:      php7-fileinfo < %{version}
+Provides:       %{name}-fileinfo = %{version}
+Obsoletes:      %{name}-fileinfo < %{version}
 
 %description fileinfo
 The functions in this module try to guess the content type and encoding of a file by looking for certain magic byte sequences at specific positions within the file. While this is not a bullet proof approach the heuristics used do a very good job.
@@ -414,8 +414,8 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-openssl = %{version}
-Provides:       php7-ftp = %{version}
-Obsoletes:      php7-ftp < %{version}
+Provides:       %{name}-ftp = %{version}
+Obsoletes:      %{name}-ftp < %{version}
 
 %description ftp
 PHP functions for access to file servers speaking the File Transfer
@@ -426,8 +426,8 @@ Protocol (FTP) as defined in rfc959.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-gd = %{version}
-Obsoletes:      php7-gd < %{version}
+Provides:       %{name}-gd = %{version}
+Obsoletes:      %{name}-gd < %{version}
 
 %description gd
 PHP functions to create and manipulate image files in a variety of
@@ -439,8 +439,8 @@ more convenient: PHP can output image streams directly to a browser.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-gettext = %{version}
-Obsoletes:      php7-gettext < %{version}
+Provides:       %{name}-gettext = %{version}
+Obsoletes:      %{name}-gettext < %{version}
 
 %description gettext
 PHP functions that implement an NLS (Native Language Support) API which
@@ -451,8 +451,8 @@ can be used to internationalize your PHP applications.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-gmp = %{version}
-Obsoletes:      php7-gmp < %{version}
+Provides:       %{name}-gmp = %{version}
+Obsoletes:      %{name}-gmp < %{version}
 
 %description gmp
 PHP functions for work with arbitrary-length integers using the GNU MP
@@ -463,8 +463,8 @@ library.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-iconv = %{version}
-Obsoletes:      php7-iconv < %{version}
+Provides:       %{name}-iconv = %{version}
+Obsoletes:      %{name}-iconv < %{version}
 
 %description iconv
 PHP interface to iconv character set conversion facility.
@@ -474,8 +474,8 @@ PHP interface to iconv character set conversion facility.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-imap = %{version}
-Obsoletes:      php7-imap < %{version}
+Provides:       %{name}-imap = %{version}
+Obsoletes:      %{name}-imap < %{version}
 
 %description imap
 PHP functions in this extension are not limited to the IMAP protocol,
@@ -487,8 +487,8 @@ POP3 and local mailbox access methods.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-intl = %{version}
-Obsoletes:      php7-intl < %{version}
+Provides:       %{name}-intl = %{version}
+Obsoletes:      %{name}-intl < %{version}
 
 %description intl
 Internationalization extension (further is referred as Intl) is a wrapper for ICU library, enabling PHP programmers to perform UCA-conformant collation and date/time/number/currency formatting in their scripts.
@@ -498,8 +498,8 @@ Internationalization extension (further is referred as Intl) is a wrapper for IC
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-json = %{version}
-Obsoletes:      php7-json < %{version}
+Provides:       %{name}-json = %{version}
+Obsoletes:      %{name}-json < %{version}
 
 %description json
 Support for JSON (JavaScript Object Notation) serialization.
@@ -510,8 +510,8 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-openssl = %{version}
-Provides:       php7-ldap = %{version}
-Obsoletes:      php7-ldap < %{version}
+Provides:       %{name}-ldap = %{version}
+Obsoletes:      %{name}-ldap < %{version}
 
 %description ldap
 PHP interface to Lightweight Directory Access Protocol (LDAP).
@@ -521,8 +521,8 @@ PHP interface to Lightweight Directory Access Protocol (LDAP).
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-mbstring = %{version}
-Obsoletes:      php7-mbstring < %{version}
+Provides:       %{name}-mbstring = %{version}
+Obsoletes:      %{name}-mbstring < %{version}
 
 %description mbstring
 This extension provides multi-byte character safe string functions and
@@ -533,8 +533,8 @@ other utility functions such as conversion functions.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-mcrypt = %{version}
-Obsoletes:      php7-mcrypt < %{version}
+Provides:       %{name}-mcrypt = %{version}
+Obsoletes:      %{name}-mcrypt < %{version}
 
 %description mcrypt
 PHP interface to the mcrypt library, which supports a wide variety of
@@ -546,9 +546,9 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Provides:       php7-mysql = %{version}
-Provides:       php7_any_db = %{version}
-Obsoletes:      php7-mysql < %{version}
+Provides:       %{name}-mysql = %{version}
+Provides:       %{name}_any_db = %{version}
+Obsoletes:      %{name}-mysql < %{version}
 
 %description mysql
 PHP functions for access to MySQL database servers.
@@ -560,9 +560,9 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Provides:       php7-firebird = %{version}
-Provides:       php7_any_db = %{version}
-Obsoletes:      php7-firebird < %{version}
+Provides:       %{name}-firebird = %{version}
+Provides:       %{name}_any_db = %{version}
+Obsoletes:      %{name}-firebird < %{version}
 
 %description firebird
 PHP functions for access to firebird database servers.
@@ -574,9 +574,9 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Provides:       php7-odbc = %{version}
-Provides:       php7-pdo_odbc = %{version}
-Obsoletes:      php7-odbc < %{version}
+Provides:       %{name}-odbc = %{version}
+Provides:       %{name}-pdo_odbc = %{version}
+Obsoletes:      %{name}-odbc < %{version}
 
 %description odbc
 This module adds ODBC support.
@@ -586,8 +586,8 @@ This module adds ODBC support.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-opcache = %{version}
-Obsoletes:      php7-opcache < %{version}
+Provides:       %{name}-opcache = %{version}
+Obsoletes:      %{name}-opcache < %{version}
 
 %description opcache
 The Zend OPcache provides faster PHP execution through
@@ -598,8 +598,8 @@ opcode caching and optimization.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-openssl = %{version}
-Obsoletes:      php7-openssl < %{version}
+Provides:       %{name}-openssl = %{version}
+Obsoletes:      %{name}-openssl < %{version}
 
 %description openssl
 This module adds OpenSSL support.
@@ -610,8 +610,8 @@ This module adds OpenSSL support.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-pcntl = %{version}
-Obsoletes:      php7-pcntl < %{version}
+Provides:       %{name}-pcntl = %{version}
+Obsoletes:      %{name}-pcntl < %{version}
 
 %description pcntl
 This module will attempt to implement all features related to process
@@ -625,8 +625,8 @@ improve/better implement this functionality.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-phar = %{version}
-Obsoletes:      php7-phar < %{version}
+Provides:       %{name}-phar = %{version}
+Obsoletes:      %{name}-phar < %{version}
 
 %description phar
 The phar extension provides a way to put entire PHP applications into a
@@ -637,8 +637,8 @@ single file called a "phar" (PHP Archive) for easy distribution and installation
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-pdo = %{version}
-Obsoletes:      php7-pdo < %{version}
+Provides:       %{name}-pdo = %{version}
+Obsoletes:      %{name}-pdo < %{version}
 
 %description pdo
 PHP Data Objects - Data Access Abstraction
@@ -655,9 +655,9 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Provides:       php7-pgsql = %{version}
-Provides:       php7_any_db = %{version}
-Obsoletes:      php7-pgsql < %{version}
+Provides:       %{name}-pgsql = %{version}
+Provides:       %{name}_any_db = %{version}
+Obsoletes:      %{name}-pgsql < %{version}
 
 %description pgsql
 PHP functions for access to PostgreSQL database servers. It includes
@@ -668,8 +668,8 @@ both traditional pgsql and pdo_pgsql drivers.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-posix = %{version}
-Obsoletes:      php7-posix < %{version}
+Provides:       %{name}-posix = %{version}
+Obsoletes:      %{name}-posix < %{version}
 
 %description posix
 This module allows to use POSIX-like functions in PHP.
@@ -681,8 +681,8 @@ Summary:        PHP7 pspell extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       aspell-en
-Provides:       php7-pspell = %{version}
-Obsoletes:      php7-pspell < %{version}
+Provides:       %{name}-pspell = %{version}
+Obsoletes:      %{name}-pspell < %{version}
 
 %description pspell
 PHP interface to the aspell, which provides spell checking
@@ -694,8 +694,8 @@ functionality.
 Summary:        PHP7 readline extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-readline = %{version}
-Obsoletes:      php7-readline < %{version}
+Provides:       %{name}-readline = %{version}
+Obsoletes:      %{name}-readline < %{version}
 
 %description readline
 PHP interface to libedit, which provides editable command line as well
@@ -706,8 +706,8 @@ as PHP interactive mode (php -a)
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-shmop = %{version}
-Obsoletes:      php7-shmop < %{version}
+Provides:       %{name}-shmop = %{version}
+Obsoletes:      %{name}-shmop < %{version}
 
 %description shmop
 PHP functions to read, write, create and delete UNIX shared memory
@@ -718,8 +718,8 @@ segments.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-snmp = %{version}
-Obsoletes:      php7-snmp < %{version}
+Provides:       %{name}-snmp = %{version}
+Obsoletes:      %{name}-snmp < %{version}
 
 %description snmp
 PHP functions for SNMP.
@@ -729,8 +729,8 @@ PHP functions for SNMP.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-soap = %{version}
-Obsoletes:      php7-soap < %{version}
+Provides:       %{name}-soap = %{version}
+Obsoletes:      %{name}-soap < %{version}
 
 %description soap
 This module provides SOAP support.
@@ -743,8 +743,8 @@ supports subsets of SOAP 1.1, SOAP 1.2 and WSDL 1.1 specifications.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-sockets = %{version}
-Obsoletes:      php7-sockets < %{version}
+Provides:       %{name}-sockets = %{version}
+Obsoletes:      %{name}-sockets < %{version}
 
 %description sockets
 A low-level interface to the socket communication functions based on
@@ -757,8 +757,8 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Provides:       php7-sqlite = %{version}
-Obsoletes:      php7-sqlite < %{version}
+Provides:       %{name}-sqlite = %{version}
+Obsoletes:      %{name}-sqlite < %{version}
 
 %description sqlite
 This is an extension for the SQLite Embeddable SQL Database Engine.
@@ -779,8 +779,8 @@ This package includes sqlite and pdo_sqlite modules for sqlite version
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-sysvmsg = %{version}
-Obsoletes:      php7-sysvmsg < %{version}
+Provides:       %{name}-sysvmsg = %{version}
+Obsoletes:      %{name}-sysvmsg < %{version}
 
 %description sysvmsg
 This module provides System V IPC support.
@@ -790,8 +790,8 @@ This module provides System V IPC support.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-sysvsem = %{version}
-Obsoletes:      php7-sysvsem < %{version}
+Provides:       %{name}-sysvsem = %{version}
+Obsoletes:      %{name}-sysvsem < %{version}
 
 %description sysvsem
 PHP interface for System V semaphores.
@@ -801,8 +801,8 @@ PHP interface for System V semaphores.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-sysvshm = %{version}
-Obsoletes:      php7-sysvshm < %{version}
+Provides:       %{name}-sysvshm = %{version}
+Obsoletes:      %{name}-sysvshm < %{version}
 
 %description sysvshm
 PHP interface for System V shared memory.
@@ -813,8 +813,8 @@ PHP interface for System V shared memory.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-tidy = %{version}
-Obsoletes:      php7-tidy < %{version}
+Provides:       %{name}-tidy = %{version}
+Obsoletes:      %{name}-tidy < %{version}
 
 %description tidy
 Tidy is an extension based on Libtidy (http://tidy.sf.net/) and allows
@@ -828,8 +828,8 @@ PHP or ASP within them using OO constructs.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-tokenizer = %{version}
-Obsoletes:      php7-tokenizer < %{version}
+Provides:       %{name}-tokenizer = %{version}
+Obsoletes:      %{name}-tokenizer < %{version}
 
 %description tokenizer
 The tokenizer functions provide an interface to the PHP tokenizer
@@ -842,8 +842,8 @@ with the language specification at the lexical level.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-wddx = %{version}
-Obsoletes:      php7-wddx < %{version}
+Provides:       %{name}-wddx = %{version}
+Obsoletes:      %{name}-wddx < %{version}
 
 %description wddx
 PHP functions for Web Distributed Data Exchange.
@@ -853,8 +853,8 @@ PHP functions for Web Distributed Data Exchange.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-xmlrpc = %{version}
-Obsoletes:      php7-xmlrpc < %{version}
+Provides:       %{name}-xmlrpc = %{version}
+Obsoletes:      %{name}-xmlrpc < %{version}
 
 %description xmlrpc
 This module adds XMLRPC-EPI support.
@@ -865,8 +865,8 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-dom = %{version}
-Provides:       php7-xsl = %{version}
-Obsoletes:      php7-xsl < %{version}
+Provides:       %{name}-xsl = %{version}
+Obsoletes:      %{name}-xsl < %{version}
 
 %description xsl
 This module adds new XSL support to PHP.
@@ -877,8 +877,8 @@ Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-dom = %{version}
-Provides:       php7-xmlreader = %{version}
-Obsoletes:      php7-xmlreader < %{version}
+Provides:       %{name}-xmlreader = %{version}
+Obsoletes:      %{name}-xmlreader < %{version}
 
 %description xmlreader
 XMLReader represents a reader that provides non-cached, forward-only
@@ -889,8 +889,8 @@ access to XML data. It is based upon the xmlTextReader API from libxml.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-xmlwriter = %{version}
-Obsoletes:      php7-xmlwriter < %{version}
+Provides:       %{name}-xmlwriter = %{version}
+Obsoletes:      %{name}-xmlwriter < %{version}
 
 %description xmlwriter
 XMLWriter wraps the libxml xmlWriter API. Represents a writer that
@@ -902,8 +902,8 @@ files containing XML data.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-zip = %{version}
-Obsoletes:      php7-zip < %{version}
+Provides:       %{name}-zip = %{version}
+Obsoletes:      %{name}-zip < %{version}
 
 %description zip
 Zip is an extension to create, modify and read zip files.
@@ -913,8 +913,8 @@ Zip is an extension to create, modify and read zip files.
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
-Provides:       php7-zlib = %{version}
-Obsoletes:      php7-zlib < %{version}
+Provides:       %{name}-zlib = %{version}
+Obsoletes:      %{name}-zlib < %{version}
 
 %description zlib
 PHP functions to read and write gzip (.gz) compressed files.
@@ -1320,7 +1320,7 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 
 %files devel
 %defattr(-, root, root)
-%{base_dir}%{_includedir}/%{pkg_name}
+%{base_dir}%{_includedir}/php7
 %{base_dir}%{_bindir}/phpize
 %{base_dir}%{_bindir}/php-config
 %{base_dir}%{_bindir}/pecl
@@ -1620,6 +1620,9 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php7 to php70v
+
 * Thu Sep 15 2016 Marcin Morawski <marcin@morawskim.pl>
 -  add symlink to php binary in bindir
 

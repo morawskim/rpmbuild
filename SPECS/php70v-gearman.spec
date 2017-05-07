@@ -1,5 +1,5 @@
 #
-# spec file for package php7-gearman
+# spec file for package php70v-gearman
 #
 # Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>.
 #
@@ -16,15 +16,15 @@
 #
 
 %define pkg_name gearman
-%define php_dir_prefix /opt/php/php7
+%define php_dir_prefix /opt/php/php70v
 %define phpize %{php_dir_prefix}/usr/bin/phpize
 %define phpconfig %{php_dir_prefix}/usr/bin/php-config
-%define conf_dir %{php_dir_prefix}/etc/php5/conf.d
+%define conf_dir %{php_dir_prefix}/etc/php7/conf.d
 %define ext_dir %(%{phpconfig} --extension-dir)
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php7-gearman
+Name:           php70v-gearman
 Version:        2.0.1
 Release:        1
 License:        PHP License, version 3.01
@@ -32,10 +32,10 @@ Summary:        Wrapper to the gearman library
 Url:            https://github.com/wcgallego/pecl-gearman
 Group:          Productivity/Networking/Web/Servers
 Source:         https://github.com/wcgallego/pecl-gearman/archive/gearman-%{version}.tar.gz
-BuildRequires:  php7-devel
+BuildRequires:  php70v-devel
 BuildRequires:  gearmand-devel
-Requires:       php7(api) = %{php_core_api}
-Requires:       php7(zend-abi) = %{php_zend_api}
+Requires:       php70v(api) = %{php_core_api}
+Requires:       php70v(zend-abi) = %{php_zend_api}
 Requires:       libgearman7
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -51,7 +51,7 @@ For more information about Gearman, see: http://www.gearman.org/
 %setup -qn pecl-gearman-gearman-%{version}
 
 %build
-export PATH="/opt/php/php7/usr/bin/:$PATH"
+export PATH="/opt/php/php70v/usr/bin/:$PATH"
 %{phpize}
 %configure
 make %{?_smp_mflags}
@@ -76,5 +76,8 @@ EOF
 %doc README LICENSE CREDITS ChangeLog examples
 
 %changelog
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php7-gearman to php70v-gearman
+
 * Sat Apr 01 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

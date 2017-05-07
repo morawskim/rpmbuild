@@ -1,5 +1,5 @@
 #
-# spec file for package php7-xdebug
+# spec file for package php70v-xdebug
 #
 # Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>.
 #
@@ -16,14 +16,14 @@
 #
 
 %define pkg_name xdebug
-%define phpize /opt/php/php7/usr/bin/phpize
-%define phpconfig /opt/php/php7/usr/bin/php-config
-%define conf_dir /opt/php/php7/etc/php7/conf.d
+%define phpize /opt/php/php70v/usr/bin/phpize
+%define phpconfig /opt/php/php70v/usr/bin/php-config
+%define conf_dir /opt/php/php70v/etc/php7/conf.d
 %define ext_dir %(%{phpconfig} --extension-dir)
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php7-xdebug
+Name:           php70v-xdebug
 Version:        2.5.0
 Release:        1
 License:        BSD-3-Clause
@@ -32,11 +32,11 @@ Url:            http://www.xdebug.org/
 Group:          Development/Libraries/PHP
 Source0:        http://www.xdebug.org/files/%{pkg_name}-%{version}.tgz
 Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/XDEBUG_%(c=%{version}; echo ${c//./_})/%{pkg_name}.ini
-BuildRequires:  php7
-BuildRequires:  php7-devel
-BuildRequires:  php7-soap
-Requires:       php7(api) = %{php_core_api}
-Requires:       php7(zend-abi) = %{php_zend_api}
+BuildRequires:  php70v
+BuildRequires:  php70v-devel
+BuildRequires:  php70v-soap
+Requires:       php70v(api) = %{php_core_api}
+Requires:       php70v(zend-abi) = %{php_zend_api}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -63,7 +63,7 @@ Xdebug also provides:
 install -m 644 %{SOURCE1} xdebug.ini
 
 %build
-export PATH="/opt/php/php7/usr/bin:$PATH"
+export PATH="/opt/php/php70v/usr/bin:$PATH"
 %{phpize}
 pushd %{name}
 export CFLAGS="%{optflags}"
@@ -89,5 +89,8 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
 %changelog
+* Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
+-  changed package name from php7-xdebug to php70v-xdebug
+
 * Mon Apr 03 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
