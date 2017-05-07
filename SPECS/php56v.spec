@@ -1,5 +1,5 @@
 #
-# spec file for package php56
+# spec file for package php56v
 #
 # Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -20,7 +20,7 @@
 # use build-test.sh for testing!
 %bcond_with make_test
 
-Name:           php56
+Name:           php56v
 %global apiver      20131106
 %global zendver     20131226
 %define pkg_name php5
@@ -81,10 +81,10 @@ BuildRequires:  aspell-devel
 %endif
 # I would like this to become a hard dependency, as PHP is
 # documented to have this modules by default (no addtional libs are needed)
-Recommends:     php56-ctype php56-dom php56-iconv php56-sqlite php56-tokenizer
-Recommends:     php56-xmlreader php56-xmlwriter php56-json
+Recommends:     php56v-ctype php56v-dom php56v-iconv php56v-sqlite php56v-tokenizer
+Recommends:     php56v-xmlreader php56v-xmlwriter php56v-json
 # other highly reccommended extensions
-Suggests:       php56-mbstring php56-gd php56-pear php56-gettext php56-mysql
+Suggests:       php56v-mbstring php56v-gd php56v-pear php56v-gettext php56v-mysql
 BuildRequires:  libedit-devel
 BuildRequires:  libjpeg-devel
 BuildRequires:  pcre-devel
@@ -102,39 +102,39 @@ Requires:       smtp_daemon
 %define need_libxml2_hack  %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h;then echo 1; else echo 0; fi; else echo 0; fi)
 Version:        5.6.16
 Release:        3
-Provides:       php56
-Provides:       php56-api = %{apiver}
-Provides:       php56-date
-Provides:       php56-filter
-Provides:       php56-hash
-Provides:       php56-pcre
-Provides:       php56-reflection
-Provides:       php56-session
-Provides:       php56-simplexml
-Provides:       php56-spl
-Provides:       php56-xml
-Provides:       php56-zend-abi = %{zendver}
-Provides:       php56(api) = %{apiver}
-Provides:       php56(zend-abi) = %{zendver}
+Provides:       php56v
+Provides:       php56v-api = %{apiver}
+Provides:       php56v-date
+Provides:       php56v-filter
+Provides:       php56v-hash
+Provides:       php56v-pcre
+Provides:       php56v-reflection
+Provides:       php56v-session
+Provides:       php56v-simplexml
+Provides:       php56v-spl
+Provides:       php56v-xml
+Provides:       php56v-zend-abi = %{zendver}
+Provides:       php56v(api) = %{apiver}
+Provides:       php56v(zend-abi) = %{zendver}
 Source0:        http://us2.php.net/distributions/php-%{version}.tar.xz
 Source1:        php5-fpm.service.template
 
-Patch0:         php56-phpize.patch
-Patch2:         php56-php-config.patch
-Patch10:        php56-mbstring-missing-return.patch
-Patch11:        php56-BNC-457056.patch
+Patch0:         php56v-phpize.patch
+Patch2:         php56v-php-config.patch
+Patch10:        php56v-mbstring-missing-return.patch
+Patch11:        php56v-BNC-457056.patch
 
 # following patch is to fix configure tests for crypt; the aim is to have php
 # built against glibc's crypt; problem is, that our glibc doesn't support extended
 # DES, so as soon as upstream fixes this, don't forgot to remove extended DES
 # from their checking as I indicated in crypt-tests.patch yet, or php will
 # silently use his own implementation again
-Patch14:        php56-crypt-tests.patch
+Patch14:        php56v-crypt-tests.patch
 # related to previous patch; !(defined(_REENTRANT) || defined(_THREAD_SAFE))
-Patch15:        php56-no-reentrant-crypt.patch
-Patch16:        php56-format-string-issues.patch
+Patch15:        php56v-no-reentrant-crypt.patch
+Patch16:        php56v-format-string-issues.patch
 #https://github.com/php/php-src/commit/6a813634052710f3f4bf6e2e03ca1b6c7be3bcee
-#Patch19:        php56-crypto-checks.patch
+#Patch19:        php56v-crypto-checks.patch
 Url:            http://www.php.net
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Summary:        PHP56 Core Files
@@ -158,7 +158,7 @@ Authors:
 
 %package devel
 Provides:       pecl
-Provides:       php56-devel
+Provides:       php56v-devel
 Summary:        Include files of PHP56
 Group:          Development/Languages/C and C++
 #this is required by the installed  development headers
@@ -171,8 +171,8 @@ Requires:       automake
 Requires:       libtool
 Requires:       pcre-devel
 Conflicts:      php4-devel
-Provides:       php56-macros = 2.0
-Obsoletes:      php56-macros < 2.0
+Provides:       php56v-macros = 2.0
+Obsoletes:      php56v-macros < 2.0
 
 %description devel
 PHP is a server-side, cross-platform, HTML embedded scripting language.
@@ -189,7 +189,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pear
-Provides:       php56-pear
+Provides:       php56v-pear
 Summary:        PHP Extension and Application Repository
 Group:          Development/Libraries/PHP
 Requires:       %{name}-zlib = %{version}
@@ -223,15 +223,15 @@ Summary:        FastCGI Process Manager PHP5 Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 PreReq:         %insserv_prereq
-Provides:       php56-date
-Provides:       php56-filter
-Provides:       php56-fpm
-Provides:       php56-pcre
-Provides:       php56-reflection
-Provides:       php56-session
-Provides:       php56-simplexml
-Provides:       php56-spl
-Provides:       php56-xml
+Provides:       php56v-date
+Provides:       php56v-filter
+Provides:       php56v-fpm
+Provides:       php56v-pcre
+Provides:       php56v-reflection
+Provides:       php56v-session
+Provides:       php56v-simplexml
+Provides:       php56v-spl
+Provides:       php56v-xml
 %if 0%{suse_version} > 1130
 %define with_systemd 1
 %{systemd_requires}
@@ -259,7 +259,7 @@ BuildRequires:  pkgconfig(libsystemd-daemon)
       See http://www.php.net/credits.php for more details
 
 %package bcmath
-Provides:       php56-bcmath
+Provides:       php56v-bcmath
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -276,7 +276,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package bz2
-Provides:       php56-bz2
+Provides:       php56v-bz2
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -292,7 +292,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package calendar
-Provides:       php56-calendar
+Provides:       php56v-calendar
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -308,7 +308,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ctype
-Provides:       php56-ctype
+Provides:       php56v-ctype
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -325,7 +325,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package curl
-Provides:       php56-curl
+Provides:       php56v-curl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -343,7 +343,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package dba
-Provides:       php56-dba
+Provides:       php56v-dba
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -363,7 +363,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package dom
-Provides:       php56-dom
+Provides:       php56v-dom
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -379,7 +379,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package enchant
-Provides:       php56-enchant
+Provides:       php56v-enchant
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -394,7 +394,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package exif
-Provides:       php56-exif
+Provides:       php56v-exif
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -412,7 +412,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package fileinfo
-Provides:       php56-fileinfo
+Provides:       php56v-fileinfo
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -427,7 +427,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ftp
-Provides:       php56-ftp
+Provides:       php56v-ftp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -445,7 +445,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gd
-Provides:       php56-gd
+Provides:       php56v-gd
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -463,7 +463,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gettext
-Provides:       php56-gettext
+Provides:       php56v-gettext
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -480,7 +480,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package gmp
-Provides:       php56-gmp
+Provides:       php56v-gmp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -498,7 +498,7 @@ Authors:
 
 
 %package iconv
-Provides:       php56-iconv
+Provides:       php56v-iconv
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -514,7 +514,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package imap
-Provides:       php56-imap
+Provides:       php56v-imap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -533,7 +533,7 @@ Authors:
 
 
 %package intl
-Provides:       php56-intl
+Provides:       php56v-intl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -550,7 +550,7 @@ Authors:
 
 
 %package json
-Provides:       php56-json
+Provides:       php56v-json
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -566,7 +566,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package ldap
-Provides:       php56-ldap
+Provides:       php56v-ldap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -583,7 +583,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package mbstring
-Provides:       php56-mbstring
+Provides:       php56v-mbstring
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -600,7 +600,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package mcrypt
-Provides:       php56-mcrypt
+Provides:       php56v-mcrypt
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -619,7 +619,7 @@ Authors:
 
 
 %package mssql
-Provides:       php56-mssql
+Provides:       php56v-mssql
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
@@ -629,16 +629,16 @@ PHP functions for access to MSSQL database servers.
 
 
 %package mysql
-Provides:       php56-mysql
-Provides:       php56-mysqli = %{version}
-Provides:       php56-pdo_mysql = %{version}
+Provides:       php56v-mysql
+Provides:       php56v-mysqli = %{version}
+Provides:       php56v-pdo_mysql = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php56-mysqli < %{version}
-Obsoletes:      php56-pdo_mysql < %{version}
+Obsoletes:      php56v-mysqli < %{version}
+Obsoletes:      php56v-pdo_mysql < %{version}
 
 %description mysql
 PHP functions for access to MySQL database servers.
@@ -652,14 +652,14 @@ Authors:
 
 %if %{with_firebird}
 %package firebird
-Provides:       php56-interbase
-Provides:       php56-pdo_firebird = %{version}
+Provides:       php56v-interbase
+Provides:       php56v-pdo_firebird = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php56-pdo_firebird < %{version}
+Obsoletes:      php56v-pdo_firebird < %{version}
 
 %description firebird
 PHP functions for access to firebird database servers.
@@ -673,8 +673,8 @@ Authors:
 %endif
 
 %package odbc
-Provides:       php56-odbc
-Provides:       php56-pdo_odbc
+Provides:       php56v-odbc
+Provides:       php56v-pdo_odbc
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -691,7 +691,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package opcache
-Provides:       php56-opcache
+Provides:       php56v-opcache
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -707,7 +707,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package openssl
-Provides:       php56-openssl
+Provides:       php56v-openssl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -723,7 +723,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pcntl
-Provides:       php56-pcntl
+Provides:       php56v-pcntl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -743,7 +743,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package phar
-Provides:       php56-phar
+Provides:       php56v-phar
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -758,7 +758,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pdo
-Provides:       php56-pdo
+Provides:       php56v-pdo
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -782,14 +782,14 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package pgsql
-Provides:       php56-pgsql
-Provides:       php56-pdo_pgsql = %{version}
+Provides:       php56v-pgsql
+Provides:       php56v-pdo_pgsql = %{version}
 Provides:       php_any_db
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
 Requires:       %{name}-pdo = %{version}
-Obsoletes:      php56-pdo_pgsql < %{version}
+Obsoletes:      php56v-pdo_pgsql < %{version}
 
 %description pgsql
 PHP functions for access to PostgreSQL database servers. It includes
@@ -803,7 +803,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package posix
-Provides:       php56-posix
+Provides:       php56v-posix
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -821,7 +821,7 @@ Authors:
 %if %{with_spell}
 
 %package pspell
-Provides:       php56-pspell
+Provides:       php56v-pspell
 Summary:        PHP5 pspell extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -841,7 +841,7 @@ Authors:
 %endif
 
 %package readline
-Provides:       php56-readline
+Provides:       php56v-readline
 Summary:        PHP5 readline extension
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -858,7 +858,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package shmop
-Provides:       php56-shmop
+Provides:       php56v-shmop
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -875,7 +875,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package snmp
-Provides:       php56-snmp
+Provides:       php56v-snmp
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -891,7 +891,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package soap
-Provides:       php56-soap
+Provides:       php56v-soap
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -910,7 +910,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sockets
-Provides:       php56-sockets
+Provides:       php56v-sockets
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -928,10 +928,10 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sqlite
-Provides:       php56-sqlite
-Provides:       php56-sqlite3 = %{version}
-Provides:       php56-pdo_sqlite = %{version}
-Provides:       php56-sqlite3 = %{version}
+Provides:       php56v-sqlite
+Provides:       php56v-sqlite3 = %{version}
+Provides:       php56v-pdo_sqlite = %{version}
+Provides:       php56v-sqlite3 = %{version}
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -960,7 +960,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvmsg
-Provides:       php56-sysvmsg
+Provides:       php56v-sysvmsg
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -976,7 +976,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvsem
-Provides:       php56-sysvsem
+Provides:       php56v-sysvsem
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -992,7 +992,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package sysvshm
-Provides:       php56-sysvshm
+Provides:       php56v-sysvshm
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1008,7 +1008,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package tidy
-Provides:       php56-tidy
+Provides:       php56v-tidy
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1027,7 +1027,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package tokenizer
-Provides:       php56-tokenizer
+Provides:       php56v-tokenizer
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1046,7 +1046,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package wddx
-Provides:       php56-wddx
+Provides:       php56v-wddx
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1062,7 +1062,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlrpc
-Provides:       php56-xmlrpc
+Provides:       php56v-xmlrpc
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1078,7 +1078,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xsl
-Provides:       php56-xsl
+Provides:       php56v-xsl
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1095,7 +1095,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlreader
-Provides:       php56-xmlreader
+Provides:       php56v-xmlreader
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1113,7 +1113,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package xmlwriter
-Provides:       php56-xmlwriter
+Provides:       php56v-xmlwriter
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1131,7 +1131,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package zip
-Provides:       php56-zip
+Provides:       php56v-zip
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}
@@ -1147,7 +1147,7 @@ Authors:
     See http://www.php.net/credits.php for more details
 
 %package zlib
-Provides:       php56-zlib
+Provides:       php56v-zlib
 Summary:        PHP5 Extension Module
 Group:          Development/Libraries/PHP
 Requires:       %{name} = %{version}

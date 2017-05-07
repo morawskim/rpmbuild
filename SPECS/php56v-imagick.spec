@@ -1,5 +1,5 @@
 #
-# spec file for package php56-gearman
+# spec file for package php56v-imagick
 #
 # Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>.
 #
@@ -15,8 +15,8 @@
 # Please submit bugfixes or comments via https://github.com/morawskim/rpmbuild/issues
 #
 
-%define pkg_name gearman
-%define php_dir_prefix /opt/php/php56
+%define pkg_name imagick
+%define php_dir_prefix /opt/php/php56v
 %define phpize %{php_dir_prefix}/usr/bin/phpize
 %define phpconfig %{php_dir_prefix}/usr/bin/php-config
 %define conf_dir %{php_dir_prefix}/etc/php5/conf.d
@@ -24,34 +24,36 @@
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:           php56-gearman
-Version:        1.1.0
+Name:           php56v-imagick
+Version:        3.4.1
 Release:        1
 License:        PHP License, version 3.01
-Summary:        Wrapper to the gearman library
-Url:            https://github.com/wcgallego/pecl-gearman
+Summary:        Wrapper to the ImageMagick/GraphicsMagick library
+Url:            http://pecl.php.net/package/imagick
 Group:          Productivity/Networking/Web/Servers
-Source:         https://github.com/wcgallego/pecl-gearman/archive/gearman-%{version}.tar.gz
-BuildRequires:  php56-devel
-BuildRequires:  gearmand-devel
-Requires:       php56(api) = %{php_core_api}
-Requires:       php56(zend-abi) = %{php_zend_api}
-Requires:       libgearman7
+Source:         http://pecl.php.net/get/imagick-%{version}.tgz
+BuildRequires:  php56v-devel
+BuildRequires:  ImageMagick-devel >= 6.5.3.10
+BuildRequires:  pkgconfig
+Requires:       php56v(api) = %{php_core_api}
+Requires:       php56v(zend-abi) = %{php_zend_api}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
-The Gearman PHP Extension provides a wrapper to libgearman. This
-gives the user the ability to write fully featured Gearman clients
-and workers in PHP, allowing them to quickly develop distributed
-applications.
+Provides a wrapper to the ImageMagick/GraphicsMagick library.
 
-For more information about Gearman, see: http://www.gearman.org/
+%package devel
+Summary:        Header files for imagick development
+Group:          Development/C
+
+%description devel
+This package contains necessary header files for imagick development.
 
 %prep
-%setup -qn pecl-gearman-gearman-%{version}
+%setup -qn imagick-%{version}
 
 %build
-export PATH="/opt/php/php56/usr/bin/:$PATH"
+export PATH="/opt/php/php56v/usr/bin/:$PATH"
 %{phpize}
 %configure
 make %{?_smp_mflags}
@@ -73,4 +75,13 @@ EOF
 %defattr(0644,root,root)
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 %{ext_dir}/%{pkg_name}.so
-%doc README LICENSE CREDITS ChangeLog examples
+%dir %{php_dir_prefix}/%{_includedir}/php5/ext/imagick
+%doc CREDITS LICENSE
+
+%files devel
+%defattr(-,root,root,-)
+%{php_dir_prefix}/%{_includedir}/php5/ext/imagick/*.h
+
+%changelog
+* Sat Nov 19 2016 Marcin Morawski <marcin@morawskim.pl>
+-  init release

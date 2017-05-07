@@ -1,5 +1,5 @@
 #
-# spec file for package php56-redis
+# spec file for package php56v-redis
 #
 # Copyright (c) 2015 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -16,24 +16,24 @@
 #
 
 %define pkg_name redis
-%define phpize /opt/php/php56/usr/bin/phpize
-%define phpconfig /opt/php/php56/usr/bin/php-config
-%define conf_dir /opt/php/php56/etc/php5/conf.d
+%define phpize /opt/php/php56v/usr/bin/phpize
+%define phpconfig /opt/php/php56v/usr/bin/php-config
+%define conf_dir /opt/php/php56v/etc/php5/conf.d
 %define ext_dir %(%{phpconfig} --extension-dir)
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
-Name:    php56-redis
+Name:    php56v-redis
 Version: 2.2.7
 Release: 1
 License: PHP License, version 3.01
 Summary: API for php to communicate with redis
 Url: https://github.com/nicolasff/phpredis
 Source: https://github.com/phpredis/phpredis/archive/%{version}.tar.gz
-BuildRequires: php56-devel
+BuildRequires: php56v-devel
 Requires: redis >= 2.0
-Requires: php56(api) = %{php_core_api}
-Requires: php56(zend-abi) = %{php_zend_api}
+Requires: php56v(api) = %{php_core_api}
+Requires: php56v(zend-abi) = %{php_zend_api}
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -43,7 +43,7 @@ The phpredis extension provides an API for communicating with the Redis key-valu
 %setup -qn phpredis-%{version}
 
 %build
-export PATH="/opt/php/php56/usr/bin/:$PATH"
+export PATH="/opt/php/php56v/usr/bin/:$PATH"
 %{phpize}
 %configure
 make %{?_smp_mflags}
