@@ -35,7 +35,7 @@ BuildRequires:  python-pip
 BuildRequires:  make
 BuildRequires:  libffi-devel
 BuildRequires:  python-Sphinx
-BuildRequires:  python-sphinxcontrib-documentedlis
+BuildRequires:  python-sphinxcontrib-documentedlist
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -111,5 +111,8 @@ done
 %doc docs/_build/singlehtml
 
 %changelog
+* Wed May 10 2017 Marcin Morawski <marcin@morawskim.pl>
+-  fix typo
+
 * Sun Apr 16 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

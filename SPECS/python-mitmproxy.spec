@@ -27,7 +27,7 @@ Source1:        mitmproxy.SuSEfirewall
 BuildRequires:  python-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-Sphinx
-BuildRequires:  python-sphinxcontrib-documentedlis
+BuildRequires:  python-sphinxcontrib-documentedlist
 BuildRequires:  python-pip
 BuildRequires:  make
 Provides:       python-netlib = %{version}
@@ -109,5 +109,8 @@ python setup.py install --prefix=%{_prefix} --root %{buildroot}
 %doc docs/_build/singlehtml
 
 %changelog
+* Wed May 10 2017 Marcin Morawski <marcin@morawskim.pl>
+-  fix typo
+
 * Mon Apr 24 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
