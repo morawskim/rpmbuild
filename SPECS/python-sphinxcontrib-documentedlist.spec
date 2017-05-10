@@ -1,5 +1,5 @@
 #
-# spec file for package python-sphinxcontrib-documentedlis
+# spec file for package python-sphinxcontrib-documentedlist
 #
 # Copyright (c) 2016 Marcin Morawski <marcin@morawskim.pl>.
 #
@@ -15,7 +15,7 @@
 # Please submit bugfixes or comments via https://github.com/morawskim/rpmbuild/issues
 #
 
-Name:           python-sphinxcontrib-documentedlis
+Name:           python-sphinxcontrib-documentedlist
 Version:        0.4
 Release:        1
 License:        BSD
@@ -55,5 +55,8 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitelib}/sphinxcontrib_documentedlist-%{version}-py%{python_version}-nspkg.pth
 
 %changelog
+* Wed May 10 2017 Marcin Morawski <marcin@morawskim.pl>
+-  change package name to python-sphinxcontrib-documentedlist
+
 * Wed Aug 17 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
