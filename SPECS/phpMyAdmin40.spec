@@ -24,7 +24,7 @@
 %define ap_grp www
 
 Name:           phpMyAdmin40
-Version:        4.0.10.18
+Version:        4.0.7
 Release:        1
 License:        GPLv2+
 Summary:        Handle the administration of MySQL over the World Wide Web
@@ -141,5 +141,8 @@ sed -e "s,@FQDN@,$(cat /etc/HOSTNAME)," \
 
 
 %changelog
+* Fri May 12 2017 Marcin Morawski <marcin@morawskim.pl>
+-  downgrade package version to 4.0.7
+
 * Mon Apr 10 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
