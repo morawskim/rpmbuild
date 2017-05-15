@@ -18,16 +18,15 @@
 %define _prefix %{_usr}/lib/selenium
 
 Name:           selenium-chromedriver
-Version:        2.22
-Release:        2
+Version:        2.29
+Release:        1
 License:        BSD-3-Clause
 Summary:        WebDriver for Google Chrome/Chromium
 Url:            http://code.google.com/p/chromedriver/
 Group:          Development/Tools/Other
 Source:         http://chromedriver.storage.googleapis.com/%{version}/chromedriver_linux64.zip
-Requires:       google-chrome-stable >= 49, google-chrome-stable <= 52
+Requires:       google-chrome-stable >= 56, google-chrome-stable <= 58
 Requires:       selenium = 2.53.0
-BuildArch:      x86_64
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -55,5 +54,8 @@ members of the Chromium and WebDriver teams.
 %attr(755, root, root) %{_prefix}/chromedriver
 
 %changelog
+* Mon May 15 2017 Marcin Morawski <marcin@morawskim.pl>
+-  upgrade to 2.29 (support chrome 56-58)
+
 * Tue Jun 21 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
