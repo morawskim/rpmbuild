@@ -38,7 +38,7 @@
 %global apiver            20151012
 %global zendver           20151012
 
-%define pkg_name          php70v
+%define pkg_name          php7
 %define php_dir_name	  %{name}
 %define base_dir		  /opt/php/%{php_dir_name}
 %define php_datadir		  %{base_dir}%{_datadir}/%{pkg_name}
