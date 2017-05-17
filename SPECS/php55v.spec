@@ -15,7 +15,8 @@
 # Please submit bugfixes or comments via https://github.com/morawskim/rpmbuild/issues
 #
 
-%define php_dir_name      php55
+%define php_dir_name      php55v
+%define pkg_name          php5
 %define base_dir          /opt/php/%{php_dir_name}
 %define php_datadir       %{base_dir}%{_datadir}/%{pkg_name}
 %define extension_dir     %{base_dir}%{_libdir}/%{pkg_name}/extensions
@@ -25,7 +26,6 @@
 %define need_libxml2_hack %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h;then echo 1; else echo 0; fi; else echo 0; fi)
 %global apiver            20121113
 %global zendver           20121212
-%define pkg_name          php5
 %define with_spell        1
 
 Name:           %{php_dir_name}v
