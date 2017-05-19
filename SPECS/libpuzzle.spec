@@ -24,7 +24,7 @@ Summary:        Library to quickly find visually similar images (gif, png, jpg)
 Url:            http://libpuzzle.pureftpd.org/project/libpuzzle
 Source0:        http://download.pureftpd.org/pub/pure-ftpd/misc/libpuzzle/releases/%{name}-%{version}.tar.bz2
 Source1:        puzzle.pc.in
-Patch0:          libpuzzle-pkgconfig.patch
+Patch0:         libpuzzle-pkgconfig.patch
 Requires:       gd
 BuildRequires:  gd-devel
 Provides:       puzzle-diff = %{version}
