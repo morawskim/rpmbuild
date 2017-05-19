@@ -17,7 +17,7 @@
 
 Name:           swaks
 Version:        20130209.0
-Release:        1
+Release:        2
 License:        GPLv2+
 Summary:        Command-line SMTP transaction tester
 Url:            http://www.jetmore.org/john/code/swaks
@@ -61,6 +61,9 @@ mkdir -p %{buildroot}%{_mandir}/man1
 %doc LICENSE README doc/Changes.txt doc/recipes.txt doc/ref.txt
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Feb 27 2016 Marcin Morawski  <marcin@morawskim.pl>
 - Initial attempt
 

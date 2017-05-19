@@ -17,7 +17,7 @@
 
 Name:           undocker
 Version:        4
-Release:        1
+Release:        2
 License:        GPLv3
 Summary:        Unpacks a Docker image
 Url:            https://github.com/larsks/undocker
@@ -52,5 +52,8 @@ python ./setup.py build
 %{_bindir}/undocker
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Wed Nov 23 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

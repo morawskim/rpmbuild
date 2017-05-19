@@ -19,7 +19,7 @@
 
 Name:           python-mitmproxy-bundled
 Version:        0.18.1
-Release:        1
+Release:        2
 License:        MIT
 Summary:        An SSL-capable man-in-the-middle proxy
 Url:            http://mitmproxy.org
@@ -111,6 +111,9 @@ done
 %doc docs/_build/singlehtml
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Wed May 10 2017 Marcin Morawski <marcin@morawskim.pl>
 -  fix typo
 

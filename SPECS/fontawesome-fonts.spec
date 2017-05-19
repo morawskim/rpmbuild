@@ -17,7 +17,7 @@
 
 Name:           fontawesome-fonts
 Version:        4.3.0
-Release:        1
+Release:        2
 License:        OFL-1.1
 Summary:        Iconic font set
 Url:            http://fontawesome.io/
@@ -72,5 +72,8 @@ cp -r css less scss %{buildroot}%{_datadir}/font-awesome-web/
 %{_datadir}/font-awesome-web/
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Fri Jun 10 2016 Marcin Morawski <marcin@morawskim.pl>
 -  Init release

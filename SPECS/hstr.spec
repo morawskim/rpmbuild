@@ -17,7 +17,7 @@
 
 Name:           hstr
 Version:        1.19
-Release:        1
+Release:        2
 License:        Apache-2.0
 Summary:        BASH History Suggest Box
 Url:            https://github.com/dvorka/hstr

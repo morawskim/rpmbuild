@@ -17,7 +17,7 @@
 
 Name:           python-sphinxcontrib-documentedlist
 Version:        0.4
-Release:        1
+Release:        2
 License:        BSD
 Summary:        Sphinx DocumentedList extension
 Url:            http://bitbucket.org/birkenfeld/sphinx-contrib
@@ -55,6 +55,9 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitelib}/sphinxcontrib_documentedlist-%{version}-py%{python_version}-nspkg.pth
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Wed May 10 2017 Marcin Morawski <marcin@morawskim.pl>
 -  change package name to python-sphinxcontrib-documentedlist
 

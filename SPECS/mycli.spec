@@ -17,7 +17,7 @@
 
 Name:           mycli
 Version:        1.8.1
-Release:        1
+Release:        2
 License:        BSD
 Summary:        Interactive CLI for MySQL Database with auto-completion and syntax highlighting
 Url:             http://mycli.net
@@ -68,5 +68,8 @@ CFLAGS="%{optflags}"  /usr/bin/python3 setup.py install -O1 --skip-build --root 
 %{python3_sitelib}/mycli-%{version}-py?.?.egg-info
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Mon Mar 06 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -25,7 +25,7 @@
 
 Name:           php71v-xdebug
 Version:        2.5.0
-Release:        1
+Release:        2
 License:        BSD-3-Clause
 Summary:        Extended PHP debugger
 Url:            http://www.xdebug.org/
@@ -89,5 +89,8 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Apr 09 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -17,7 +17,7 @@
 
 Name:           skipfish
 Version:        2.10
-Release:        0.2.b
+Release:        0.3.b
 #Whole package licensed with ASL 2.0 license except
 #string-inl.h which has BSD type license
 #icons which are licensed under LGPLv3
@@ -74,5 +74,8 @@ rm -f doc/skipfish.1
 %{_datadir}/%{name}/assets/*.png
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Apr 15 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -19,7 +19,7 @@
 
 Name:           php-build
 Version:        20161211
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
@@ -246,6 +246,9 @@ PREFIX=%{buildroot}/%{_prefix} ./install.sh
 
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 -  add dir macro
 

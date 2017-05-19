@@ -17,7 +17,7 @@
 
 Name:           python-prompt_toolkit
 Version:        0.60
-Release:        1
+Release:        2
 License:        BSD-3-Clause
 Summary:        Library for building powerful interactive command lines in Python
 Url:            https://github.com/jonathanslenders/python-prompt-toolkit
@@ -57,5 +57,8 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitelib}/prompt_toolkit-%{version}-py%{python_version}.egg-info
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Dec 03 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

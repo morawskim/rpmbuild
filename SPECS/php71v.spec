@@ -51,7 +51,7 @@
 
 Name:           php71v
 Version:        7.1.0
-Release:        1
+Release:        2
 Summary:        %{php__doc_version} Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
@@ -1593,5 +1593,8 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Apr 09 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

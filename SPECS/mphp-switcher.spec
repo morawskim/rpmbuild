@@ -19,7 +19,7 @@
 
 Name:       mphp-switcher
 Version:    0.2.0
-Release:    1
+Release:    2
 License:    MIT
 Summary:    Lorem
 BuildArch:  noarch
@@ -84,6 +84,9 @@ exit 0
 %attr(0750, root, root) %{_sbindir}/mphp-fpm-set-symlink
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Mon Apr 18 2016 Marcin Morawski <marcin@morawskim.pl>
 - Update to commit 84cc77451fc2f1f12eac612b9a790bba9fae1164
 - Replace hardcoded /usr/sbin with macro _sbindir

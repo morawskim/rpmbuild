@@ -25,7 +25,7 @@
 
 Name:           php55v-redis
 Version:        2.2.7
-Release:        1
+Release:        2
 License:        PHP License, version 3.01
 Summary:        API for php to communicate with redis
 Url:            https://github.com/nicolasff/phpredis
@@ -69,6 +69,9 @@ EOF
 %{ext_dir}/%{pkg_name}.so
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Oct 15 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

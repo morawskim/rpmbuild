@@ -26,7 +26,7 @@
 
 Name:           php55v-gearman
 Version:        1.1.0
-Release:        1
+Release:        2
 License:        PHP License, version 3.01
 Summary:        Wrapper to the gearman library
 Url:            https://github.com/wcgallego/pecl-gearman
@@ -76,5 +76,8 @@ EOF
 %doc README LICENSE CREDITS ChangeLog examples
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Mon Nov 7 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

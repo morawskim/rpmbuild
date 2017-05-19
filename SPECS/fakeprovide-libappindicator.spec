@@ -17,7 +17,7 @@
 
 Name:          fakeprovide-libappindicator
 Version:       20160909205128
-Release:       1
+Release:       2
 Summary:       libappindicator fakeprovide for slack
 Group:         Fake
 License:       GPL
@@ -44,6 +44,9 @@ cp %{SOURCE0} .
 %doc %{name}.README
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Mar 11 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

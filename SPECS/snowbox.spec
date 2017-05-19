@@ -17,7 +17,7 @@
 
 Name:           snowbox
 Version:        2.0.2
-Release:        1
+Release:        2
 License:        GPLv3
 Summary:        A POP3 server written in Go
 Url:            https://kiza.eu/software/snowbox
@@ -80,5 +80,8 @@ install -p -D -m 644 %{name}.service %{buildroot}%{_unitdir}/%{name}.service
 
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Fri May 05 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -17,7 +17,7 @@
 
 Name:           smtp-cli
 Version:        3.7
-Release:        1
+Release:        2
 License:        GPLv3
 Summary:        Command line SMTP client with SSL, STARTTLS, SMTP-AUTH and IPv6 support
 Url:            http://smtp-cli.logix.cz
@@ -72,6 +72,9 @@ EOF
 %attr(0755, root, root) %{_bindir}/smtp-cli
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Thu Aug 18 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

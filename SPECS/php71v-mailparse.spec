@@ -26,7 +26,7 @@
 
 Name:           php71v-mailparse
 Version:        3.0.2
-Release:        1
+Release:        2
 License:        PHP-2.2
 Summary:        Email Message Manipulation
 Url:            https://pecl.php.net/package/mailparse
@@ -73,6 +73,9 @@ EOF
 %doc README CREDITS
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Wed May 10 2017 Marcin Morawski <marcin@morawskim.pl>
 -  change package name to php71v-mailparse
 

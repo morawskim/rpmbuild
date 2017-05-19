@@ -17,7 +17,7 @@
 
 Name:           monoid
 Version:        0.61
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Open Source Coding Font
 Url:            http://larsenwork.com/monoid/
@@ -51,5 +51,8 @@ install -m 0644 *.ttf %{buildroot}%{_ttfontsdir}
 %{_ttfontsdir}/*
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Jun 19 2016 Marcin Morawski <marcin@morawskim.pl>
 -  Init release

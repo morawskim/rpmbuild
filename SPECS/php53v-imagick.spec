@@ -26,7 +26,7 @@
 
 Name:           php53v-imagick
 Version:        3.3.0
-Release:        1
+Release:        2
 License:        PHP License, version 3.01
 Summary:        Wrapper to the ImageMagick/GraphicsMagick library
 Url:            http://pecl.php.net/package/imagick
@@ -83,6 +83,9 @@ EOF
 %{php_dir_prefix}/%{_includedir}/php5/ext/imagick/*.h
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
 -  changed package name from php53m-imagick to php53v-imagick
 

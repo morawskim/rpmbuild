@@ -19,7 +19,7 @@
 
 Name:           faker-cli
 Version:        1.4
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Command Line Tool for the Faker PHP library
 Url:            https://github.com/bit3/faker-cli
@@ -60,5 +60,8 @@ composer install --no-dev --prefer-dist --no-interaction
 %{faker_root}/.gitignore
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Mon Dec 05 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -19,7 +19,7 @@
 
 Name:           box2
 Version:        2.7.4
-Release:        1
+Release:        2
 License:        MIT
 Summary:        An application for building and managing Phars
 Url:            https://box-project.github.io/box2/
@@ -79,5 +79,8 @@ composer install --no-dev --prefer-dist --no-interaction
 %{box2_root}/.travis.yml
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Apr 29 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -21,7 +21,7 @@
 
 Name:           %{fontname}-fonts
 Version:        %{version_roman}.%{version_italic}
-Release:        1
+Release:        2
 License:        OFL
 Summary:        A set of mono-spaced OpenType fonts designed for coding environments
 Url:            https://github.com/adobe-fonts/source-code-pro
@@ -57,5 +57,8 @@ install -m 0644 -p OTF/*.otf %{buildroot}%{_ttfontsdir}/
 %{_ttfontsdir}/
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Nov 06 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

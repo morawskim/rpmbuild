@@ -50,7 +50,7 @@
 
 Name:           php70v
 Version:        7.0.1
-Release:        3
+Release:        4
 Summary:        PHP7 Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
@@ -1620,6 +1620,9 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
 -  changed package name from php7 to php70v
 

@@ -25,7 +25,7 @@
 
 Name:           php54v-ssh2
 Version:        0.12
-Release:        1
+Release:        2
 License:        PHP-3.01
 Summary:        Bindings for the libssh2 Library
 Url:            http://pecl.php.net/ssh2

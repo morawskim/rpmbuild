@@ -25,7 +25,7 @@
 
 Name:           php55v-%{pkg_name}
 Version:        2.4.1
-Release:        2
+Release:        3
 License:        BSD-3-Clause
 Summary:        Extended PHP debugger
 Url:            http://www.xdebug.org/
@@ -88,6 +88,9 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Wed Oct 19 2016 Marcin Morawski <marcin@morawskim.pl>
 -  Change source url to xdebug.ini
 

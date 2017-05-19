@@ -17,7 +17,7 @@
 
 Name:           sslscan
 Version:        1.8.2
-Release:        1
+Release:        2
 License:        SUSE-GPL-3.0+-with-openssl-exception
 Summary:        SSL cipher scanning tool
 Url:            https://www.titania-security.com/labs/sslscan
@@ -68,5 +68,8 @@ make install BINPATH="%{buildroot}%{_bindir}" MANPATH="%{buildroot}%{_mandir}"
 %{_mandir}/man1/sslscan.1.gz
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Jul 31 2016 Marcin Morawski <marcin@morawskim.pl>
 -  initial packaging

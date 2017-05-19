@@ -26,7 +26,7 @@
 
 Name:           php70v-gearman
 Version:        2.0.1
-Release:        1
+Release:        2
 License:        PHP License, version 3.01
 Summary:        Wrapper to the gearman library
 Url:            https://github.com/wcgallego/pecl-gearman
@@ -76,6 +76,9 @@ EOF
 %doc README LICENSE CREDITS ChangeLog examples
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
 -  changed package name from php7-gearman to php70v-gearman
 

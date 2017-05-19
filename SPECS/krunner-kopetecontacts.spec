@@ -19,7 +19,7 @@
 
 Name:           krunner-kopetecontacts
 Version:        0.1
-Release:        1
+Release:        2
 License:        GPL
 Summary:        Search contacts from kopete in krunner
 Url:            https://github.com/morawskim/kopetecontacts
@@ -58,5 +58,8 @@ make install DESTDIR=%{buildroot}
 %{_kde4_modulesdir}/krunner_kopetecontacts.so
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Nov 20 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -24,7 +24,7 @@
 
 Name:           php54v-%{pkg_name}
 Version:	2.3.3
-Release:	1
+Release:	2
 License:	BSD-3-Clause
 Summary:	Extended PHP debugger
 Url:		http://www.xdebug.org/

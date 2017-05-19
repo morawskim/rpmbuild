@@ -17,7 +17,7 @@
 
 Name:           termshare
 Version:        0.2.0
-Release:        1
+Release:        2
 License:        BSD
 Summary:        Quick and easy terminal sharing
 Url:            https://termsha.re
@@ -79,5 +79,8 @@ make
 %config(noreplace) /etc/sysconfig/%{name}
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Wed Nov 16 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

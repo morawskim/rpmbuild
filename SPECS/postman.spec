@@ -20,7 +20,7 @@
 
 Name:           Postman
 Version:        4.9.3
-Release:        1
+Release:        2
 License:        Commercial
 Summary:        Supercharge your API workflow with Postman
 Url:            https://www.getpostman.com/

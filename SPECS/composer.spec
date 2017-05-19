@@ -21,7 +21,7 @@
 
 Name:           composer
 Version:        1.2.0
-Release:        2
+Release:        3
 License:        MIT
 Summary:        Dependency Management for PHP
 Url:            http://getcomposer.org/
@@ -77,6 +77,9 @@ EOF
 %doc CHANGELOG.md README.md LICENSE doc
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Jul 30 2016 Marcin Morawski <marcin@morawskim.pl>
 -  Add bash auto-complete script
 

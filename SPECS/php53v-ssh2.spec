@@ -25,7 +25,7 @@
 
 Name:           php53v-ssh2
 Version:        0.12
-Release:        1
+Release:        2
 License:        PHP-3.01
 Summary:        Bindings for the libssh2 Library
 Url:            http://pecl.php.net/ssh2
@@ -79,5 +79,8 @@ popd
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun May 07 2017 Marcin Morawski <marcin@morawskim.pl>
 -  changed package name from php53m-ssh2 to php53v-ssh2

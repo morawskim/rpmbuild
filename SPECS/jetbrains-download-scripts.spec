@@ -20,7 +20,7 @@
 
 Name:           jetbrains-download-scripts
 Version:        20160901
-Release:        1
+Release:        2
 License:        GPL
 Summary:        scripts to download and install Jetbrains IDE
 Url:            https://github.com/morawskim/opensuse-configuration-scripts
@@ -64,6 +64,9 @@ exit 0
 %{_sbindir}/install-intellij
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Aug 28 2016 Marcin Morawski <marcin@morawskim.pl>
 -  update to 86793b07857cc0550778c56f9116be5d29adc594
 -  save source under different file name

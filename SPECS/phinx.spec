@@ -19,7 +19,7 @@
 
 Name:           phinx
 Version:        0.6.5
-Release:        1
+Release:        2
 License:        MIT
 Summary:        PHP Database Migrations for Everyone
 Url:            https://phinx.org
@@ -64,5 +64,8 @@ composer install --no-dev --prefer-dist --no-interaction
 %{phinx_root}/.travis.yml
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Thu Dec 08 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

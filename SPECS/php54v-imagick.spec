@@ -26,7 +26,7 @@
 
 Name:           php54v-imagick
 Version:        3.4.1
-Release:        1
+Release:        2
 License:        PHP License, version 3.01
 Summary:        Wrapper to the ImageMagick/GraphicsMagick library
 Url:            http://pecl.php.net/package/imagick
@@ -83,6 +83,9 @@ EOF
 %{php_dir_prefix}/%{_includedir}/php5/ext/imagick/*.h
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Tue Dec 13 2016 Marcin Morawski <marcin@morawskim.pl>
 -  change package name
 

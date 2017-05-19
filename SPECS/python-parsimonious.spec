@@ -17,7 +17,7 @@
 
 Name:           python-parsimonious
 Version:        0.7.0
-Release:        1
+Release:        2
 License:        MIT
 Summary:        The fastest pure-Python PEG parser I can muster
 Url:            https://github.com/erikrose/parsimonious
@@ -53,5 +53,8 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitelib}/parsimonious-%{version}-py%{python_version}.egg-info
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sat Apr 22 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

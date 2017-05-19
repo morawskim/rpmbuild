@@ -30,7 +30,7 @@
 
 Name:           %{php_dir_name}v
 Version:        5.5.38
-Release:        2
+Release:        3
 License:        PHP-3.01
 Summary:        PHP55 Core Files
 Url:            http://www.php.net
@@ -1837,6 +1837,9 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Fri Sep 16 2016 Marcin Morawski <marcin@morawskim.pl>
 -  add systemd service for php55-fpm
 -  add symlink to php binary in bindir

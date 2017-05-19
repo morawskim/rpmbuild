@@ -26,7 +26,7 @@
 
 Name:           php54v-mailparse
 Version:        2.1.6
-Release:        1
+Release:        2
 License:        PHP-2.2
 Summary:        Email Message Manipulation
 Url:            https://pecl.php.net/package/mailparse
@@ -73,5 +73,8 @@ EOF
 %doc README CREDITS
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Wed Mar 22 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

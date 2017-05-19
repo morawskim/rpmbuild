@@ -1,6 +1,6 @@
 Name:          fakeprovide-libXScrnSaver
 Version:       20160909204244
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       libXScrnSaver fakeprovide for slack
 
 Group:         Fake
@@ -29,5 +29,8 @@ cp %{SOURCE0} .
 %doc %{name}.README
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Mon Dec 12 2016 Marcin Morawski <marcin@morawskim.pl>
 -  init release

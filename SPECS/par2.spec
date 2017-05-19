@@ -17,7 +17,7 @@
 
 Name:           par2
 Version:        0.4
-Release:        1
+Release:        2
 License:        GPL-2.0
 Summary:        Create and use partiy files to secure data against loss
 Url:            http://sourceforge.net/projects/parchive/

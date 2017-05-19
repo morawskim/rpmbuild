@@ -17,7 +17,7 @@
 
 Name:           git-extras
 Version:        4.2.0
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Little git extras
 Url:            https://github.com/tj/%{name}
@@ -81,5 +81,8 @@ mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d \
 %{_mandir}/man*/*
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Sun Apr 23 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

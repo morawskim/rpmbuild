@@ -17,7 +17,7 @@
 
 Name:           bup
 Version:        0.27
-Release:        1
+Release:        2
 Summary:        Backup program based on git
 License:        LGPL-2.0
 Group:          Productivity/Archiving/Backup
@@ -78,4 +78,7 @@ make %{?_smp_mflags} PYTHON=%{__python}
 %{_mandir}/man1/*
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 

@@ -17,7 +17,7 @@
 
 Name:           cheat
 Version:        2.1.27
-Release:        1
+Release:        2
 License:        MIT and GPL3
 Summary:        Create and view interactive cheatsheets on the command-line
 Url:            https://github.com/chrisallenlane/cheat
@@ -70,5 +70,8 @@ install -D -m 0644 cheat/autocompletion/cheat.bash %{buildroot}/%{_sysconfdir}/b
 %{_sysconfdir}/bash_completion.d/cheat.sh
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.2
+
 * Mon Feb 13 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
