@@ -56,6 +56,12 @@ PREFIX=%{buildroot}/%{_prefix} ./install.sh
 %{_bindir}/rbenv-uninstall
 %{_bindir}/rbenv-update
 %dir %{_datarootdir}/%{name}
+%dir %{_datarootdir}/%{name}/after-install.d
+%dir %{_datarootdir}/%{name}/before-install.d
+%dir %{_datarootdir}/%{name}/definitions
+%dir %{_datarootdir}/%{name}/extension
+%dir %{_datarootdir}/%{name}/patches
+%dir %{_datarootdir}/%{name}/plugins.d
 %{_datarootdir}/%{name}/after-install.d/.empty
 %{_datarootdir}/%{name}/before-install.d/.empty
 %{_datarootdir}/%{name}/default_configure_options
@@ -240,5 +246,8 @@ PREFIX=%{buildroot}/%{_prefix} ./install.sh
 
 
 %changelog
+* Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
+-  add dir macro
+
 * Fri Apr 28 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
