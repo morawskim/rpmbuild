@@ -28,7 +28,7 @@
 %global zendver           20121212
 %define with_spell        1
 
-Name:           %{php_dir_name}v
+Name:           php55v
 Version:        5.5.38
 Release:        3
 License:        PHP-3.01
