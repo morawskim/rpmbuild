@@ -16,9 +16,9 @@
 #
 
 %define         pkg_name    ssh2
-%define         phpize /opt/php/php55/usr/bin/phpize
-%define         phpconfig /opt/php/php55/usr/bin/php-config
-%define         conf_dir /opt/php/php55/etc/php5/conf.d
+%define         phpize /opt/php/php55v/usr/bin/phpize
+%define         phpconfig /opt/php/php55v/usr/bin/php-config
+%define         conf_dir /opt/php/php55v/etc/php5/conf.d
 %define         ext_dir %(%{phpconfig} --extension-dir)
 %define         php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define         php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
@@ -48,7 +48,7 @@ protocol.
 mkdir %{name}
 
 %build
-export PATH="/opt/php/php55/usr/bin:$PATH"
+export PATH="/opt/php/php55v/usr/bin:$PATH"
 %{phpize}
 pushd %{name}
 export CFLAGS="%{optflags} -fno-strict-aliasing -fstack-protector"

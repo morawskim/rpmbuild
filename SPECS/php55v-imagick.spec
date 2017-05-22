@@ -16,7 +16,7 @@
 #
 
 %define pkg_name imagick
-%define php_dir_prefix /opt/php/php55
+%define php_dir_prefix /opt/php/php55v
 %define phpize %{php_dir_prefix}/usr/bin/phpize
 %define phpconfig %{php_dir_prefix}/usr/bin/php-config
 %define conf_dir %{php_dir_prefix}/etc/php5/conf.d
@@ -53,7 +53,7 @@ This package contains necessary header files for imagick development.
 %setup -qn imagick-%{version}
 
 %build
-export PATH="/opt/php/php55/usr/bin/:$PATH"
+export PATH="/opt/php/php55v/usr/bin/:$PATH"
 %{phpize}
 %configure
 make %{?_smp_mflags}
