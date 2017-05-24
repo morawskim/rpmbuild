@@ -26,7 +26,7 @@
 
 Name:           php56v-gearman
 Version:        1.1.0
-Release:        2
+Release:        3
 License:        PHP License, version 3.01
 Summary:        Wrapper to the gearman library
 Url:            https://github.com/wcgallego/pecl-gearman
@@ -36,7 +36,6 @@ BuildRequires:  php56v-devel
 BuildRequires:  gearmand-devel
 Requires:       php56v(api) = %{php_core_api}
 Requires:       php56v(zend-abi) = %{php_zend_api}
-Requires:       libgearman7
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -74,3 +73,8 @@ EOF
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 %{ext_dir}/%{pkg_name}.so
 %doc README LICENSE CREDITS ChangeLog examples
+
+%changelog
+* Wed May 24 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Remove dependency on libgearman7. Rpmbuild will itself add dependency in the
+   required version
