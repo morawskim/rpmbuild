@@ -16,8 +16,8 @@
 #
 
 Name:           yadm
-Version:        1.04
-Release:        2
+Version:        1.10.0
+Release:        1
 License:        GPLv3
 Summary:        Yet Another Dotfiles Manager
 Url:            https://github.com/TheLocehiliosan/yadm
@@ -44,6 +44,7 @@ mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_mandir}/man1
 install -m 755 yadm   %{buildroot}%{_bindir}
 install -m 644 yadm.1 %{buildroot}%{_mandir}/man1
+%{__install} -D -p -m 0644 completion/yadm.bash_completion %{buildroot}/etc/bash_completion.d/%{name}
 
 %post
 
@@ -54,8 +55,12 @@ install -m 644 yadm.1 %{buildroot}%{_mandir}/man1
 %doc README.md yadm.md LICENSE CHANGES
 %attr(755,root,root) %{_bindir}/yadm
 %attr(644,root,root) %{_mandir}/man1/*
+%attr(644,root,root) /etc/bash_completion.d/%{name}
 
 %changelog
+* Sun May 28 2017 Marcin Morawski <marcin@morawskim.pl>
+- Update to 1.10.0
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 
