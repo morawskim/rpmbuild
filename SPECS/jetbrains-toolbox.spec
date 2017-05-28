@@ -16,13 +16,13 @@
 #
 
 Name:           jetbrains-toolbox
-Version:        1.1.2143
-Release:        2
+Version:        1.3.2421
+Release:        1
 License:        Commercial
 Summary:        A control panel for your tools and projects
 Url:            https://www.jetbrains.com/toolbox/app
 Group:          Development/Tools/Other
-Source:         https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.1.2143.tar.gz
+Source:         https://download.jetbrains.com/toolbox/jetbrains-toolbox-%{version}.tar.gz
 BuildArch:      x86_64
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -72,6 +72,9 @@ log you into other tools you install.
 %{_bindir}/jetbrains-toolbox
 
 %changelog
+* Sun May 28 2017 Marcin Morawski <marcin@morawskim.pl>
+- Update to 1.3.2421
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 
