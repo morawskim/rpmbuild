@@ -19,7 +19,7 @@
 
 Name:           python-mitmproxy-bundled
 Version:        0.18.1
-Release:        3
+Release:        4
 License:        MIT
 Summary:        An SSL-capable man-in-the-middle proxy
 Url:            http://mitmproxy.org
@@ -27,6 +27,9 @@ Group:          Development/Languages/Python
 Source0:        https://github.com/mitmproxy/mitmproxy/archive/v%{version}.tar.gz
 Source1:        python-mitmproxy-bundled.SuSEfirewall
 Source2:        mitmproxy-bin.skeleton
+Source3:        https://github.com/mitmproxy/mitmproxy.org/raw/master/logo/logo-inverted.png
+Source4:        https://github.com/mitmproxy/mitmproxy.org/raw/master/logo/logo.png
+Source5:        mitmproxy.desktop
 Patch0:         %{name}.fix-doc-build.patch
 Patch1:         %{name}-support_python27.patch
 BuildRequires:  python-devel
@@ -37,6 +40,7 @@ BuildRequires:  make
 BuildRequires:  libffi-devel
 BuildRequires:  python-Sphinx
 BuildRequires:  python-sphinxcontrib-documentedlist
+BuildRequires:  desktop-file-utils
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -90,9 +94,22 @@ popd
 
 %__install -D -p -m 0644 docs/_build/man/mitmproxydocs.1 %{buildroot}/%{_mandir}/man1/mitmproxydocs.1
 
+# Installing icons...
+size=256
+dir="%{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps"
+install -d "$dir"
+%__install -D -p -m 0644 '%{S:3}' %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/mitmproxy-inverted.png
+%__install -D -p -m 0644 '%{S:4}' %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/mitmproxy.png
+
+# Installing desktop shortcut...
+desktop-file-install --dir="%{buildroot}%{_datadir}/applications" %{S:5}
+
 %post
+%{desktop_database_post}
 
 %postun
+%{desktop_database_postun}
+
 
 %files
 %defattr(-,root,root,-)
@@ -104,12 +121,17 @@ popd
 %attr(0755, root, root) %{_bindir}/pathoc
 %attr(0755, root, root) %{_bindir}/pathod
 %attr(0644, root, root) /etc/sysconfig/SuSEfirewall2.d/services/%{name}
+%{_datadir}/applications/mitmproxy.desktop
+%{_datadir}/icons/hicolor/*/apps/mitmproxy*.png
 
 %files doc
 %defattr(-,root,root,-)
 %doc docs/_build/singlehtml
 
 %changelog
+* Thu Jun 08 2017 Marcin Morawski <marcin@morawskim.pl>
+-  add logo and desktop file
+
 * Tue Jun 06 2017 Marcin Morawski <marcin@morawskim.pl>
 -  use virtualenv to build package
 

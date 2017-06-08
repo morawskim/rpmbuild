@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Development;WebDevelopment
+Type=Application
+Name=mitmproxy
+Comment=An SSL-capable man-in-the-middle proxy
+GenericName=proxy
+Exec=mitmproxy
+Terminal=true
+Icon=mitmproxy-inverted
