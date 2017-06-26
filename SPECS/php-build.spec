@@ -19,12 +19,62 @@
 
 Name:           php-build
 Version:        20161211
-Release:        2
+Release:        3
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
 Group:          Development/Tools/Building
 Source:         https://github.com/php-build/php-build/archive/%{commit}.tar.gz
+Requires:       aspell-devel
+Requires:       autoconf
+Requires:       bison
+Requires:       curl
+Requires:       libcurl-devel
+Requires:       cyrus-sasl-devel
+Requires:       libdb-4_8-devel
+Requires:       enchant-devel
+Requires:       firebird-devel
+Requires:       freetds-devel
+Requires:       freetype2-devel
+Requires:       gcc-c++
+Requires:       gd-devel
+Requires:       gmp-devel
+Requires:       imap-devel
+Requires:       krb5-devel
+Requires:       libapparmor-devel
+Requires:       libbz2-devel
+Requires:       libedit-devel
+Requires:       libevent-devel
+Requires:       libfbclient2-devel
+Requires:       libicu-devel
+Requires:       libjpeg62-devel
+Requires:       libmcrypt-devel
+Requires:       libopenssl-devel
+Requires:       libtidy-0_99-0-devel
+Requires:       libtiff-devel
+Requires:       libxslt-devel
+Requires:       libzip-devel
+Requires:       ncurses-devel
+Requires:       net-snmp-devel
+Requires:       openldap2-devel
+Requires:       pam-devel
+Requires:       pcre-devel
+Requires:       pkg-config
+Requires:       systemd-devel
+Requires:       libvpx-devel
+Requires:       libXft-devel
+Requires:       libXpm-devel
+Requires:       postfix
+Requires:       re2c
+Requires:       sqlite2-devel
+Requires:       sqlite3-devel
+Requires:       tcpd-devel
+Requires:       unixODBC-devel
+Requires:       update-alternatives
+Requires:       xorg-x11-devel
+Requires:       xz
+Requires:       postgresql-devel
+Requires:       libtool
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -246,6 +296,9 @@ PREFIX=%{buildroot}/%{_prefix} ./install.sh
 
 
 %changelog
+* Mon Jun 26 2017 Marcin Morawski <marcin@morawskim.pl>
+-  add Requires (they are required to build php)
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 
