@@ -15,11 +15,11 @@
 # Please submit bugfixes or comments via https://github.com/morawskim/rpmbuild/issues
 #
 
-%define commit 2080889de66008c0103c687dadd6afc2a705d14a
+%define commit 981ad08b91d1e9f21455ae6c3d37031600df3abe
 
 Name:           php-build
-Version:        20161211
-Release:        3
+Version:        20170623
+Release:        1
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
@@ -296,6 +296,9 @@ PREFIX=%{buildroot}/%{_prefix} ./install.sh
 
 
 %changelog
+* Tue Jun 27 2017 Marcin Morawski <marcin@morawskim.pl>
+-  update to commit 981ad08
+
 * Mon Jun 26 2017 Marcin Morawski <marcin@morawskim.pl>
 -  add Requires (they are required to build php)
 
