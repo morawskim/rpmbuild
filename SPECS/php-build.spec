@@ -19,7 +19,7 @@
 
 Name:           php-build
 Version:        20170623
-Release:        2
+Release:        3
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
@@ -90,6 +90,7 @@ ruby-build.
 
 %install
 PREFIX=%{buildroot}/%{_prefix} ./install.sh
+rm %{buildroot}%{_prefix}/bin/rbenv-*
 
 %post
 
@@ -102,9 +103,6 @@ PREFIX=%{buildroot}/%{_prefix} ./install.sh
 %{_bindir}/phpenv-install
 %{_bindir}/phpenv-uninstall
 %{_bindir}/phpenv-update
-%{_bindir}/rbenv-install
-%{_bindir}/rbenv-uninstall
-%{_bindir}/rbenv-update
 %dir %{_datarootdir}/%{name}
 %dir %{_datarootdir}/%{name}/after-install.d
 %dir %{_datarootdir}/%{name}/before-install.d
@@ -134,6 +132,9 @@ PREFIX=%{buildroot}/%{_prefix} ./install.sh
 
 
 %changelog
+* Wed Jun 28 2017 Marcin Morawski <marcin@morawskim.pl>
+-  remove rbenv-* bin
+
 * Tue Jun 27 2017 Marcin Morawski <marcin@morawskim.pl>
 -  update to commit 981ad08
 -  use wildcard to pack all definitions files
