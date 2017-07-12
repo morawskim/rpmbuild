@@ -19,7 +19,7 @@
 
 Name:           php-build
 Version:        20170623
-Release:        3
+Release:        4
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
@@ -49,13 +49,12 @@ Requires:       libfbclient2-devel
 Requires:       libicu-devel
 Requires:       libjpeg62-devel
 Requires:       libmcrypt-devel
-Requires:       libopenssl-devel
+Requires:       libressl-devel
 Requires:       libtidy-0_99-0-devel
 Requires:       libtiff-devel
 Requires:       libxslt-devel
 Requires:       libzip-devel
 Requires:       ncurses-devel
-Requires:       net-snmp-devel
 Requires:       openldap2-devel
 Requires:       pam-devel
 Requires:       pcre-devel
@@ -75,6 +74,7 @@ Requires:       xorg-x11-devel
 Requires:       xz
 Requires:       postgresql-devel
 Requires:       libtool
+Suggests:       net-snmp-devel
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -132,6 +132,10 @@ rm %{buildroot}%{_prefix}/bin/rbenv-*
 
 
 %changelog
+* Wed Jul 12 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Change net-snmp-devel to Suggest instead of Require
+-  Use libressl-devel instead of libopenssl-devel
+
 * Wed Jun 28 2017 Marcin Morawski <marcin@morawskim.pl>
 -  remove rbenv-* bin
 
