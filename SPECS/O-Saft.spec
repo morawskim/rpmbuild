@@ -60,7 +60,7 @@ tools in 2012? Some (but not all) reasons are:
 %install
 install -m 0755 -d %{buildroot}/%{_bindir}
 install -m 0755 -d %{buildroot}/%{perl_vendorlib}/%{name}
-INSTALL.sh     %{buildroot}/%{perl_vendorlib}/%{name} --force
+./INSTALL.sh     %{buildroot}/%{perl_vendorlib}/%{name} --force
 
 %post
 
@@ -75,5 +75,8 @@ INSTALL.sh     %{buildroot}/%{perl_vendorlib}/%{name} --force
 %{perl_vendorlib}/%{name}/.o-saft.tcl
 
 %changelog
+* Sat Jul 15 2017 Marcin Morawski <marcin@morawskim.pl>
+-  fix build error
+
 * Mon Jul 10 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
