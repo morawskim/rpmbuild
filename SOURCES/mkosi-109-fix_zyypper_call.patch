@@ -1,0 +1,47 @@
+From 74995435564a36e81e7a79b51013f94405786e52 Mon Sep 17 00:00:00 2001
+From: Sebastian Wagner <sebix@sebix.at>
+Date: Thu, 29 Jun 2017 18:45:07 +0200
+Subject: [PATCH 1/2] Fix opensuse repo URL
+
+It does not work with HTTP, zypper gives an error
+---
+ mkosi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mkosi b/mkosi
+index aa812e0..ad281da 100755
+--- a/mkosi
++++ b/mkosi
+@@ -2287,7 +2287,7 @@ def load_args():
+             if platform.machine() == "aarch64":
+                 args.mirror = "http://mirror.archlinuxarm.org"
+         elif args.distribution == Distribution.opensuse:
+-            args.mirror = "https://download.opensuse.org"
++            args.mirror = "http://download.opensuse.org"
+ 
+     if args.bootable:
+         if args.distribution == Distribution.ubuntu:
+
+From 1510f7eea8847c904900138831e63c89ea5da7b2 Mon Sep 17 00:00:00 2001
+From: Sebastian Wagner <sebix@sebix.at>
+Date: Sun, 2 Jul 2017 16:01:32 +0200
+Subject: [PATCH 2/2] Fix opensuse pattern installation
+
+It's not a pattern, it's a package and the name is different
+---
+ mkosi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/mkosi b/mkosi
+index ad281da..d3fa0c0 100755
+--- a/mkosi
++++ b/mkosi
+@@ -1028,7 +1028,7 @@ def install_opensuse(args, workspace, run_build_script):
+     #
+     # Install the "minimal" package set.
+     #
+-    subprocess.run(cmdline + ["-t", "pattern", "minimal_base"], check=True)
++    subprocess.run(cmdline + ["patterns-openSUSE-minimal_base"], check=True)
+ 
+     #
+     # Now install the additional packages if necessary.
