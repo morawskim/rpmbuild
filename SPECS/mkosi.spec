@@ -67,3 +67,7 @@ supported (not plain MBR/BIOS).
 %license LICENSE
 %{_bindir}/%{name}
 
+%changelog
+* Wed Jul 26 2017 Marcin Morawski <marcin@morawskim.pl>
+-  init release
+
