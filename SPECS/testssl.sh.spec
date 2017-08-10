@@ -67,3 +67,8 @@ Key features
 %doc CHANGELOG.stable-releases.txt Readme.md CREDITS.md LICENSE
 %{_bindir}/%{name}
 %{_bindir}/checkcert.sh
+
+%changelog
+* Sun Jul 23 2017 Marcin Morawski <marcin@morawskim.pl>
+-  init release
+
