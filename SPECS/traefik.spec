@@ -72,3 +72,8 @@ fi
 %doc CHANGELOG.md README.md LICENSE.md traefik.sample.toml docs/ examples/
 %{_bindir}/%{name}
 %config(noreplace) %attr(640, %name, %name) %{_sysconfdir}/%{name}/traefik.sample.toml
+
+%changelog
+* Tue Jul 25 2017 Marcin Morawski <marcin@morawskim.pl>
+-  init release
+
