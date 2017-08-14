@@ -19,7 +19,7 @@
 
 Name:           jmeter
 Version:        3.0
-Release:        4
+Release:        5
 License:        Apache License 2.0
 Summary:        Apache JMeter
 Url:            http://jmeter.apache.org/
@@ -92,6 +92,9 @@ find %{buildroot}%{_jmeter_prefix}/bin -maxdepth 1 -type f | grep -v '/jmeter$' 
 %doc docs/ printable_docs/
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 3.0-5
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

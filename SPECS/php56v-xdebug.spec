@@ -24,7 +24,7 @@
 
 Name:           php56v-%{pkg_name}
 Version:        2.4.1
-Release:        2
+Release:        3
 License:        BSD-3-Clause
 Summary:        Extended PHP debugger
 Url:            http://www.xdebug.org/

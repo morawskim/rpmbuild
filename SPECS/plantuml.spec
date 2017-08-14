@@ -17,7 +17,7 @@
 
 Name:           plantuml
 Version:        8045
-Release:        2
+Release:        3
 License:        LGPLv3+
 Summary:        Program to generate UML diagram from a text description
 Url:            http://plantuml.com/
@@ -65,6 +65,9 @@ ant
 %doc README COPYING
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 8045-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

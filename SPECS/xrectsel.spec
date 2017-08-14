@@ -19,7 +19,7 @@
 
 Name:           xrectsel
 Version:        0.1.0
-Release:        2
+Release:        3
 License:        BSD
 Summary:        Select a screen area with mouse and return the geometry of this area
 Url:            https://bbs.archlinux.org/viewtopic.php?id=85378
@@ -50,6 +50,9 @@ make install DESTDIR=%{buildroot} %{?_smp_mflags}
 %{_bindir}/xrectsel
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.1.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

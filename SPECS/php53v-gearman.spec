@@ -26,7 +26,7 @@
 
 Name:           php53v-gearman
 Version:        1.1.0
-Release:        3
+Release:        4
 License:        PHP License, version 3.01
 Summary:        Wrapper to the gearman library
 Url:            https://github.com/wcgallego/pecl-gearman
@@ -75,6 +75,9 @@ EOF
 %doc README LICENSE CREDITS ChangeLog examples
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.1.0-4
+- Rebuild for openSUSE 42.3
+
 * Wed May 24 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Remove dependency on libgearman7. Rpmbuild will itself add dependency in the
    required version

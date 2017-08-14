@@ -20,7 +20,7 @@
 
 Name:           completion-ruby
 Version:        20160428
-Release:        2
+Release:        3
 License:        MIT license
 Summary:        Bash completion for Ruby-related commands
 Url:            https://github.com/mernen/completion-ruby
@@ -64,6 +64,9 @@ exit 0
 /etc/bash_completion.d/ruby
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20160428-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

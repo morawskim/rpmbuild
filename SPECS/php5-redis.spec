@@ -20,7 +20,7 @@
 %define ext_dir %(%{__php_config} --extension-dir)
 Name:           php5-redis
 Version: 2.2.7
-Release: 2
+Release: 3
 License: PHP License, version 3.01
 Summary: API for php to communicate with redis
 Url: https://github.com/nicolasff/phpredis

@@ -15,7 +15,7 @@
 
 Name:           easy-rsa
 Version:        3.0.1
-Release:        2
+Release:        3
 License:        GPL-2
 Summary:        CLI utility to build and manage a PKI CA
 Url:            https://github.com/OpenVPN/easy-rsa

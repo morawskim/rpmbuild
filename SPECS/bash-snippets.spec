@@ -17,7 +17,7 @@
 
 Name:           bash-snippets
 Version:        1.13.0
-Release:        1
+Release:        2
 License:        MIT
 Summary:        A collection of small bash scripts for heavy terminal users 
 Url:            https://github.com/alexanderepstein/Bash-Snippets
@@ -71,5 +71,8 @@ done
 %{_mandir}/man1/%{name}.1.gz
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.13.0-2
+- Rebuild for openSUSE 42.3
+
 * Mon Jul 17 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

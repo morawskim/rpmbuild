@@ -17,7 +17,7 @@
 
 Name:           ctop
 Version:        0.5.1
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Top-like interface for container metrics
 Url:            http://ctop.sh/
@@ -62,5 +62,8 @@ popd
 %{_bindir}/%{name}
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.5.1-2
+- Rebuild for openSUSE 42.3
+
 * Sun Jun 11 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

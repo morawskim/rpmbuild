@@ -17,7 +17,7 @@
 
 Name:           http-prompt
 Version:        0.8.0
-Release:        2
+Release:        3
 License:        MIT
 Summary:        An interactive command-line HTTP client featuring autocomplete and syntax highlighting
 Url:            https://github.com/eliangcs/http-prompt
@@ -57,6 +57,9 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{_bindir}/http-prompt
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.8.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

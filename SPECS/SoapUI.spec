@@ -20,7 +20,7 @@
 
 Name:           SoapUI
 Version:        5.3.0
-Release:        2
+Release:        3
 License:        EUPL
 Summary:        SoapUI, is the world leading Open Source Functional Testing tool for API Testing
 Url:            https://www.soapui.org/
@@ -66,6 +66,9 @@ cp -r . %{buildroot}/%{soapui_root}
 %{_datadir}/applications/%{name}.desktop
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 5.3.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

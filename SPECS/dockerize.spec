@@ -17,7 +17,7 @@
 
 Name:           dockerize
 Version:        0.2.2
-Release:        2
+Release:        3
 License:        GPLv3
 Summary:        A tool for creating minimal docker images from dynamic ELF binaries
 Url:            https://github.com/larsks/dockerize
@@ -59,6 +59,9 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitelib}/dockerize-%{version}-py%{python_version}.egg-info
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.2.2-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

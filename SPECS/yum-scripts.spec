@@ -17,7 +17,7 @@
 
 Name:           yum-scripts
 Version:        1.1.13
-Release:        2
+Release:        3
 License:        GPL-2.0+
 Summary:        Utilities based around the yum package manager
 Url:            http://linux.duke.edu/yum/download/yum-utils/
@@ -98,6 +98,9 @@ rm -v $RPM_BUILD_ROOT/usr/bin/yum-builddep \
 %{_mandir}/man1/reposync.1.*
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.1.13-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

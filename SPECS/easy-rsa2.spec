@@ -17,7 +17,7 @@
 
 Name:           easy-rsa2
 Version:        2.2.2
-Release:        2
+Release:        3
 License:        GPLv2
 Summary:        Simple shell based CA utility
 Url:            https://github.com/OpenVPN/easy-rsa
@@ -64,6 +64,9 @@ install -m 644 -D -p %{SOURCE2} %{buildroot}/%{_mandir}/man1/make-cadir.1.gz
 %{_mandir}/man1/make-cadir.1.gz
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.2.2-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

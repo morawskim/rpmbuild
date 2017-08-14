@@ -25,7 +25,7 @@
 
 Name:    php56v-redis
 Version: 2.2.7
-Release: 2
+Release: 3
 License: PHP License, version 3.01
 Summary: API for php to communicate with redis
 Url: https://github.com/nicolasff/phpredis

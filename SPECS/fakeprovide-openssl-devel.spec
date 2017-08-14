@@ -17,7 +17,7 @@
 
 Name:           fakeprovide-openssl-devel
 Version:        20170529183151
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL
 Summary:        Fake provide for openssl-devel
 Group:          Fake
@@ -46,5 +46,8 @@ cp %{SOURCE0} README
 %doc README
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20170529183151-2
+- Rebuild for openSUSE 42.3
+
 * Mon May 29 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

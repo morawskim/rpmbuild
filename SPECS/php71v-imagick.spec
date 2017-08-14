@@ -26,7 +26,7 @@
 
 Name:           php71v-imagick
 Version:        3.4.3
-Release:        2.RC1
+Release:        3.RC1
 License:        PHP License, version 3.01
 Summary:        Wrapper to the ImageMagick/GraphicsMagick library
 Url:            http://pecl.php.net/package/imagick
@@ -83,6 +83,9 @@ EOF
 %{php_dir_prefix}/%{_includedir}/php7/ext/imagick/*.h
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 3.4.3-3.RC1
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

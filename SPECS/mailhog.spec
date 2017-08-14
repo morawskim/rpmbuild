@@ -20,7 +20,7 @@
 
 Name:           mailhog
 Version:        0.2.0
-Release:        2
+Release:        3
 License:        MIT
 Summary:        Web and API based SMTP testing
 Url:            https://github.com/mailhog/MailHog
@@ -88,6 +88,9 @@ fi
 %attr(0644, root, root) /etc/sysconfig/SuSEfirewall2.d/services/%{name}
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.2.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

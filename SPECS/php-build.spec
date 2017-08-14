@@ -19,7 +19,7 @@
 
 Name:           php-build
 Version:        20170623
-Release:        4
+Release:        5
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
@@ -132,6 +132,9 @@ rm %{buildroot}%{_prefix}/bin/rbenv-*
 
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20170623-5
+- Rebuild for openSUSE 42.3
+
 * Wed Jul 12 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Change net-snmp-devel to Suggest instead of Require
 -  Use libressl-devel instead of libopenssl-devel

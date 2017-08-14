@@ -19,7 +19,7 @@
 
 Name:           O-Saft
 Version:        17.06.17
-Release:        1
+Release:        2
 License:        GPL-2
 Summary:        O-Saft - OWASP SSL advanced forensic tool
 Url:            https://github.com/OWASP/O-Saft
@@ -75,6 +75,9 @@ install -m 0755 -d %{buildroot}/%{perl_vendorlib}/%{name}
 %{perl_vendorlib}/%{name}/.o-saft.tcl
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 17.06.17-2
+- Rebuild for openSUSE 42.3
+
 * Sat Jul 15 2017 Marcin Morawski <marcin@morawskim.pl>
 -  fix build error
 

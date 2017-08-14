@@ -20,7 +20,7 @@
 
 Name:           extract-x509-cert
 Version:        20150628
-Release:        2
+Release:        3
 License:        MIT license
 Summary:        Shell script to extract x509 certificate
 Url:            https://gist.github.com/morawskim/%{gist}
@@ -51,6 +51,9 @@ exit 0
 %{_bindir}/extract-x509-cert
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20150628-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

@@ -19,7 +19,7 @@
 
 Name:           phpldapadmin
 Version:        1.2.3
-Release:        4
+Release:        5
 License:        GPL
 Summary:        A web interface for LDAP server administration
 Url:            http://phpldapadmin.sourceforge.net/
@@ -76,6 +76,9 @@ find $RPM_BUILD_ROOT%{serverroot}%{name} -maxdepth 1 -type f | grep -v 'config.i
 %ghost %{serverroot}%{name}/config/config.php
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.2.3-5
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

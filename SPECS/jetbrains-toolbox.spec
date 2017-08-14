@@ -17,7 +17,7 @@
 
 Name:           jetbrains-toolbox
 Version:        1.3.2421
-Release:        1
+Release:        2
 License:        Commercial
 Summary:        A control panel for your tools and projects
 Url:            https://www.jetbrains.com/toolbox/app
@@ -72,6 +72,9 @@ log you into other tools you install.
 %{_bindir}/jetbrains-toolbox
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.3.2421-2
+- Rebuild for openSUSE 42.3
+
 * Sun May 28 2017 Marcin Morawski <marcin@morawskim.pl>
 - Update to 1.3.2421
 

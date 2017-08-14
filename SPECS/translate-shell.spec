@@ -17,7 +17,7 @@
 
 Name:           translate-shell
 Version:        0.9.4
-Release:        2
+Release:        3
 License:        Unlicense
 Summary:        Command-line translator
 Url:            https://github.com/soimort/translate-shell
@@ -55,6 +55,9 @@ make install PREFIX=%{buildroot}/usr
 %{_mandir}/man1/trans.1.gz
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.9.4-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

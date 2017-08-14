@@ -17,7 +17,7 @@
 
 Name:           icdiff
 Version:        1.9.0
-Release:        1
+Release:        2
 License:        GPL
 Summary:        improved colored diff
 Url:            http://www.jefftk.com/icdiff
@@ -52,5 +52,8 @@ pyinstaller -F icdiff
 %attr(0755, root, root) %{_bindir}/%{name}
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.9.0-2
+- Rebuild for openSUSE 42.3
+
 * Fri Jun 16 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -17,7 +17,7 @@
 
 Name:           phing
 Version:        2.15.2
-Release:        3
+Release:        4
 License:        LGPL-3.0
 Summary:        A PHP project build system
 Url:            https://www.phing.info
@@ -76,6 +76,9 @@ composer install --no-dev --no-interaction --prefer-dist
 /usr/lib/phing/.gitmodules
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.15.2-4
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

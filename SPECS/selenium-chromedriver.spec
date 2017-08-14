@@ -19,7 +19,7 @@
 
 Name:           selenium-chromedriver
 Version:        2.29
-Release:        3
+Release:        4
 License:        BSD-3-Clause
 Summary:        WebDriver for Google Chrome/Chromium
 Url:            http://code.google.com/p/chromedriver/
@@ -54,6 +54,9 @@ members of the Chromium and WebDriver teams.
 %attr(755, root, root) %{_prefix}/chromedriver
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.29-4
+- Rebuild for openSUSE 42.3
+
 * Sun May 28 2017 Marcin Morawski <marcin@morawskim.pl>
 - Remove Require google-chrome-stable <= 58, because this block update for
   chrome

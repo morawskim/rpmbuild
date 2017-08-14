@@ -17,7 +17,7 @@
 
 Name:           rr
 Version:        4.4.0
-Release:        2
+Release:        3
 License:        MIT and BSD
 Summary:        Lightweight tool for recording and replaying execution of applications (trees of processes and threads)
 Url:            http://rr-project.org
@@ -74,6 +74,9 @@ popd
 %{_datarootdir}/rr/*.xml
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 4.4.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

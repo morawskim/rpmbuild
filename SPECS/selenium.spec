@@ -20,7 +20,7 @@
 
 Name:           selenium
 Version:        %{version_major}.0
-Release:        3
+Release:        4
 License:        ASL 2.0
 Summary:        Selenium automates browsers
 Url:            http://seleniumhq.org/
@@ -73,6 +73,9 @@ frameworks.
 %config(noreplace) /etc/sysconfig/%{name}
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.53.0-4
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

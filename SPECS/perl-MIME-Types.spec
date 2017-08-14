@@ -14,7 +14,7 @@
 name:      perl-MIME-Types
 summary:   MIME-Types - Definition of MIME types
 version:   2.13
-release:   2
+release:   3
 vendor:    Mark Overmeer
 packager:  Arix International <cpan2rpm@arix.com>
 license:   Artistic
@@ -125,6 +125,9 @@ find %{buildroot}%{_prefix}             \
 %defattr(-,root,root)
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.13-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

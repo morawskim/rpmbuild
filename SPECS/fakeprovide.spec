@@ -19,7 +19,7 @@
 
 Name:           fakeprovide
 Version:        20160729
-Release:        2
+Release:        3
 License:        GPLv3
 Summary:        A tool for generating "fake" rpm packages to resolve dependency issues
 Url:            https://github.com/larsks/fakeprovide
@@ -53,6 +53,9 @@ make install DESTDIR=%{buildroot}
 %{_bindir}/fakeprovide
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20160729-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

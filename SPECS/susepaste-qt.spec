@@ -17,7 +17,7 @@
 
 Name:           susepaste-qt
 Version:        0.1.0
-Release:        2
+Release:        3
 License:        MIT
 Summary:        Simple GUI for susepaste cli
 Url:            https://github.com/morawskim/susepaste-qt
@@ -61,6 +61,9 @@ make install DESTDIR=%{buildroot} %{?_smp_mflags}
 
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.1.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

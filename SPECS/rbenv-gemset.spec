@@ -17,7 +17,7 @@
 
 Name:           rbenv-gemset
 Version:        0.5.9
-Release:        1
+Release:        2
 License:        MIT
 Summary:        KISS yet powerful gem / gemset management for rbenv
 Url:            https://github.com/jf/rbenv-gemset
@@ -65,5 +65,8 @@ cp -vr etc/rbenv.d/ %{buildroot}%{_datadir}/%{name}/
 %{_datadir}/%{name}/rbenv.d/*
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.5.9-2
+- Rebuild for openSUSE 42.3
+
 * Tue Jun 13 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -17,7 +17,7 @@
 
 Name:           packer
 Version:        1.0.0
-Release:        1
+Release:        2
 License:        MPL-2.0
 Summary:        Packer is a tool for creating identical machine images for multiple platforms from a single source configuration
 Url:            https://www.packer.io/
@@ -60,5 +60,8 @@ popd
 %{_bindir}/%{name}
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.0.0-2
+- Rebuild for openSUSE 42.3
+
 * Sun Jun 11 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

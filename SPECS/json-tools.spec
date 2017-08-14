@@ -19,7 +19,7 @@
 
 Name:           json-tools
 Version:        20131118
-Release:        2
+Release:        3
 License:        Public Domain
 Summary:        JSON Utilities
 Url:            https://github.com/larsks/json-tool
@@ -56,6 +56,9 @@ as those used by OpenStack -- on the command line.
 %{_bindir}/jsonx
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20131118-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

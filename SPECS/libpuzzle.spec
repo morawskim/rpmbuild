@@ -18,7 +18,7 @@
 
 Name:           libpuzzle
 Version:        0.11
-Release:        2
+Release:        3
 License:        BSD
 Summary:        Library to quickly find visually similar images (gif, png, jpg)
 Url:            http://libpuzzle.pureftpd.org/project/libpuzzle

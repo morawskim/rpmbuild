@@ -20,7 +20,7 @@
 
 Name:           php-development-scripts
 Version:        20160508
-Release:        2
+Release:        3
 License:        MIT
 Summary:        Shell scripts to download php apps and IDE
 Url:            https://github.com/morawskim/opensuse-configuration-scripts
@@ -63,6 +63,9 @@ exit 0
 %attr(0755, root, root) %{_bindir}/build-php
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20160508-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

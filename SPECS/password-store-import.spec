@@ -19,7 +19,7 @@
 
 Name:           password-store-import
 Version:        20170406
-Release:        1
+Release:        2
 License:        GPL-3.0
 Summary:        Password Store Import Extension
 Url:            https://github.com/roddhjav/pass-import
@@ -65,5 +65,8 @@ make install DESTDIR=%{buildroot}
 %{_mandir}/man1/pass-import.1.gz
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20170406-2
+- Rebuild for openSUSE 42.3
+
 * Wed Aug 02 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

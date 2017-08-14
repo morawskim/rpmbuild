@@ -17,7 +17,7 @@
 
 Name:           nerd-fonts
 Version:        1.0.0
-Release:        3
+Release:        4
 License:        MIT
 Summary:        Collection of 35+ patched fonts
 Url:            http://nerdfonts.com
@@ -85,5 +85,8 @@ install -m 0644 patched-fonts/SourceCodePro/Regular/complete/*.ttf %{buildroot}%
 %{_ttfontsdir}/Sauce*.ttf
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl>
+- Rebuild for openSUSE 42.3
+
 * Sat Jun 03 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

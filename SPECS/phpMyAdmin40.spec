@@ -25,7 +25,7 @@
 
 Name:           phpMyAdmin40
 Version:        4.0.7
-Release:        3
+Release:        4
 License:        GPLv2+
 Summary:        Handle the administration of MySQL over the World Wide Web
 Url:            https://www.phpmyadmin.net/
@@ -141,6 +141,9 @@ sed -e "s,@FQDN@,$(cat /etc/HOSTNAME)," \
 
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 4.0.7-4
+- Rebuild for openSUSE 42.3
+
 * Sun May 28 2017 Marcin Morawski <marcin@morawskim.pl>
 - Update apache2 vhost
 

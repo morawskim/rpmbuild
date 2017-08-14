@@ -17,7 +17,7 @@
 
 Name:           testssl.sh
 Version:        2.8
-Release:        1
+Release:        2
 License:        GPLv2
 Summary:        Testing TLS/SSL encryption anywhere on any port
 Url:            https://testssl.sh/
@@ -69,6 +69,9 @@ Key features
 %{_bindir}/checkcert.sh
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.8-2
+- Rebuild for openSUSE 42.3
+
 * Sun Jul 23 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

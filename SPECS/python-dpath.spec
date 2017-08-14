@@ -20,7 +20,7 @@
 
 Name:           python-dpath
 Version:        1.4.0
-Release:        2
+Release:        3
 License:        MIT
 Summary:        Filesystem-like pathing and searching for dictionaries
 Url:            https://github.com/akesterson/dpath-python
@@ -55,6 +55,9 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitelib}/dpath-%{version}-py%{python_version}.egg-info
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.4.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

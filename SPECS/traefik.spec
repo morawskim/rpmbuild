@@ -17,7 +17,7 @@
 
 Name:           traefik
 Version:        1.2.3
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Træfik, a modern reverse proxy
 Url:            https://traefik.io
@@ -74,6 +74,9 @@ fi
 %config(noreplace) %attr(640, %name, %name) %{_sysconfdir}/%{name}/traefik.sample.toml
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.2.3-2
+- Rebuild for openSUSE 42.3
+
 * Tue Jul 25 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

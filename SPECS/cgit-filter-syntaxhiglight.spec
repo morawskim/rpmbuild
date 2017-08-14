@@ -19,7 +19,7 @@
 
 Name:           cgit-filter-syntaxhiglight
 Version:        20160430
-Release:        2
+Release:        3
 License:        MIT
 Summary:        CSS highlighting styles for cgit
 Url:            https://github.com/morawskim/cgit-filter-syntaxhiglight
@@ -56,6 +56,9 @@ exit 0
 /usr/lib/cgit/filters/syntax-highlighting3.sh
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20160430-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

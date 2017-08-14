@@ -30,7 +30,7 @@
 
 Name:           php55v
 Version:        5.5.38
-Release:        3
+Release:        4
 License:        PHP-3.01
 Summary:        PHP55 Core Files
 Url:            http://www.php.net
@@ -1837,6 +1837,9 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 5.5.38-4
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

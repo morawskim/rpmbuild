@@ -25,7 +25,7 @@
 
 Name:           php70v-redis
 Version:        3.0.0
-Release:        2
+Release:        3
 License:        PHP License, version 3.01
 Summary:        API for php to communicate with redis
 Url:            https://github.com/nicolasff/phpredis
@@ -68,6 +68,9 @@ EOF
 %{ext_dir}/%{pkg_name}.so
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 3.0.0-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

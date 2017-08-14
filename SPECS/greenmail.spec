@@ -17,7 +17,7 @@
 
 Name:           greenmail
 Version:        1.5.5
-Release:        1
+Release:        2
 License:        Apache-2.0
 Summary:        Suite of email servers for testing purposes
 Url:            http://www.icegreen.com/greenmail
@@ -53,5 +53,8 @@ mvn -DskipITs clean install
 %{_javadir}/greenmail.jar
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.5.5-2
+- Rebuild for openSUSE 42.3
+
 * Thu Jun 15 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

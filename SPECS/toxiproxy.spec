@@ -17,7 +17,7 @@
 
 Name:           toxiproxy
 Version:        2.1.1
-Release:        1
+Release:        2
 License:        MIT
 Summary:        A TCP proxy to simulate network and system conditions for chaos and resiliency testing
 Url:            http://toxiproxy.io
@@ -69,5 +69,8 @@ popd
 %{_bindir}/%{name}-cli
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.1.1-2
+- Rebuild for openSUSE 42.3
+
 * Wed Jun 14 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

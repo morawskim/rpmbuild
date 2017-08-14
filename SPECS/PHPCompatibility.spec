@@ -19,7 +19,7 @@
 
 Name:           PHPCompatibility
 Version:        7.1.1
-Release:        2
+Release:        3
 License:        LGPL-3
 Summary:        PHP Compatibility Coding Standard for PHP_CodeSniffer
 Url:            https://github.com/wimg/PHPCompatibility
@@ -58,6 +58,9 @@ higher and lower versions of PHP.
 %{php_compatibility_root}/.travis.yml
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 7.1.1-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

@@ -19,7 +19,7 @@
 
 Name:           python-mitmproxy-bundled
 Version:        0.18.1
-Release:        4
+Release:        5
 License:        MIT
 Summary:        An SSL-capable man-in-the-middle proxy
 Url:            http://mitmproxy.org
@@ -129,6 +129,9 @@ desktop-file-install --dir="%{buildroot}%{_datadir}/applications" %{S:5}
 %doc docs/_build/singlehtml
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.18.1-5
+- Rebuild for openSUSE 42.3
+
 * Thu Jun 08 2017 Marcin Morawski <marcin@morawskim.pl>
 -  add logo and desktop file
 

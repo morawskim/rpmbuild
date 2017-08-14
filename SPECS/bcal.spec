@@ -17,7 +17,7 @@
 
 Name:           bcal
 Version:        1.6
-Release:        1
+Release:        2
 License:        GPLv3
 Summary:        Byte CALculator. The engineer's utility for storage conversions and calculations.
 Url:            https://github.com/jarun/bcal
@@ -64,5 +64,8 @@ make %{?_smp_mflags}
 %{_mandir}/man1/bcal.1.gz
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.6-2
+- Rebuild for openSUSE 42.3
+
 * Thu Jun 29 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

@@ -17,7 +17,7 @@
 
 Name:           ruby-build
 Version:        20170523
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Compile and install Ruby
 Url:            https://github.com/rbenv/ruby-build
@@ -68,5 +68,8 @@ cp share/ruby-build/* %{buildroot}%{_datadir}/ruby-build
 %{_datadir}/ruby-build/*
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20170523-2
+- Rebuild for openSUSE 42.3
+
 * Sun May 28 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

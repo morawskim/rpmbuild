@@ -19,7 +19,7 @@
 
 Name:           enhancd
 Version:        20161231
-Release:        2
+Release:        3
 License:        MIT
 Summary:        A next-generation cd command with an interactive filter
 Url:            https://github.com/b4b4r07/enhancd
@@ -69,6 +69,9 @@ cp -avr src/ %{buildroot}/%{_datarootdir}/%{name}/
 %{_datarootdir}/%{name}/src/*
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20161231-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

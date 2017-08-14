@@ -19,7 +19,7 @@
 
 Name:           PHP_CodeSniffer
 Version:        2.7.1
-Release:        2
+Release:        3
 License:        BSD-3
 Summary:        PHP_CodeSniffer tokenizes PHP, JavaScript and CSS files and detects violations of a defined set of coding standards
 Url:            https://github.com/squizlabs/PHP_CodeSniffer
@@ -69,6 +69,9 @@ composer install --no-dev --prefer-dist --no-interaction
 %{code_sniffer_root}/.gitattributes
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.7.1-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

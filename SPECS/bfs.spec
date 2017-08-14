@@ -17,7 +17,7 @@
 
 Name:           bfs
 Version:        1.1
-Release:        1
+Release:        2
 License:        WTFPL
 Summary:        Breadth-first version of find
 Url:            https://github.com/tavianator/bfs
@@ -52,5 +52,8 @@ make install DESTDIR=%{buildroot} %{?_smp_mflags}
 %{_bindir}/%{name}
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.1-2
+- Rebuild for openSUSE 42.3
+
 * Sun Jul 23 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release

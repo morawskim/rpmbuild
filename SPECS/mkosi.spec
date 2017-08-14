@@ -17,7 +17,7 @@
 
 Name:           mkosi
 Version:        3
-Release:        1
+Release:        2
 License:        LGPL-2.1
 Summary:        Build Legacy-Free OS Images
 Url:            https://github.com/systemd/mkosi
@@ -68,6 +68,9 @@ supported (not plain MBR/BIOS).
 %{_bindir}/%{name}
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 3-2
+- Rebuild for openSUSE 42.3
+
 * Wed Jul 26 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

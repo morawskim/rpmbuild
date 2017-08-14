@@ -17,7 +17,7 @@
 
 Name:           python-mitmproxy
 Version:        0.17.1
-Release:        2
+Release:        3
 License:        MIT
 Summary:        An SSL-capable man-in-the-middle proxy
 Url:            http://mitmproxy.org
@@ -109,6 +109,9 @@ python setup.py install --prefix=%{_prefix} --root %{buildroot}
 %doc docs/_build/singlehtml
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.17.1-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

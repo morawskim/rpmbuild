@@ -20,7 +20,7 @@
 
 Name:           phpmyadmin-curl-export
 Version:        20160710
-Release:        2
+Release:        3
 License:        GPL
 Summary:        Connect to phpMyAdmin and export database to file
 Url:            https://github.com/morawskim/phpmyadmin-curl-export
@@ -57,6 +57,9 @@ exit 0
 %attr(0644, root, root) /etc/bash_completion.d/%{name}.bash
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20160710-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

@@ -17,7 +17,7 @@
 
 Name:           fzf
 Version:        0.15.9
-Release:        2
+Release:        3
 License:        MIT
 Summary:        A command-line fuzzy finder written in Go
 Url:            https://github.com/junegunn/fzf
@@ -110,6 +110,9 @@ install -m 644 -D -p plugin/fzf.vim %{buildroot}/%{vim_data_dir}/plugin/%{name}.
 %{vim_data_dir}/plugin/%{name}.vim
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.15.9-3
+- Rebuild for openSUSE 42.3
+
 * Fri May 19 2017 Marcin Morawski <marcin@morawskim.pl>
 - Rebuild for openSUSE 42.2
 

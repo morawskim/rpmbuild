@@ -17,7 +17,7 @@
 
 Name:           telegram-desktop
 Version:        1.1.2
-Release:        1
+Release:        2
 License:        GPLv3
 Summary:        A new era of messaging
 Url:            https://telegram.org
@@ -77,5 +77,8 @@ install -m 644 -p %{S:1} "%{buildroot}%{_datadir}/kde4/services/tg.protocol"
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 
 %changelog
+* Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 1.1.2-2
+- Rebuild for openSUSE 42.3
+
 * Sun Jun 04 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
