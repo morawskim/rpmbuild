@@ -29,7 +29,7 @@ License:        BSD-3-Clause
 Summary:        Extended PHP debugger
 Url:            http://www.xdebug.org/
 Source:         http://www.xdebug.org/files/%{pkg_name}-%{version}.tgz
-Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/%{version}/%{pkg_name}.ini
+Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/XDEBUG_%(c=%{version}; echo ${c//./_})/%{pkg_name}.ini
 BuildRequires:  php56v
 BuildRequires:  php56v-devel
 BuildRequires:  php56v-soap
