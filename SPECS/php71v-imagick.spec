@@ -26,12 +26,12 @@
 
 Name:           php71v-imagick
 Version:        3.4.3
-Release:        3.RC1
+Release:        4
 License:        PHP License, version 3.01
 Summary:        Wrapper to the ImageMagick/GraphicsMagick library
 Url:            http://pecl.php.net/package/imagick
 Group:          Productivity/Networking/Web/Servers
-Source:         http://pecl.php.net/get/imagick-%{version}%(r=%{release}; echo ${r##*.}).tgz
+Source:         http://pecl.php.net/get/imagick-%{version}.tgz
 BuildRequires:  php71v-devel
 BuildRequires:  ImageMagick-devel >= 6.5.3.10
 BuildRequires:  pkgconfig
@@ -50,7 +50,7 @@ Group:          Development/C
 This package contains necessary header files for imagick development.
 
 %prep
-%setup -qn imagick-%{version}%(r=%{release}; echo ${r##*.})
+%setup -qn imagick-%{version}
 
 %build
 export PATH="/opt/php/php71v/usr/bin/:$PATH"
@@ -83,6 +83,9 @@ EOF
 %{php_dir_prefix}/%{_includedir}/php7/ext/imagick/*.h
 
 %changelog
+* Thu Aug 17 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Change release number. This is not rc version.
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 3.4.3-3.RC1
 - Rebuild for openSUSE 42.3
 
