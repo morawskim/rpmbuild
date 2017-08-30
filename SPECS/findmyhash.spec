@@ -20,12 +20,13 @@
 
 Name:           findmyhash
 Version:        20140430
-Release:        2
+Release:        3
 License:        GPLv3
 Summary:        Hash cracker
 Url:            https://github.com/Talanor/findmyhash
 Group:          Productivity/Security
-Source:         https://github.com/Talanor/findmyhash/archive/%{commit0}.tar.gz
+Source0:        https://github.com/Talanor/findmyhash/archive/%{commit0}.tar.gz
+Source1:        %{name}.bash_completion
 Patch0:         %{name}-add_shebang.patch
 Requires:       python-httplib2
 Requires:       python-libxml2
@@ -43,6 +44,7 @@ findmyhash try to crack different types of hashes using free online services.
 
 %install
 %{__install} -D -p -m 0755 findmyhash.py %{buildroot}%{_bindir}/%{name}
+%{__install} -D -m 0644 %{S:1} %{buildroot}/%{_sysconfdir}/bash_completion.d/%{name}.sh
 
 %post
 
@@ -52,10 +54,12 @@ findmyhash try to crack different types of hashes using free online services.
 %defattr(-,root,root)
 %doc README.md LICENSE
 %{_bindir}/%{name}
+%{_sysconfdir}/bash_completion.d/%{name}.sh
 
 %changelog
 * Wed Aug 30 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Add python-libxml2 to Requires
+-  Add bash completion
 
 * Tue Aug 29 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
