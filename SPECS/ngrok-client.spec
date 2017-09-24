@@ -16,8 +16,8 @@
 #
 
 Name:           ngrok-client
-Version:        2.1.18
-Release:        3
+Version:        2.2.8
+Release:        1
 License:        Commercial
 Summary:        Secure tunnels to localhost
 Url:            https://ngrok.com
@@ -63,6 +63,9 @@ ngrok-server package.
 %{_bindir}/ngrok
 
 %changelog
+* Sun Sep 24 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 2.2.8
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.1.18-3
 - Rebuild for openSUSE 42.3
 
