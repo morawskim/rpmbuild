@@ -51,7 +51,7 @@
 
 Name:           php72v
 Version:        7.2.0
-Release:        2.RC1
+Release:        3.RC1
 Summary:        %{php__doc_version} Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
@@ -996,6 +996,7 @@ Build()
         --with-libzip \
 %endif
         --with-password-argon2 \
+        --with-sodium \
         "$@" || { cat config.log; exit 1; }
     # Some modules are builtin, reasons:
     #  - libxml can not be shared (and is needed by PEAR)
@@ -1571,6 +1572,9 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Sun Sep 24 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Add option --with-sodium to configure.
+
 * Sat Sep 23 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Add option --with-password-argon2 to configure for including support for the
    Argon2 algorithm
