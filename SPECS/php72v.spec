@@ -51,12 +51,12 @@
 
 Name:           php72v
 Version:        7.2.0
-Release:        3.RC1
+Release:        1.RC3
 Summary:        %{php__doc_version} Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
 Url:            http://www.php.net
-Source0:        https://downloads.php.net/~remi/php-7.2.0RC1.tar.xz
+Source0:        https://downloads.php.net/~remi/php-7.2.0RC3.tar.xz
 Source1:        php7-fpm.service.template
 
 ## SUSE specific patches
@@ -892,7 +892,7 @@ PHP functions to read and write gzip (.gz) compressed files.
 
 
 %prep
-%setup -q -n php-%{version}RC1
+%setup -q -n php-%{version}RC3
 
 %patch0
 %patch2
@@ -1572,6 +1572,9 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Sat Sep 30 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Update to RC3
+
 * Sun Sep 24 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Add option --with-sodium to configure.
 
