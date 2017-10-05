@@ -18,7 +18,7 @@
 
 Name:           xdebug-tmpfiles
 Version:        1
-Release:        1
+Release:        2
 License:        MIT
 Summary:        tmpfiles.d config for xdebug
 Source0:        xdebug-tmpfiles.d.conf
@@ -45,5 +45,8 @@ systemd-tmpfiles --create /usr/lib/tmpfiles.d/%{dir_name}.conf || true
 /usr/lib/tmpfiles.d/%{dir_name}.conf
 
 %changelog
+* Thu Oct 05 2017 Marcin Morawski <marcin@morawskim.pl>
+-  change permission to /var/run/xdebug
+
 * Tue Aug 15 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
