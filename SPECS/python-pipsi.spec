@@ -19,7 +19,7 @@
 %bcond_without test
 Name:           python-pipsi
 Version:        0.9
-Release:        1
+Release:        2
 License:        BSD
 Summary:        Wraps pip and virtualenv to install scripts
 Url:            http://github.com/mitsuhiko/pipsi/
@@ -98,15 +98,24 @@ On older versions just uninstall and reinstall.
 
 %install
 %python_install
+%python_clone -a %{buildroot}%{_bindir}/pipsi
 %python_expand %fdupes %{buildroot}%{$python_sitelib}
+
+%post
+%python_install_alternative pipsi
+
+%postun
+%python_uninstall_alternative pipsi
 
 %files %{python_files}
 %defattr(-,root,root,-)
 %doc README.rst
 %license LICENSE
-%{_bindir}/pipsi
+%python_alternative %{_bindir}/pipsi
 %{python_sitelib}/*
 
 %changelog
 * Sun Oct 08 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
+-  fix build package python-pipsi (shebang contained python3 interpreator
+   instead python2)
