@@ -103,6 +103,8 @@ BuildRequires:  tcpd-devel
 BuildRequires:  unixODBC-devel
 BuildRequires:  update-alternatives
 BuildRequires:  xz
+BuildRequires:  libsodium-devel
+BuildRequires:  argon2-devel
 
 %if 0%{suse_version} > 1110
 BuildRequires:  pkgconfig(vpx)
@@ -1574,6 +1576,7 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %changelog
 * Fri Oct 13 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Update to RC4
+-  Add build dependiencies (libsodium and argon2)
 
 * Sat Sep 30 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Update to RC3
