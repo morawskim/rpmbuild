@@ -64,7 +64,6 @@ Patch0:         %{name}-phpize.patch
 Patch2:         %{name}-php-config.patch
 
 ## Bugfix patches
-Patch10:        %{name}-mbstring-missing-return.patch
 Patch11:        %{name}-BNC-457056.patch
 # following patch is to fix configure tests for crypt; the aim is to have php
 # built against glibc's crypt; problem is, that our glibc doesn't support extended
@@ -72,8 +71,6 @@ Patch11:        %{name}-BNC-457056.patch
 # from their checking as I indicated in crypt-tests.patch yet, or php will
 # silently use his own implementation again
 Patch12:        %{name}-crypt-tests.patch
-# related to previous patch; !(defined(_REENTRANT) || defined(_THREAD_SAFE))
-Patch13:        %{name}-no-reentrant-crypt.patch
 # https://bugs.php.net/bug.php?id=53007
 Patch14:        %{name}-odbc-cmp-int-cast.patch
 # https://bugs.php.net/bug.php?id=70461
@@ -459,6 +456,7 @@ PHP functions for work with arbitrary-length integers using the GNU MP
 library.
 
 
+Patch10:        %{name}-mbstring-missing-return.patch
 %package iconv
 Summary:        PHP7 Extension Module
 Group:          Development/Libraries/PHP
@@ -925,7 +923,6 @@ PHP functions to read and write gzip (.gz) compressed files.
 
 %patch0
 %patch2
-%patch10
 %if %{need_libxml2_hack}
 echo "*** APPLY LIBXML2.7 FIX ***"
 %patch11
@@ -933,7 +930,6 @@ echo "*** APPLY LIBXML2.7 FIX ***"
 echo "*** SKIPPING LIBMXL2.7 FIX ***"
 %endif
 %patch12
-%patch13
 %patch14
 %patch15
 
