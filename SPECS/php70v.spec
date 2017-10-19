@@ -49,8 +49,8 @@
 %define need_libxml2_hack %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h; then echo 1; else echo 0; fi; else echo 0; fi)
 
 Name:           php70v
-Version:        7.0.1
-Release:        5
+Version:        7.0.21
+Release:        1
 Summary:        PHP7 Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
@@ -1620,6 +1620,9 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Thu Oct 19 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Update to php 7.0.21
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 7.0.1-5
 - Rebuild for openSUSE 42.3
 
