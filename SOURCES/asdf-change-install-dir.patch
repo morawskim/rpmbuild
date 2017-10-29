@@ -1,0 +1,36 @@
+Index: asdf-0.4.0/lib/utils.sh
+===================================================================
+--- asdf-0.4.0.orig/lib/utils.sh
++++ asdf-0.4.0/lib/utils.sh
+@@ -16,6 +16,14 @@ asdf_dir() {
+   echo $ASDF_DIR
+ }
+ 
++asdf_install_dir() {
++  if [ -z $ASDF_INSTALL_DIR ]; then
++    export ASDF_INSTALL_DIR=$(echo $(asdf_dir)/installs)
++  fi
++
++  echo $ASDF_INSTALL_DIR
++}
++
+ asdf_repository_url() {
+   echo "https://github.com/asdf-vm/asdf-plugins.git"
+ }
+@@ -24,13 +32,13 @@ get_install_path() {
+   local plugin=$1
+   local install_type=$2
+   local version=$3
+-  mkdir -p $(asdf_dir)/installs/${plugin}
++  mkdir -p $(asdf_install_dir)/${plugin}
+ 
+   if [ $install_type = "version" ]
+   then
+-    echo $(asdf_dir)/installs/${plugin}/${version}
++    echo $(asdf_install_dir)/${plugin}/${version}
+   else
+-    echo $(asdf_dir)/installs/${plugin}/${install_type}-${version}
++    echo $(asdf_install_dir)/${plugin}/${install_type}-${version}
+   fi
+ }
+ 
