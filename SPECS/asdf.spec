@@ -19,7 +19,7 @@
 
 Name:           asdf
 Version:        0.4.0
-Release:        1
+Release:        2
 License:        MIT
 Summary:        Extendable version manager with support for Ruby, Node.js & more
 Url:            https://github.com/asdf-vm/asdf
@@ -27,6 +27,7 @@ Url:            https://github.com/asdf-vm/asdf
 Source0:        https://github.com/asdf-vm/asdf/archive/v%{version}.tar.gz
 Source1:        https://github.com/odarriba/asdf-php/archive/%{commitPluginPHP}.tar.gz
 Patch0:         %{name}-change-install-dir.patch
+Patch1:         %{name}-change-shims-dir.patch
 Requires:       mlocate
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -48,6 +49,7 @@ Supported languages include Ruby, Node.js, Elixir and more.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 %setup -T -D -a 1
 
 %build
@@ -81,5 +83,8 @@ cp -r ./asdf-php-%{commitPluginPHP}/bin %{buildroot}%{_datadir}/asdf/plugins/php
 %doc ./asdf-php-%{commitPluginPHP}/CHANGELOG ./asdf-php-%{commitPluginPHP}/LICENSE ./asdf-php-%{commitPluginPHP}/README.md
 
 %changelog
+* Mon Oct 30 2017 Marcin Morawski <marcin@morawskim.pl>
+-  apply asdf-change-shims-dir.patch
+
 * Sun Oct 29 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
