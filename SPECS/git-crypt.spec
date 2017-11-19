@@ -24,6 +24,7 @@ Url:            https://www.agwa.name/projects/git-crypt/
 Group:          Productivity/Security
 Source:         https://www.agwa.name/projects/git-crypt/downloads/%{name}-%{version}.tar.gz
 BuildRequires:  libressl-devel
+BuildRequires:  gcc-c++
 Requires:       openssl
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -58,6 +59,7 @@ make install DESTDIR=%{buildroot} PREFIX=%{_usr} %{?_smp_mflags}
 %changelog
 * Sun Nov 19 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Change to libressl-devel
+-  Add gcc-c++ as BuildRequires
 
 * Sat Nov 18 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
