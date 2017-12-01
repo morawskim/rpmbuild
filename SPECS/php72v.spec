@@ -51,12 +51,12 @@
 
 Name:           php72v
 Version:        7.2.0
-Release:        1.RC6
+Release:        1
 Summary:        %{php__doc_version} Core Files
 License:        PHP-3.01
 Group:          Development/Languages/Other
 Url:            http://www.php.net
-Source0:        https://downloads.php.net/~pollita/php-7.2.0RC6.tar.xz
+Source0:        http://us2.php.net/distributions/php-%{version}.tar.xz
 Source1:        php7-fpm.service.template
 
 ## SUSE specific patches
@@ -894,7 +894,7 @@ PHP functions to read and write gzip (.gz) compressed files.
 
 
 %prep
-%setup -q -n php-%{version}RC6
+%setup -q -n php-%{version}
 
 %patch0
 %patch2
@@ -1574,6 +1574,9 @@ grep -c "\"metadata_dir\";s:${#pd}:\"${pd}\""  %{buildroot}%{php_sysconf}/cli/pe
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Fri Dec 01 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Update to stable release
+
 * Sat Nov 11 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Update to RC6
 
