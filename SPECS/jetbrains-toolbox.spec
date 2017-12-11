@@ -16,7 +16,7 @@
 #
 
 Name:           jetbrains-toolbox
-Version:        1.4.2492
+Version:        1.6.2914
 Release:        1
 License:        Commercial
 Summary:        A control panel for your tools and projects
@@ -72,6 +72,9 @@ log you into other tools you install.
 %{_bindir}/jetbrains-toolbox
 
 %changelog
+* Mon Dec 11 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 1.6.2914
+
 * Mon Sep 04 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Update to 1.4.2492
 
