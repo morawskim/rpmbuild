@@ -16,7 +16,7 @@
 #
 
 Name:           telegram-desktop
-Version:        1.1.21
+Version:        1.2.1
 Release:        1
 License:        GPLv3
 Summary:        A new era of messaging
@@ -77,6 +77,9 @@ install -m 644 -p %{S:1} "%{buildroot}%{_datadir}/kde4/services/tg.protocol"
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 
 %changelog
+* Thu Dec 14 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 1.2.1
+
 * Mon Sep 04 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Update to 1.1.21
 
