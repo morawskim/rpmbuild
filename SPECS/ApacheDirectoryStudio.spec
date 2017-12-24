@@ -25,28 +25,13 @@
 
 Name:           ApacheDirectoryStudio
 Version:        %{valid_version}
-Release:        1
+Release:        2
 License:        Apache-2.0
 Summary:        LDAP browser and directory client
 Url:            http://directory.apache.org/studio/
 Group:          Applications/Tools
 Source0:        http://ftp.ps.pl/pub/apache/directory/studio/%{build_number}/ApacheDirectoryStudio-%{build_number}-src.zip
 Source1:        ApacheDirectoryStudio.desktop
-# We need fix test on openSUSE vagrant box.
-# Failed tests: 
-#   JNDIConnectionWrapperTest>ConnectionWrapperTestBase.testConnectFailures:235 null
-#   DirectoryApiConnectionWrapperTest>ConnectionWrapperTestBase.testConnectFailures:241 null
-# On my local machine test are OK.
-#
-# On local machine
-# telnet 555.555.555.555 389
-# telnet: 555.555.555.555: Name or service not known
-#
-# On vagrant box
-# telnet 555.555.555.555 389
-# Trying 555.555.555.555...
-# telnet: connect to address 555.555.555.555: Connection refused
-Patch0:         %{name}-fix-tests.patch
 BuildRequires:  maven > 3.5
 BuildRequires:  java-sdk >= 1.8.0
 Requires:       java >= 1.8.0
@@ -61,7 +46,6 @@ even run within Eclipse itself.
 
 %prep
 %setup -qn org.apache.directory.studio.parent-%{build_number}
-%patch0 -p1
 cp %{S:1} .
 
 %build
@@ -88,4 +72,5 @@ install -D -m 644 %{S:1} %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 %changelog
 * Sun Dec 24 2017 Marcin Morawski <marcin@morawskim.pl>
+-  Remove patch. Bug was in vagrant box hostname.
 -  init release
