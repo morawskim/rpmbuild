@@ -1,0 +1,22 @@
+Index: org.apache.directory.studio.parent-2.0.0.v20170904-M13/tests/test.integration.core/src/main/java/org/apache/directory/studio/test/integration/core/ConnectionWrapperTestBase.java
+===================================================================
+--- org.apache.directory.studio.parent-2.0.0.v20170904-M13.orig/tests/test.integration.core/src/main/java/org/apache/directory/studio/test/integration/core/ConnectionWrapperTestBase.java
++++ org.apache.directory.studio.parent-2.0.0.v20170904-M13/tests/test.integration.core/src/main/java/org/apache/directory/studio/test/integration/core/ConnectionWrapperTestBase.java
+@@ -232,13 +232,15 @@ public abstract class ConnectionWrapperT
+         {
+             assertTrue( monitor.getException() instanceof CommunicationException );
+             assertNotNull( monitor.getException().getCause() );
+-            assertTrue( monitor.getException().getCause() instanceof UnknownHostException );
++            assertTrue( monitor.getException().getCause() instanceof UnknownHostException || 
++                monitor.getException().getCause() instanceof java.net.ConnectException );
+         }
+         if ( provider == NetworkProvider.APACHE_DIRECTORY_LDAP_API )
+         {
+             assertTrue( monitor.getException() instanceof InvalidConnectionException );
+             assertNotNull( monitor.getException().getCause() );
+-            assertTrue( monitor.getException().getCause() instanceof UnresolvedAddressException );
++            assertTrue( monitor.getException().getCause() instanceof UnresolvedAddressException || 
++                monitor.getException().getCause() instanceof java.net.ConnectException );
+         }
+ 
+         // TODO: SSL, StartTLS
