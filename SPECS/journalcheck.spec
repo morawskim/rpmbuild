@@ -27,6 +27,7 @@ Url:            https://github.com/jorgenschaefer/journalcheck
 Group:          Applications/System
 Source:         https://github.com/jorgenschaefer/journalcheck/archive/%{commit0}.tar.gz
 BuildRequires:  go
+BuildRequires:  systemd-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -65,5 +66,8 @@ popd
 %{_bindir}/%{name}
 
 %changelog
+* Wed Jan 10 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Add systemd-devel to BuildRequires
+
 * Thu Dec 21 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Init release
