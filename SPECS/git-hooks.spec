@@ -17,7 +17,7 @@
 
 Name:           git-hooks
 Version:        1.1.4
-Release:        1
+Release:        2
 License:        MIT
 Summary:        git hooks manager
 Url:            http://git-hooks.github.io/git-hooks/
@@ -27,6 +27,11 @@ BuildRequires:  go
 BuildRequires:  gox
 BuildRequires:  godep
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+
+%package bash-completion
+Summary:        git-hooks bash completion
+Requires:       %{name} = %{version}
+BuildArch:      noarch
 
 %description
 git-hooks is currently at the stage of managing client-side hooks. It will
@@ -41,6 +46,9 @@ Run git hooks install to tell a git repo to use git-hooks.
 Stop using git-hooks by git hooks uninstall.
 List all scope of hooks by execute git hooks directly. See below for what scope
 is.
+
+%description bash-completion
+git-hooks bash completion
 
 %prep
 %setup -q
@@ -58,6 +66,7 @@ popd
 
 %install
 %{__install} -Dp -m 755 build/git-hooks_linux_amd64 %{buildroot}%{_bindir}/%{name}
+%{__install} -Dp -m 644 ./autocomplete/git-hooks-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/git-hooks-completion.bash
 
 %post
 
@@ -68,6 +77,13 @@ popd
 %doc History.md LICENSE Readme.md
 %{_bindir}/%{name}
 
+%files bash-completion
+%defattr(-,root,root)
+%{_sysconfdir}/bash_completion.d/git-hooks-completion.bash
+
 %changelog
+* Mon Jan 22 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Add bash completion
+
 * Sun Jan 21 2018 Marcin Morawski <marcin@morawskim.pl>
 -  init release
