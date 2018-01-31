@@ -22,17 +22,16 @@
 %define ext_dir %(%{phpconfig} --extension-dir)
 %define php_core_api %(%{phpize} --version | sed -n '/PHP Api Version:/{s/^[^0-9]*//;p;}')
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
-%define commmit 4ada85062ca226450e64752b12962cc82c0ec489
 
 Name:           php72v-xdebug
 Version:        2.6.0
-Release:        1.dev
+Release:        2
 License:        BSD-3-Clause
 Summary:        Extended PHP debugger
 Url:            http://www.xdebug.org/
 Group:          Development/Libraries/PHP
-Source0:        https://github.com/xdebug/xdebug/archive/%{commmit}.tar.gz
-Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/%{commmit}/%{pkg_name}.ini
+Source0:        https://github.com/xdebug/xdebug/archive/%{version}.tar.gz
+Source1:        https://raw.githubusercontent.com/%{pkg_name}/%{pkg_name}/%{version}/%{pkg_name}.ini
 BuildRequires:  php72v
 BuildRequires:  php72v-devel
 BuildRequires:  php72v-soap
@@ -59,7 +58,7 @@ Xdebug also provides:
 * capabilities to debug your scripts interactively with a debug client
 
 %prep
-%setup -q -n %{pkg_name}-%{commmit}
+%setup -q -n %{pkg_name}-%{version}
 %{__mkdir} %{name}
 install -m 644 %{SOURCE1} xdebug.ini
 
@@ -90,5 +89,8 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
 %changelog
+* Wed Jan 31 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to final 2.6.0 version
+
 * Mon Sep 04 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
