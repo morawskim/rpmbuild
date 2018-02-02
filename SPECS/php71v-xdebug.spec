@@ -24,8 +24,8 @@
 %define php_zend_api %(%{phpize} --version | sed -n  '/Zend Module Api No:/{s/^[^0-9]*//;p;}')
 
 Name:           php71v-xdebug
-Version:        2.5.0
-Release:        3
+Version:        2.6.0
+Release:        1
 License:        BSD-3-Clause
 Summary:        Extended PHP debugger
 Url:            http://www.xdebug.org/
@@ -89,6 +89,9 @@ install -m 644 xdebug.ini %{buildroot}%{conf_dir}/xdebug.ini
 %config(noreplace) %{conf_dir}/%{pkg_name}.ini
 
 %changelog
+* Fri Feb 02 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 2.6.0
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.5.0-3
 - Rebuild for openSUSE 42.3
 
