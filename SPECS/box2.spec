@@ -19,7 +19,7 @@
 
 Name:           box2
 Version:        2.7.4
-Release:        3
+Release:        4
 License:        MIT
 Summary:        An application for building and managing Phars
 Url:            https://box-project.github.io/box2/
@@ -28,6 +28,8 @@ Source:         https://github.com/box-project/box2/archive/%{version}.tar.gz#/%
 BuildRequires:  composer
 Requires:       php5 >= 5.3.3
 Requires:       php5-phar
+Requires:       php5-dom
+Requires:       php5-ctype
 Suggests:       php5-openssl
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -79,6 +81,9 @@ composer install --no-dev --prefer-dist --no-interaction
 %{box2_root}/.travis.yml
 
 %changelog
+* Wed Feb 07 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Add php5-dom and php5-ctype to BuildRequires
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.7.4-3
 - Rebuild for openSUSE 42.3
 
