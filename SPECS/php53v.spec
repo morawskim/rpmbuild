@@ -101,7 +101,7 @@ Requires:       smtp_daemon
 %define _x11prefix %(pkg-config --variable=prefix xft)
 %define need_libxml2_hack  %(if [ -e %{_includedir}/libxml/parser.h ]; then if grep -q XML_PARSE_OLDSAX %{_includedir}/libxml/parser.h;then echo 1; else echo 0; fi; else echo 0; fi)
 Version:        5.3.29
-Release:        5
+Release:        6
 Provides:       php53v
 Provides:       php53v-api = %{apiver}
 Provides:       php53v-date
@@ -246,7 +246,7 @@ Provides:       php53v-xml
 %if 0%{suse_version} > 1130
 %define with_systemd 1
 %{systemd_requires}
-BuildRequires:  pkgconfig(libsystemd-daemon)
+BuildRequires:  pkgconfig(libsystemd)
 %else
 # <= 11.3 or SLES 11
 %define with_systemd 0
@@ -1842,6 +1842,9 @@ grep -c '/var/cache/php-pear' %{buildroot}%{php_sysconf}/cli/pear.conf || exit 1
 %config(noreplace) %{php_sysconf}/conf.d/zlib.ini
 
 %changelog
+* Thu Feb 08 2018 Marcin Morawski <marcin@morawskim.pl>
+-  On leap 15 use libsystemd instead libsystemd-daemon
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 5.3.29-5
 - Rebuild for openSUSE 42.3
 
