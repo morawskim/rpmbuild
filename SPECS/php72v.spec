@@ -255,7 +255,7 @@ Provides:       %{name}-xml
 
 %if %{with systemd}
 %{systemd_requires}
-BuildRequires:  pkgconfig(libsystemd-daemon)
+BuildRequires:  pkgconfig(libsystemd)
 %endif
 Obsoletes:      %{name}-fpm < %{version}
 
