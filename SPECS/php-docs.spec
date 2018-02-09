@@ -19,13 +19,13 @@
 
 Name:           php-docs
 Version:        %{current_date}
-Release:        1
+Release:        2
 License:        MIT
 Summary:        The PHP Manual in xhtml and man pages formats
 Url:            http://doc.php.net
 Group:          Development/Languages/PHP
 BuildRequires:  git, subversion
-BuildRequires:  php5 >= 5.4
+BuildRequires:  php >= 5.4
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -66,5 +66,8 @@ cp -r docs/man/php-functions/ %{buildroot}/opt/php/docs/man/man3
 /opt/php/docs/xhtml
 
 %changelog
+* Fri Feb 09 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Change BuildDependiences to php instead php5
+
 * Tue Oct 17 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
