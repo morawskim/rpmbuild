@@ -17,13 +17,13 @@
 
 Name:           plantuml
 Version:        8045
-Release:        3
+Release:        4
 License:        LGPLv3+
 Summary:        Program to generate UML diagram from a text description
 Url:            http://plantuml.com/
 Source:         http://downloads.sourceforge.net/plantuml/%{name}-lgpl-%{version}.tar.gz
 BuildRequires:  ant
-BuildRequires:  java-1_7_0-openjdk-devel
+BuildRequires:  java-1_8_0-openjdk-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
 
@@ -65,6 +65,9 @@ ant
 %doc README COPYING
 
 %changelog
+* Fri Feb 09 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update build dependiency to JDK8
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 8045-3
 - Rebuild for openSUSE 42.3
 
