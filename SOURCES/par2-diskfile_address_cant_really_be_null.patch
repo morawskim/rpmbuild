@@ -1,0 +1,23 @@
+From 90b00bd6ab4a230ab7caca1f31f7801d7cffa817 Mon Sep 17 00:00:00 2001
+From: BlackEagle <ike.devolder@gmail.com>
+Date: Sun, 16 Apr 2017 17:00:05 +0200
+Subject: [PATCH] diskfile address can't really be null
+
+Signed-off-by: BlackEagle <ike.devolder@gmail.com>
+---
+ src/criticalpacket.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/criticalpacket.cpp b/src/criticalpacket.cpp
+index cd181eb..81ff1d0 100644
+--- a/src/criticalpacket.cpp
++++ b/src/criticalpacket.cpp
+@@ -29,7 +29,7 @@ static char THIS_FILE[]=__FILE__;
+ 
+ bool CriticalPacket::WritePacket(DiskFile &diskfile, u64 fileoffset) const
+ {
+-  assert(&diskfile != 0 && packetdata != 0 && packetlength != 0);
++  assert(packetdata != 0 && packetlength != 0);
+ 
+   return diskfile.Write(fileoffset, packetdata, packetlength);
+ }

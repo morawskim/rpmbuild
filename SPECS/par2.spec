@@ -17,13 +17,14 @@
 
 Name:           par2
 Version:        0.4
-Release:        3
+Release:        4
 License:        GPL-2.0
 Summary:        Create and use partiy files to secure data against loss
 Url:            http://sourceforge.net/projects/parchive/
 Group:          System/Backup
 Source:         http://downloads.sourceforge.net/project/parchive/par2cmdline/%{version}/par2cmdline-%{version}.tar.gz
-Patch:          par2-fix-compile.diff
+Patch0:         par2-fix-compile.diff
+Patch1:         par2-diskfile_address_cant_really_be_null.patch
 BuildRequires:  gcc-c++ libstdc++-devel dos2unix automake
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -40,7 +41,8 @@ Author:
 %setup -n par2cmdline-%{version}
 dos2unix ChangeLog AUTHORS ROADMAP README
 chmod -x ChangeLog AUTHORS ROADMAP README
-%patch -p1
+%patch0 -p1
+%patch1 -p2
 autoreconf -fi
 %configure
 
@@ -75,3 +77,7 @@ make install DESTDIR=%{buildroot} %{?_smp_mflags}
 %doc README AUTHORS ROADMAP ChangeLog
 
 
+%changelog
+* Sat Feb 10 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Add patch to fix error: 'diskfile' will never be NULL
+   [-Werror=address]
