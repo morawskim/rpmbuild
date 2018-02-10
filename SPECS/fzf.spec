@@ -16,7 +16,7 @@
 #
 
 Name:           fzf
-Version:        0.15.9
+Version:        0.17.3
 Release:        3
 License:        MIT
 Summary:        A command-line fuzzy finder written in Go
@@ -69,14 +69,10 @@ Pros
 %setup -q
 
 %build
-pushd src
 make
-popd
 
 %install
-pushd src
-make install BINDIR=%{buildroot}/%{_bindir}
-popd
+install -m 755 -D -p target/fzf-linux_amd64 %{buildroot}/%{_bindir}/%{name}
 install -m 755 -D -p bin/%{name}-tmux %{buildroot}/%{_bindir}/%{name}-tmux
 install -m 644 -D -p man/man1/%{name}.1 %{buildroot}/%{_mandir}/man1/%{name}.1
 install -m 644 -D -p man/man1/%{name}-tmux.1 %{buildroot}/%{_mandir}/man1/%{name}-tmux.1
@@ -92,7 +88,6 @@ install -m 644 -D -p plugin/fzf.vim %{buildroot}/%{vim_data_dir}/plugin/%{name}.
 %defattr(-,root,root)
 %doc CHANGELOG.md README.md LICENSE
 %{_bindir}/fzf
-%{_bindir}/fzf-linux_amd64
 %{_mandir}/man1/%{name}.1%{?ext_man}
 
 %files tmux
@@ -110,6 +105,9 @@ install -m 644 -D -p plugin/fzf.vim %{buildroot}/%{vim_data_dir}/plugin/%{name}.
 %{vim_data_dir}/plugin/%{name}.vim
 
 %changelog
+* Sat Feb 10 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 0.17.3
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.15.9-3
 - Rebuild for openSUSE 42.3
 
