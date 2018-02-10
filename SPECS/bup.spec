@@ -17,7 +17,7 @@
 
 Name:           bup
 Version:        0.27
-Release:        3
+Release:        4
 Summary:        Backup program based on git
 License:        LGPL-2.0
 Group:          Productivity/Archiving/Backup
@@ -66,6 +66,7 @@ make %{?_smp_mflags} PYTHON=%{__python}
 %defattr(-, root, root)
 %doc README LICENSE
 %{_bindir}/%{name}
+%{_docdir}/%{name}/
 %dir /usr/lib/%{name}/
 %dir /usr/lib/%{name}/bup/
 %dir /usr/lib/%{name}/cmd/
@@ -78,6 +79,9 @@ make %{?_smp_mflags} PYTHON=%{__python}
 %{_mandir}/man1/*
 
 %changelog
+* Sat Feb 10 2018 Marcin Morawski <marcin@morawskim.pl>
+- Fix unpack files error
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.27-3
 - Rebuild for openSUSE 42.3
 
