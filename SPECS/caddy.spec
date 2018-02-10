@@ -22,7 +22,7 @@
 
 Name:           caddy
 Version:        0.10.10
-Release:        1
+Release:        2
 License:        ASL 2.0 and MIT
 Summary:        HTTP/2 web server with automatic HTTPS
 Url:            https://caddyserver.com
@@ -46,7 +46,7 @@ with customized plugins can be downloaded from https://caddyserver.com.
 
 %build
 local_go=$PWD/go
-export GOPATH="$local_go:$GOPATH"
+export GOPATH="$local_go"
 export GOROOT='/usr/lib64/go/1.8'
 mkdir -p $local_go/src/%(dirname %{import_path})
 ln -s $PWD $local_go/src/%{import_path}
@@ -98,5 +98,8 @@ fi
 %attr(0750,caddy,caddy) %dir %{_sharedstatedir}/caddy
 
 %changelog
+* Sat Feb 10 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Remove append global GOPATH env
+
 * Wed Dec 27 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Init release
