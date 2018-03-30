@@ -16,7 +16,7 @@
 #
 
 Name:           jetbrains-toolbox
-Version:        1.6.2914
+Version:        1.8.3678
 Release:        1
 License:        Commercial
 Summary:        A control panel for your tools and projects
@@ -72,6 +72,18 @@ log you into other tools you install.
 %{_bindir}/jetbrains-toolbox
 
 %changelog
+* Fri Mar 30 2018 Marcin Morawski <marcin@morawskim.pl> - 1.8.3678
+-  Update to 1.8.3678
+-  ALL-1394 — Starting CLion from Toolbox preventing me from running my compiled program
+-  ALL-1407 — Wrong default web browser
+-  ALL-2310 — [Ubuntu] Jetbrain toolbox adds unexpected paths to PATH
+   environment, IDEs launched by toolbox will keep these unexpected path in
+   PATH env
+-  ALL-2318 — Settings not preserved across Idea U upgrades
+-  ALL-2358 — Strange behaviour when launching CLion through Jetbrains Toolbox
+-  ALL-2485 — JetBrains Toolbox adds relative directories to PATH
+-  ALL-2452 — Generate starter scripts for installed apps
+
 * Mon Dec 11 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Update to 1.6.2914
 
