@@ -43,7 +43,7 @@ USB. It does not require any root access
 export CFLAGS="%optflags -std=c99" CXXFLAGS="%optflags"
 mkdir ./buildtmp
 meson --buildtype release --strip -Db_lto=true \
-    -Dprefix=%{_prefix} --prefix=%{_prefix} \
+    --prefix=%{_prefix} \
     -Dprebuilt_server=%{S:1} ./buildtmp
 
 cd ./buildtmp
@@ -68,6 +68,10 @@ DESTDIR=%{buildroot} ninja install
 %{_datadir}/%{name}
 
 %changelog
+* Fri Jun 01 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Fix build error on Leap 15
+Argument "prefix" passed as both --prefix and -Dprefix, but only one is allowed
+
 * Sat Mar 17 2018 Marcin Morawski <marcin@morawskim.pl>
 - Fix (huge) memory leak (#26)
 - Fix segfault on copy/paste (#10)
