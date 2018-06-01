@@ -51,7 +51,7 @@ BuildRequires:  libbz2-devel
 BuildRequires:  libevent-devel
 BuildRequires:  libicu-devel
 BuildRequires:  libmcrypt-devel
-BuildRequires:  libopenssl-devel
+BuildRequires:  pkgconfig(openssl) < 1.1.0
 BuildRequires:  libpng-devel
 BuildRequires:  libtidy-devel
 BuildRequires:  libtiff-devel
