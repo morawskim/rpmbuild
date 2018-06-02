@@ -17,7 +17,7 @@
 
 Name:           nullmailer
 Version:        2.0
-Release:        1
+Release:        2
 License:        GPLv2+
 Summary:        Simple relay-only mail transport agent
 Url:            http://untroubled.org/nullmailer/
@@ -27,7 +27,7 @@ Source1:        %{name}.service
 BuildRequires:  gcc-c++ gnutls-devel
 PreReq:         permissions
 Requires:       systemd
-Provides:       smtpdaemon
+Provides:       smtp_daemon
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -89,5 +89,8 @@ mkdir -p %{buildroot}/var/spool/nullmailer/tmp
 %attr(0640,nullmailer,nullmailer)/var/spool/nullmailer/trigger
 
 %changelog
+* Sat Jun 02 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Change provide to smtp_daemon
+
 * Thu Dec 21 2017 Marcin Morawski <marcin@morawskim.pl>
 -  Init release
