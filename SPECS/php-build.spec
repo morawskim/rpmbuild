@@ -19,7 +19,7 @@
 
 Name:           php-build
 Version:        20170623
-Release:        5
+Release:        6
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
@@ -63,7 +63,7 @@ Requires:       systemd-devel
 Requires:       libvpx-devel
 Requires:       libXft-devel
 Requires:       libXpm-devel
-Requires:       postfix
+Requires:       smtp_daemon
 Requires:       re2c
 Requires:       sqlite2-devel
 Requires:       sqlite3-devel
@@ -132,6 +132,9 @@ rm %{buildroot}%{_prefix}/bin/rbenv-*
 
 
 %changelog
+* Sat Jun 02 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Require smtp_daemon no postfix
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 20170623-5
 - Rebuild for openSUSE 42.3
 
