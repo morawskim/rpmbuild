@@ -16,13 +16,13 @@
 #
 
 Name:           balance
-Version:        3.52
-Release:        3
+Version:        3.57
+Release:        1
 License:        GPLv2
 Summary:        TCP load-balancing proxy server with round robin and failover mechanisms
 Url:            http://www.inlab.de/balance.html
 Group:          Applications/Internet
-Source:         http://www.inlab.de/%{name}-%{version}.tar.gz
+Source:         https://www.inlab.net/wp-content/uploads/2018/05/%{name}-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -55,6 +55,9 @@ be controlled at runtime using a simple command line syntax.
 %dir %{_localstatedir}/run/%{name}
 
 %changelog
+* Mon Jun 04 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 3.57 and change source url
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 3.52-3
 - Rebuild for openSUSE 42.3
 
