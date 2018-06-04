@@ -17,13 +17,13 @@
 
 Name:           hub
 Version:        2.2.9
-Release:        1
+Release:        2
 License:        MIT
 Summary:        hub helps you win at git
 Url:            https://hub.github.com/
 Group:          Applications/Internet
 Source:         https://github.com/github/hub/archive/v%{version}.tar.gz
-BuildRequires:  go1.6
+BuildRequires:  go >= 1.6
 BuildRequires:  ruby
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -76,5 +76,8 @@ rake man:build
 %{_sysconfdir}/bash_completion.d/hub.bash_completion.sh
 
 %changelog
+* Mon Jun 04 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Require go >= 1.6
+
 * Mon Oct 16 2017 Marcin Morawski <marcin@morawskim.pl>
 -  init release
