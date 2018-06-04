@@ -17,14 +17,14 @@
 
 Name:           rr
 Version:        4.4.0
-Release:        3
+Release:        4
 License:        MIT and BSD
 Summary:        Lightweight tool for recording and replaying execution of applications (trees of processes and threads)
 Url:            http://rr-project.org
 Group:          Development/Debuggers
 Source:         https://github.com/mozilla/rr/archive/4.4.0.tar.gz
 Patch0:         %{name}.change-path-to-bash.patch
-BuildRequires:  python-pexpect
+BuildRequires:  python2-pexpect
 BuildRequires:  cmake
 BuildRequires:  gdb
 BuildRequires:  ccache
@@ -74,6 +74,9 @@ popd
 %{_datarootdir}/rr/*.xml
 
 %changelog
+* Mon Jun 04 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Require python2-pexpect
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 4.4.0-3
 - Rebuild for openSUSE 42.3
 
