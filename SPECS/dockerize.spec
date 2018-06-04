@@ -17,17 +17,17 @@
 
 Name:           dockerize
 Version:        0.2.2
-Release:        3
+Release:        4
 License:        GPLv3
 Summary:        A tool for creating minimal docker images from dynamic ELF binaries
 Url:            https://github.com/larsks/dockerize
 Group:          Development/Tools/Building
 Source:         https://github.com/larsks/dockerize/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildRequires:  python-base
-BuildRequires:  python-setuptools
+BuildRequires:  python2-setuptools
 Requires:       python-base
-Requires:       python-pyelftools
-Requires:       python-Jinja2
+Requires:       python2-pyelftools
+Requires:       python2-Jinja2
 BuildArch:      noarch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -59,6 +59,9 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitelib}/dockerize-%{version}-py%{python_version}.egg-info
 
 %changelog
+* Mon Jun 04 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Explicitly use python2 packages
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.2.2-3
 - Rebuild for openSUSE 42.3
 
