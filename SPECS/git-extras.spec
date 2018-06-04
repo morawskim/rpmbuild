@@ -17,13 +17,13 @@
 
 Name:           git-extras
 Version:        4.2.0
-Release:        3
+Release:        4
 License:        MIT
 Summary:        Little git extras
 Url:            https://github.com/tj/%{name}
 Group:          Development/Tools
 Source:         https://github.com/tj/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
-BuildRequires:  ruby2.1-rubygem-ronn
+BuildRequires:  rubygem(ronn)
 Requires:       git
 Requires:       bash-completion
 BuildArch:      noarch
@@ -81,6 +81,9 @@ mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d \
 %{_mandir}/man*/*
 
 %changelog
+* Mon Jun 04 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Not use explicit package name for ronn ruby game
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 4.2.0-3
 - Rebuild for openSUSE 42.3
 
