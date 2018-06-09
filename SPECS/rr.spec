@@ -16,13 +16,13 @@
 #
 
 Name:           rr
-Version:        4.4.0
-Release:        4
+Version:        5.2.0
+Release:        1
 License:        MIT and BSD
 Summary:        Lightweight tool for recording and replaying execution of applications (trees of processes and threads)
 Url:            http://rr-project.org
 Group:          Development/Debuggers
-Source:         https://github.com/mozilla/rr/archive/4.4.0.tar.gz
+Source:         https://github.com/mozilla/%{name}/archive/%{version}.tar.gz
 Patch0:         %{name}.change-path-to-bash.patch
 BuildRequires:  python2-pexpect
 BuildRequires:  cmake
@@ -35,6 +35,8 @@ BuildRequires:  glibc-devel
 BuildRequires:  libstdc++-devel
 BuildRequires:  zlib-devel
 BuildRequires:  man-pages
+BuildRequires:  capnproto
+BuildRequires:  libcapnp-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -65,7 +67,7 @@ popd
 
 %files
 %defattr(-,root,root)
-%doc README.md LICENSE doc/
+%doc README.md LICENSE
 %{_libexecdir}/*
 %{_bindir}/rr
 %{_bindir}/rr_exec_stub*
@@ -74,6 +76,9 @@ popd
 %{_datarootdir}/rr/*.xml
 
 %changelog
+* Sat Jun 09 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 5.2.0
+
 * Mon Jun 04 2018 Marcin Morawski <marcin@morawskim.pl>
 -  Require python2-pexpect
 
