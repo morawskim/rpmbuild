@@ -24,6 +24,7 @@ Summary:        A GPU-accelerated terminal emulator
 Url:            https://github.com/jwilm/alacritty/
 Group:          System/X11/Terminals
 Source:         https://github.com/jwilm/alacritty/archive/%{rev}.tar.gz#/%{name}-%{version}.tar.gz
+Source1:        %{name}.desktop
 BuildRequires:  cargo
 BuildRequires:  cmake
 BuildRequires:  fontconfig-devel
@@ -31,6 +32,7 @@ BuildRequires:  freetype-devel
 BuildRequires:  rust
 BuildRequires:  rust-std
 BuildRequires:  xclip
+BuildRequires:  update-desktop-files
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -84,11 +86,19 @@ install -Dm 0644 %{name}.man %{buildroot}/%{_mandir}/man1/%{name}.1
 install -Dm 0644 %{name}-completions.bash %{buildroot}/%{_datadir}/bash-completion/completions/%{name}
 install -Dm 0644 %{name}-completions.fish %{buildroot}/%{_datadir}/fish/vendor_completions.d/%{name}.fish
 install -Dm 0644 %{name}-completions.zsh  %{buildroot}/%{_datadir}/zsh/site-functions/_%{name}
+install -D -m 0644 %{SOURCE1}  %{buildroot}%{_datadir}/applications/%{name}.desktop
+
+%post
+%desktop_database_post
+
+%postun
+%desktop_database_postun
 
 %files
 %license LICENSE-APACHE
 %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1%{?ext_man}
+%{_datadir}/applications/%{name}.desktop
 
 %files bash-completion
 %{_datadir}/bash-completion
@@ -100,6 +110,9 @@ install -Dm 0644 %{name}-completions.zsh  %{buildroot}/%{_datadir}/zsh/site-func
 %{_datadir}/zsh
 
 %changelog
+* Mon Jul 02 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Add desktop file
+
 * Thu Jun 28 2018 Marcin Morawski <marcin@morawskim.pl>
 -  init release
 

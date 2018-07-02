@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+TryExec=alacritty
+Exec=alacritty
+Icon=utilities-terminal
+Terminal=false
+X-KDE-StartupNotify=true
+Name=alacritty
+Categories=System;TerminalEmulator;
+
