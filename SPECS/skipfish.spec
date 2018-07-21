@@ -27,7 +27,7 @@ Url:            http://code.google.com/p/skipfish/
 Group:          Applications/Internet
 Source0:        https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/%{name}/%{name}-%{version}b.tgz
 Patch1:         %{name}-makefile.patch
-BuildRequires:  openssl-devel
+BuildRequires:  pkgconfig(openssl) < 1.1.0
 BuildRequires:  libidn-devel
 BuildRequires:  zlib-devel
 BuildRequires:  pcre-devel
@@ -74,6 +74,9 @@ rm -f doc/skipfish.1
 %{_datadir}/%{name}/assets/*.png
 
 %changelog
+* Sat Jul 21 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Skipfix requires libopenssl-devel below 1.1.0
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 2.10-0.4.b
 - Rebuild for openSUSE 42.3
 
