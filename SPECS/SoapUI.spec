@@ -19,13 +19,13 @@
 %define soapui_root /usr/lib/SoapUI
 
 Name:           SoapUI
-Version:        5.3.0
-Release:        3
+Version:        5.4.0
+Release:        1
 License:        EUPL
 Summary:        SoapUI, is the world leading Open Source Functional Testing tool for API Testing
 Url:            https://www.soapui.org/
 Group:          Applications/Internet
-Source0:        http://cdn01.downloads.smartbear.com/soapui/%{version}/SoapUI-%{version}-linux-bin.tar.gz
+Source0:        https://s3.amazonaws.com/downloads.eviware/soapuios/%{version}/SoapUI-%{version}-linux-bin.tar.gz
 Source1:        https://smartbear.com/SmartBear/media/images/Home/SUI-Icon-Color.svg
 Source2:        %{name}.desktop
 Source3:        %{name}-logo.png
@@ -45,6 +45,7 @@ APIs and Web Services.
 %setup -q
 
 %build
+cp 'SmartBear License Terms of Use.md' SmartBear_License_Terms_of_Use.md
 
 %install
 %{__mkdir} -p %{buildroot}/%{soapui_root}
@@ -61,11 +62,14 @@ cp -r . %{buildroot}/%{soapui_root}
 
 %files
 %defattr(-,root,root)
-%doc RELEASENOTES.txt README.md LICENSE.md
+%doc RELEASENOTES.txt README.md SmartBear_License_Terms_of_Use.md
 %{soapui_root}/*
 %{_datadir}/applications/%{name}.desktop
 
 %changelog
+* Sat Jul 21 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 5.4.0
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 5.3.0-3
 - Rebuild for openSUSE 42.3
 
