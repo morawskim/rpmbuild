@@ -28,6 +28,7 @@ BuildRequires:  libQt5Widgets-devel
 BuildRequires:  libQt5Core-devel
 BuildRequires:  libQt5Gui-devel
 BuildRequires:  update-desktop-files
+BuildRequires:  kf5-filesystem
 Requires:       susepaste
 Provides:       susepaste-gui
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
@@ -45,7 +46,9 @@ make
 %install
 make install DESTDIR=%{buildroot} %{?_smp_mflags}
 %{__install} -D -m0644 susepaste-qt.desktop %{buildroot}%{_datadir}/applications/susepaste-qt.desktop
+%{__install} -D -m0644 susepaste-qt_paste.desktop %{buildroot}%{_kf5_servicesdir}/susepaste-qt_paste.desktop
 %{__install} -D susepaste-qt %{buildroot}%{_bindir}/susepaste-qt
+rm %{buildroot}/usr/share/kde4/services/ServiceMenus/susepaste-qt_paste.desktop
 
 %post
 %{desktop_database_post}
@@ -56,11 +59,14 @@ make install DESTDIR=%{buildroot} %{?_smp_mflags}
 %files
 %defattr(-,root,root)
 %{_datadir}/applications/susepaste-qt.desktop
-%attr(644,root,root) %{_kde4_servicesdir}/ServiceMenus/susepaste-qt_paste.desktop
+%attr(644,root,root) %{_kf5_servicesdir}/susepaste-qt_paste.desktop
 %{_bindir}/susepaste-qt
 
 
 %changelog
+* Sat Jul 21 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Fix build on leap 15. Add kf5-filesystem to BuildRequires.
+
 * Mon Aug 14 2017 Marcin Morawski <marcin@morawskim.pl> - 0.1.0-3
 - Rebuild for openSUSE 42.3
 
