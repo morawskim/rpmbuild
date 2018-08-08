@@ -18,13 +18,13 @@
 %define _owaspdir  /usr/share/owasp-zap
 
 Name:           owasp-zap
-Version:        2.6.0
+Version:        2.7.0
 Release:        1
 License:        Apachev2
 Summary:        Zed Attack Proxy
 Url:            http://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project
 Group:          System/Security
-Source0:        https://github.com/zaproxy/zaproxy/releases/download/2.6.0/ZAP_%{version}_Linux.tar.gz
+Source0:        https://github.com/zaproxy/zaproxy/releases/download/%{version}/ZAP_%{version}_Linux.tar.gz
 Source1:        %{name}.desktop
 Source2:        %{name}.png
 Requires:       java-1_8_0-openjdk >= 1.8.0
@@ -67,3 +67,7 @@ install -m 644 $RPM_SOURCE_DIR/%{name}.desktop %{buildroot}/usr/share/applicatio
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 %dir %{_datadir}/owasp-zap
+
+%changelog
+* Wed Aug 08 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 2.7.0
