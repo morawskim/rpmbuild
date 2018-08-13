@@ -19,7 +19,7 @@
 
 Name:           php-build
 Version:        20170623
-Release:        6
+Release:        1
 License:        MIT
 Summary:        Builds PHP so that multiple versions can be used side by side
 Url:            https://php-build.github.io/
@@ -49,8 +49,8 @@ Requires:       libfbclient2-devel
 Requires:       libicu-devel
 Requires:       libjpeg62-devel
 Requires:       libmcrypt-devel
-Requires:       libressl-devel
-Requires:       libtidy-0_99-0-devel
+Requires:       openssl-devel
+Requires:       libtidy-devel
 Requires:       libtiff-devel
 Requires:       libxslt-devel
 Requires:       libzip-devel
@@ -132,6 +132,9 @@ rm %{buildroot}%{_prefix}/bin/rbenv-*
 
 
 %changelog
+* Mon Aug 13 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update Requires for openSuSE Leap 15
+
 * Sat Jun 02 2018 Marcin Morawski <marcin@morawskim.pl>
 -  Require smtp_daemon no postfix
 
