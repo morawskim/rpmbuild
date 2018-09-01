@@ -16,7 +16,7 @@
 #
 
 Name:           jetbrains-toolbox
-Version:        1.8.3678
+Version:        1.11.4269
 Release:        1
 License:        Commercial
 Summary:        A control panel for your tools and projects
@@ -72,6 +72,9 @@ log you into other tools you install.
 %{_bindir}/jetbrains-toolbox
 
 %changelog
+* Sat Sep 01 2018 Marcin Morawski <marcin@morawskim.pl>
+-  Update to 1.11.4269
+
 * Fri Mar 30 2018 Marcin Morawski <marcin@morawskim.pl> - 1.8.3678
 -  Update to 1.8.3678
 -  ALL-1394 — Starting CLion from Toolbox preventing me from running my compiled program
